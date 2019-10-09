@@ -1,0 +1,38 @@
+[
+    {
+        "sex": "Otro",
+        "name": "Ezequiel",
+        "surname": "Rebasa",
+        "dni": "209551222",
+        "email": "rebAza@hotmail.com",
+        "userName": "EzePelad",
+        "password": "123456"
+    },
+    {
+        "sex": "Masculino",
+        "name": "asfasf",
+        "surname": "asfasf",
+        "dni": "asfasf21412",
+        "email": "asfasf@fasfas.com",
+        "userName": "asfasfa",
+        "password": "1245125"
+    },
+    {
+        "sex": "Masculino",
+        "name": "Matias",
+        "surname": "Mackiewicz",
+        "dni": "41209665",
+        "email": "matiadri2005@hotmail.com",
+        "userName": "Mati",
+        "password": "123456"
+    },
+    {
+        "sex": "Femenino",
+        "name": "robertito",
+        "surname": "roberman",
+        "dni": "225551112",
+        "email": "robert@hotmail.com",
+        "userName": "Robert",
+        "password": "123456"
+    }
+]
