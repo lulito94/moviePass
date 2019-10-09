@@ -1,0 +1,222 @@
+[
+    {
+        "id": 475557,
+        "popularity": 625.548,
+        "title": "Joker",
+        "release_date": "2019-10-04",
+        "original_language": "en",
+        "vote_count": 1349,
+        "vote_average": 8.7,
+        "isAdult": false,
+        "overview": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure."
+    },
+    {
+        "id": 474350,
+        "popularity": 227.539,
+        "title": "It Chapter Two",
+        "release_date": "2019-09-06",
+        "original_language": "en",
+        "vote_count": 1369,
+        "vote_average": 7,
+        "isAdult": false,
+        "overview": "27 years after overcoming the malevolent supernatural entity Pennywise, the former members of the Losers' Club, who have grown up and moved away from Derry, are brought back together by a devastating phone call."
+    },
+    {
+        "id": 522938,
+        "popularity": 134.044,
+        "title": "Rambo: Last Blood",
+        "release_date": "2019-09-20",
+        "original_language": "en",
+        "vote_count": 375,
+        "vote_average": 6.1,
+        "isAdult": false,
+        "overview": "When John Rambo's niece travels to Mexico to find the father that abandoned her and her mother, she finds herself in the grasps of Calle Mexican sex traffickers. When she doesn't return home as expected, John learns she's crossed into Mexico and sets out to get her back and make them pay."
+    },
+    {
+        "id": 301528,
+        "popularity": 124.278,
+        "title": "Toy Story 4",
+        "release_date": "2019-06-21",
+        "original_language": "en",
+        "vote_count": 2513,
+        "vote_average": 7.6,
+        "isAdult": false,
+        "overview": "Woody has always been confident about his place in the world and that his priority is taking care of his kid, whether that's Andy or Bonnie. But when Bonnie adds a reluctant new toy called \"Forky\" to her room, a road trip adventure alongside old and new friends will show Woody how big the world can be for a toy."
+    },
+    {
+        "id": 384018,
+        "popularity": 123.295,
+        "title": "Fast & Furious Presents: Hobbs & Shaw",
+        "release_date": "2019-08-02",
+        "original_language": "en",
+        "vote_count": 1421,
+        "vote_average": 6.5,
+        "isAdult": false,
+        "overview": "A spinoff of The Fate of the Furious, focusing on Johnson's US Diplomatic Security Agent Luke Hobbs forming an unlikely alliance with Statham's Deckard Shaw."
+    },
+    {
+        "id": 453405,
+        "popularity": 122.158,
+        "title": "Gemini Man",
+        "release_date": "2019-10-11",
+        "original_language": "en",
+        "vote_count": 85,
+        "vote_average": 6.2,
+        "isAdult": false,
+        "overview": "Henry Brogen, an aging assassin tries to get out of the business but finds himself in the ultimate battle: fighting his own clone who is 25 years younger than him and at the peak of his abilities."
+    },
+    {
+        "id": 458156,
+        "popularity": 116.829,
+        "title": "John Wick: Chapter 3 - Parabellum",
+        "release_date": "2019-05-17",
+        "original_language": "en",
+        "vote_count": 2820,
+        "vote_average": 7.1,
+        "isAdult": false,
+        "overview": "Super-assassin John Wick returns with a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin\u2019s guild, the High Table, John Wick is excommunicado, but the world\u2019s most ruthless hit men and women await his every turn."
+    },
+    {
+        "id": 513045,
+        "popularity": 113.377,
+        "title": "Stuber",
+        "release_date": "2019-07-12",
+        "original_language": "en",
+        "vote_count": 140,
+        "vote_average": 6.5,
+        "isAdult": false,
+        "overview": "After crashing his car, a cop who's recovering from eye surgery recruits an Uber driver to help him catch a heroin dealer. The mismatched pair soon find themselves in for a wild day of stakeouts and shootouts as they encounter the city's seedy side."
+    },
+    {
+        "id": 466272,
+        "popularity": 78.333,
+        "title": "Once Upon a Time... in Hollywood",
+        "release_date": "2019-07-26",
+        "original_language": "en",
+        "vote_count": 2158,
+        "vote_average": 7.6,
+        "isAdult": false,
+        "overview": "A faded television actor and his stunt double strive to achieve fame and success in the film industry during the final years of Hollywood's Golden Age in 1969 Los Angeles."
+    },
+    {
+        "id": 540901,
+        "popularity": 75.32,
+        "title": "Hustlers",
+        "release_date": "2019-09-13",
+        "original_language": "en",
+        "vote_count": 252,
+        "vote_average": 6.2,
+        "isAdult": false,
+        "overview": "A crew of savvy former strip club employees band together to turn the tables on their Wall Street clients."
+    },
+    {
+        "id": 511987,
+        "popularity": 75.116,
+        "title": "Crawl",
+        "release_date": "2019-07-12",
+        "original_language": "en",
+        "vote_count": 565,
+        "vote_average": 6.1,
+        "isAdult": false,
+        "overview": "While struggling to save her father during a Category 5 hurricane, a young woman finds herself trapped inside a flooding house and fighting for her life against Florida\u2019s most savage and feared predators."
+    },
+    {
+        "id": 420818,
+        "popularity": 72.996,
+        "title": "The Lion King",
+        "release_date": "2019-07-19",
+        "original_language": "en",
+        "vote_count": 2729,
+        "vote_average": 7.1,
+        "isAdult": false,
+        "overview": "Simba idolises his father, King Mufasa, and takes to heart his own royal destiny. But not everyone in the kingdom celebrates the new cub's arrival. Scar, Mufasa's brother\u2014and former heir to the throne\u2014has plans of his own. The battle for Pride Rock is ravaged with betrayal, tragedy and drama, ultimately resulting in Simba's exile. With help from a curious pair of newfound friends, Simba will have to figure out how to grow up and take back what is rightfully his."
+    },
+    {
+        "id": 419704,
+        "popularity": 71.194,
+        "title": "Ad Astra",
+        "release_date": "2019-09-20",
+        "original_language": "en",
+        "vote_count": 699,
+        "vote_average": 6.2,
+        "isAdult": false,
+        "overview": "An astronaut travels to the outer edges of the solar system to find his father and unravel a mystery that threatens the survival of our planet. He uncovers secrets which challenge the nature of human existence and our place in the cosmos."
+    },
+    {
+        "id": 428045,
+        "popularity": 69.538,
+        "title": "The Mystery of the Dragon\u2019s Seal",
+        "release_date": "2019-08-16",
+        "original_language": "ru",
+        "vote_count": 13,
+        "vote_average": 4.8,
+        "isAdult": false,
+        "overview": "The Russian Czar Peter the Great commissions Jonathan Green, an English traveller, to map the Far East territories of the Russian Empire. Green sets off on yet another long journey, full of unbelievable adventures, which eventually leads him to China. On his way, the famous cartographer makes breath-taking discoveries, meets mysterious creatures, Chinese princesses, deadly masters of oriental martial arts, and even Lun Van, the King of Dragons, himself. What could be more perilous than looking into the eyes of Viy? Only meeting him again\u2026 What will prevail this time \u2014 the unflinching scepticism of the scientist or ancient black magic, which has already gained influence over the Far East Lands?"
+    },
+    {
+        "id": 530385,
+        "popularity": 58.858,
+        "title": "Midsommar",
+        "release_date": "2019-07-03",
+        "original_language": "en",
+        "vote_count": 704,
+        "vote_average": 7.2,
+        "isAdult": false,
+        "overview": "A young couple travels to Sweden to visit their friend\u2019s rural hometown and attend its mid-summer festival. What begins as an idyllic retreat quickly descends into an increasingly violent and bizarre competition at the hands of a pagan cult."
+    },
+    {
+        "id": 568012,
+        "popularity": 53.635,
+        "title": "One Piece: Stampede",
+        "release_date": "2019-10-24",
+        "original_language": "ja",
+        "vote_count": 23,
+        "vote_average": 8.1,
+        "isAdult": false,
+        "overview": "One Piece: Stampede is a stand-alone film that celebrates the anime's 20th Anniversary and takes place outside the canon of the \"One Piece\" TV series. Monkey D. Luffy and his Straw Hat pirate crew are invited to a massive Pirate Festival that brings many of the most iconic characters from throughout the franchise to participate in competition with the Straw Hats to find Roger's treasure. It also pits the Straw Hats against a new enemy named Bullet, a former member of Roger's crew."
+    },
+    {
+        "id": 530382,
+        "popularity": 51.028,
+        "title": "In the Shadow of the Moon",
+        "release_date": "2019-09-27",
+        "original_language": "en",
+        "vote_count": 161,
+        "vote_average": 6.1,
+        "isAdult": false,
+        "overview": "In 1988, Philadelphia police officer Thomas \"Locke\" Lockhart, hungry to become a detective, begins tracking a serial killer whose crimes defy scientific explanation. When the killer mysteriously resurfaces nine years later, Locke's obsession with finding the truth threatens to destroy his career, his family, and possibly his sanity."
+    },
+    {
+        "id": 623393,
+        "popularity": 49.675,
+        "title": "Sanggano, Sanggago't Sanggwapo",
+        "release_date": "2019-09-04",
+        "original_language": "tl",
+        "vote_count": 2,
+        "vote_average": 6.5,
+        "isAdult": false,
+        "overview": "The gamols are back!"
+    },
+    {
+        "id": 412117,
+        "popularity": 47.788,
+        "title": "The Secret Life of Pets 2",
+        "release_date": "2019-06-07",
+        "original_language": "en",
+        "vote_count": 675,
+        "vote_average": 6.6,
+        "isAdult": false,
+        "overview": "Max the terrier must cope with some major life changes when his owner gets married and has a baby. When the family takes a trip to the countryside, nervous Max has numerous run-ins with canine-intolerant cows, hostile foxes and a scary turkey. Luckily for Max, he soon catches a break when he meets Rooster, a gruff farm dog who tries to cure the lovable pooch of his neuroses."
+    },
+    {
+        "id": 521029,
+        "popularity": 46.971,
+        "title": "Annabelle Comes Home",
+        "release_date": "2019-06-26",
+        "original_language": "en",
+        "vote_count": 863,
+        "vote_average": 6,
+        "isAdult": false,
+        "overview": "Determined to keep Annabelle from wreaking more havoc, demonologists Ed and Lorraine Warren bring the possessed doll to the locked artifacts room in their home, placing her \u201csafely\u201d behind sacred glass and enlisting a priest\u2019s holy blessing. But an unholy night of horror awaits as Annabelle awakens the evil spirits in the room, who all set their sights on a new target\u2014the Warrens' ten-year-old daughter, Judy, and her friends."
+    }
+]

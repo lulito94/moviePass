@@ -5,7 +5,9 @@ use Models\Movie as Movie;
 
 class MovieDAO implements IMovieDAO{
     
-    private $MovieList = array();
+    private $movieList = array();
+    
+
 
     public function GetAll(){
         $this->RetrieveData();
@@ -27,9 +29,20 @@ class MovieDAO implements IMovieDAO{
         return $movieFounded;
     }
 
+    public function getToApi()
+    {
+    $repo = new MovieDAO();
+    $jsonObject = file_get_contents('https://api.themoviedb.org/3/movie/now_playing?api_key=c65889a54974a405a970caef706f7005');
+    $result = json_decode($jsonObject, true);
+    return $result;
+    }
+
+
     public function Add($newMovie){
         
         $this->RetrieveData();
+
+
         
         array_push($this->MovieList, $newMovie);
 
@@ -64,12 +77,8 @@ class MovieDAO implements IMovieDAO{
     private function RetrieveData()
     {
         $this->MovieList = array();
-
-        if(file_exists('Data/Movie.json'))
-        {
-            $jsonContent = file_get_contents('Data/Movie.json');
-
-            $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
+        $arrayToDecode = $this->getToApi();
+            $arrayToDecode = $arrayToDecode['results'];
 
             foreach($arrayToDecode as $valuesArray)
             {
@@ -82,33 +91,13 @@ class MovieDAO implements IMovieDAO{
                 $movie->setOriginal_title($valuesArray["original_title"]);
                 $movie->setVote_count($valuesArray["vote_count"]);
                 $movie->setVote_average($valuesArray["vote_average"]);
-                $movie->setIsAdult($valuesArray["isAdult"]);
+                $movie->setIsAdult($valuesArray["adult"]);
                 $movie->setOverview($valuesArray["overview"]);
 
                 array_push($this->MovieList, $movie);
             }
         }
-    }
-
-    /**
-     * Get the value of MovieList
-     */ 
-    public function getMovieList()
-    {
-        return $this->MovieList;
-    }
-
-    /**
-     * Set the value of MovieList
-     *
-     * @return  self
-     */ 
-    public function setMovieList($MovieList)
-    {
-        $this->MovieList = $MovieList;
-
-        return $this;
-    }
+    
 }
 
 ?>
