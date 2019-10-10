@@ -1,5 +1,6 @@
 <?php
 
+
 if($_SESSION['loggeduser'])
 {
     echo  "Te logeaste ameo";
