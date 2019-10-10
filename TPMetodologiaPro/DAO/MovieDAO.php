@@ -40,12 +40,26 @@ class MovieDAO implements IMovieDAO{
     public function Add($newMovie){
         
         $this->RetrieveData();
-
-
         
         array_push($this->MovieList, $newMovie);
 
         $this->SaveData();
+    }
+    public function DeleteMovie($movieName)
+    {
+
+            $this->RetrieveData();
+    
+            foreach($this->movieList as $movie){
+    
+                if($movie->getTitle() == $movieName){
+                    $key = array_search($movie, $this->movieList);
+                    unset($this->movieList[$key]);
+                }
+            }
+    
+            $this->SaveData();
+    
     }
 
     //Json Persistence
@@ -76,7 +90,8 @@ class MovieDAO implements IMovieDAO{
     private function RetrieveData()
     {
         $this->MovieList = array();
-        $arrayToDecode = $this->getToApi();
+        //$arrayToDecode = $this->getToApi(); #Solo para traer de la bd (api)
+       $arrayToDecode =  file_get_contents('Data/users.json');
             $arrayToDecode = $arrayToDecode['results'];
 
             foreach($arrayToDecode as $valuesArray)
