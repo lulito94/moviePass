@@ -6,7 +6,11 @@
         public function Index($message = "")
         {
             require_once(VIEWS_PATH."menu.php");
-        }        
+        }     
+        public function showLobby()
+        {
+            require_once(VIEWS_PATH."index.php");
+        }   
 
     }
 ?>
