@@ -13,12 +13,12 @@ class CinemaController
 
     function __construct()
     {
-        this->CinemaDAO = new CinemaDAO();
+        $this->CinemaDAO = new CinemaDAO();
     }
 
-    public function ShowAddView()
+    public function ShowCinemaView()
     {
-        require_once(VIEWS_PATH . "Cinema-menu.php");
+        require_once(VIEWS_PATH . "Cinema-add.php");
     }
 
     public function ShowCinemaListView()
@@ -29,17 +29,28 @@ class CinemaController
     }
 
     public function Add($cinemaName,$address,$openingHours,$closingHours,$capacity){
-        $cinema = new CinemaDAO();
-
+        $cinema = new Cinema();
+        echo "hola";
         $cinema->setCinemaName($cinemaName);
         $cinema->setAddress($address);
         $cinema->setOpeningHours($openingHours);
         $cinema->setClosingHours($closingHours);
         $cinema->setCapacity($capacity);
         
-        this->CinemaDao->Add($cinema);
+        $repo = new CinemaDAO();
 
-        this->ShowAddView();
+        $newcinema = $repo->getByCinemaName($cinema->getCinemaName());
+        if(!empty($newcinema)) {
+            echo "<script>alert('El cine ya se encuentra registrado');</script>";
+            $this->ShowCinemaView();
+        }
+        else{
+
+        $repo->Add($cinema);
+        echo "<script>alert('El cine fue generado con exito');</script>";
+        $this->ShowCinemaListView();
+        }
+
     }
 }
 ?>

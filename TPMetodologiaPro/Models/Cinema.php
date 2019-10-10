@@ -7,7 +7,7 @@ class Cinema{
     private $address;
     private $openingHours;
     private $closingHours;
-    private $rooms;
+    private $capacity;
 
 
     public function getCinemaName()
@@ -57,13 +57,13 @@ class Cinema{
         return $this;
     }
 
-    public function getRooms()
+    public function getCapacity()
     {
-        return $this->rooms;
+        return $this->capacity;
     }
-    public function setRooms($rooms)
+    public function setCapacity($capacity)
     {
-        $this->rooms = $rooms;
+        $this->capacity = $capacity;
 
         return $this;
     }
