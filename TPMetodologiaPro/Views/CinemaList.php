@@ -1,7 +1,9 @@
 <?php
-    use DAO\CinemaDAO as CinemaDAO;
+    //use DAO\CinemaDAO as CinemaDAO; js
+    use DAO\CinemaDAODB as CinemaDAODB;
 
-    $repo = new CinemaDAO();
+   // $repo = new CinemaDAO(); js
+    $repo = new CinemaDAODB();
 
     $cinemaList = $repo->GetAll();
 ?>
@@ -13,10 +15,9 @@
                <table class="table bg-light-alpha">
                     <thead>
                          <th>Nombre</th>
-                         <th>Domicilio</th>
-                         <th>Horario de Apertura</th>
-                         <th>Horario de Cierre</th>
+                         <th>Direccion</th>
                          <th>Capacidad</th>
+                         <th>Valor de la entrada</th>
                     </thead>
                     <tbody>  
                     <!--<form action="Process/removeBill.php" method="POST" >   -->                   
@@ -27,9 +28,8 @@
                                         <tr> 
                                              <td><?php echo $cinema->getCinemaName(); ?></td>
                                              <td><?php echo $cinema->getAddress(); ?></td>
-                                             <td><?php echo $cinema->getOpeningHours(); ?></td>
-                                             <td><?php echo $cinema->getClosingHours(); ?></td>
                                              <td><?php echo $cinema->getCapacity(); ?></td>
+                                             <td><?php echo $cinema->getTicketValue(); ?></td>
                                              <td>
                                                 <!--  <button type="submit" name="btnRemove" class="btn btn-danger" value="<?php// echo ; ?>"> Eliminar </button> -->
                                              </td>

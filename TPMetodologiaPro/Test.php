@@ -12,7 +12,7 @@
 <body>
 
 <div class="container">
-  <h2>Carrito hermoso de imagenes</h2>  
+  <h2>Carrito hermoso de</h2>  
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">

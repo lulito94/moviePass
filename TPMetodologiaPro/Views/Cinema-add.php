@@ -19,31 +19,27 @@ include('nav-bar.php');
 <main class="d-flex align-items-center justify-content-center height-100" >
           <div class="content">
                <header class="text-center">
-                    <h2>Login</h2>
+                    <h2>Add Cinema</h2>
                </header>
-               <?php echo FRONT_ROOT; ?>
               <form action="<?php echo FRONT_ROOT;?>Cinema/Add" method="post" class="login-form bg-dark-alpha p-5 text-white">
                    <div class="form-group">
                         <label for=""> Nombre </label>
                         <input type="text" name="cinemaName" class="form-control form-control-lg" placeholder="Ingresar nombre del Cine">
                    </div>
                    <div class="form-group">
-                   <label for=""> Domicilio </label>
-                        <input type="text" name="address" class="form-control form-control-lg" placeholder="Ingresar Domicilio">
+                   <label for=""> Direccion </label>
+                        <input type="text" name="address" class="form-control form-control-lg" placeholder="Direccion">
                    </div>
                    <div class="form-group">
                         <?php // Si sobra tiempo mejorar tipo de dato de los horarios ?>
-                       <label for=""> Horario de Apertura </label>
-                            <input type="number" name="openingHours" class="form-control form-control-lg" placeholder="Horaio Apertura">
+                       <label for=""> Capacidad </label>
+                            <input type="number" name="capacity" class="form-control form-control-lg" placeholder="Capacidad">
                        </div>
                    <div class="form-group">
-                        <label for="">Horario Cierre</label>
-                        <input type="number" name="closingHours" class="form-control form-control-lg" placeholder="Horario de Cierre">
+                        <label for="">Valor de ticket</label>
+                        <input type="number" name="ticketValue" class="form-control form-control-lg" placeholder="Valor Ticket">
                    </div>
-                   <div class="form-group">
-                        <label for=""> Capacidad </label>
-                        <input type="number" name="capacity" class="form-control form-control-lg" placeholder="Capacidad">
-                   </div>
+                   
                   
                    <button class="btn btn-dark btn-block btn-lg" type="submit"> Agregar Cine </button>
               </form>

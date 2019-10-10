@@ -5,27 +5,44 @@ class Cinema{
 
     private $cinemaName;
     private $address;
-    private $openingHours;
-    private $closingHours;
     private $capacity;
+    private $ticketValue;
 
+   
 
+    /**
+     * Get the value of cinemaName
+     */ 
     public function getCinemaName()
     {
         return $this->cinemaName;
     }
 
+    /**
+     * Set the value of cinemaName
+     *
+     * @return  self
+     */ 
     public function setCinemaName($cinemaName)
     {
         $this->cinemaName = $cinemaName;
 
         return $this;
     }
+
+    /**
+     * Get the value of address
+     */ 
     public function getAddress()
     {
         return $this->address;
     }
 
+    /**
+     * Set the value of address
+     *
+     * @return  self
+     */ 
     public function setAddress($address)
     {
         $this->address = $address;
@@ -33,37 +50,42 @@ class Cinema{
         return $this;
     }
 
-    public function getOpeningHours()
-    {
-        return $this->openingHours;
-    }
-
-    public function setOpeningHours($openingHours)
-    {
-        $this->openingHours = $openingHours;
-
-        return $this;
-    }
-
-    public function getClosingHours()
-    {
-        return $this->closingHours;
-    }
-
-    public function setClosingHours($closingHours)
-    {
-        $this->closingHours = $closingHours;
-
-        return $this;
-    }
-
+    /**
+     * Get the value of capacity
+     */ 
     public function getCapacity()
     {
         return $this->capacity;
     }
+
+    /**
+     * Set the value of capacity
+     *
+     * @return  self
+     */ 
     public function setCapacity($capacity)
     {
         $this->capacity = $capacity;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of ticketValue
+     */ 
+    public function getTicketValue()
+    {
+        return $this->ticketValue;
+    }
+
+    /**
+     * Set the value of ticketValue
+     *
+     * @return  self
+     */ 
+    public function setTicketValue($ticketValue)
+    {
+        $this->ticketValue = $ticketValue;
 
         return $this;
     }

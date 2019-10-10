@@ -5,15 +5,18 @@ namespace Controllers;
 // Meter las peliculas en los cines
 use Models\Cinema as Cinema;
 use DAO\CinemaDAO as CinemaDAO;
+use DAO\CinemaDAODB as CinemaDAODB;
 
 class CinemaController
 {
 
-    private $CinemaDAO;
+    //private $CinemaDAO; js
+    private $CinemaDAODB;
 
     function __construct()
     {
-        $this->CinemaDAO = new CinemaDAO();
+       // $this->CinemaDAO = new CinemaDAO(); js
+       $this->CinemaDAODB = new CinemaDAODB();
     }
 
     public function ShowCinemaView()
@@ -23,32 +26,53 @@ class CinemaController
 
     public function ShowCinemaListView()
     {
-        $cinemasList = $this->CinemaDAO->GetAll();
+        //$cinemasList = $this->CinemaDAO->GetAll();js
+        $cinemasList = $this->CinemaDAODB->GetAll();
 
         require_once(VIEWS_PATH . "CinemaList.php");
     }
 
-    public function Add($cinemaName,$address,$openingHours,$closingHours,$capacity){
+    public function Add($cinemaName,$address,$capacity,$ticketValue){
         $cinema = new Cinema();
-        echo "hola";
         $cinema->setCinemaName($cinemaName);
         $cinema->setAddress($address);
-        $cinema->setOpeningHours($openingHours);
-        $cinema->setClosingHours($closingHours);
         $cinema->setCapacity($capacity);
+        $cinema->setTicketValue($ticketValue);
         
-        $repo = new CinemaDAO();
 
-        $newcinema = $repo->getByCinemaName($cinema->getCinemaName());
-        if(!empty($newcinema)) {
-            echo "<script>alert('El cine ya se encuentra registrado');</script>";
+        try{
+           $repo = new CinemaDAODB();
+           $repo->Add($cinema);
+           echo "<script>alert('Cinema agregado exitosamente!');</script>";
+           $this->ShowCinemaListView();
+        }catch(PDOException $e)
+        {
+            $e->getmessage();
+            echo "<script>alert('$e->getmessage()');</script>";
             $this->ShowCinemaView();
         }
-        else{
+    }
+    public function AddToJson($cinemaName,$address,$capacity,$ticketValue)
+    {
+        $cinema = new Cinema();
+        $cinema->setCinemaName($cinemaName);
+        $cinema->setAddress($address);
+        $cinema->setCapacity($capacity);
+        $cinema->setTicketValue($ticketValue);
 
-        $repo->Add($cinema);
-        echo "<script>alert('El cine fue generado con exito');</script>";
-        $this->ShowCinemaListView();
+        $repo = new CinemaDAO();
+
+        $newcinema = $repo->GetByCinemaName($cinema->getCinemaName());
+        if(!empty($newcinema))
+        {
+            echo "<script>alert ('El cine ya se encuentra registrado');</script>";
+            $this->ShowCinemaView();
+        }
+        else
+        {
+            $repo->Add($cinema);
+            echo "<script>alert ('EEl cine fue generado con exito');</script>";
+            $this->ShowCinemaListView();
         }
 
     }

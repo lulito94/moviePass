@@ -45,9 +45,9 @@ class CinemaDAO implements ICinemaDAO {
         {
             $valuesArray["cinemaName"] = $cinema->getCinemaName();
             $valuesArray["address"] = $cinema->getAddress();
-            $valuesArray["openingHours"] = $cinema->getOpeningHours();
-            $valuesArray["closingHours"] = $cinema->getClosingHours();
             $valuesArray["capacity"] = $cinema->getCapacity();
+            $valuesArray["ticketValue"] = $cinema->getTicketValue();
+            
 
             array_push($arrayToEncode, $valuesArray);
         }
@@ -72,9 +72,8 @@ class CinemaDAO implements ICinemaDAO {
                 $cinema = new Cinema();
                 $cinema->setCinemaName($valuesArray["cinemaName"]);
                 $cinema->setAddress($valuesArray["address"]);
-                $cinema->setOpeningHours($valuesArray["openingHours"]);
-                $cinema->setClosingHours($valuesArray["closingHours"]);
                 $cinema->setCapacity($valuesArray["capacity"]);
+                $cinema->setTicketValue($valuesArray["ticketValue"]);
 
                 array_push($this->cinemasList, $cinema);
             }
