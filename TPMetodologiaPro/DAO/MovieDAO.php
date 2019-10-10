@@ -37,7 +37,6 @@ class MovieDAO implements IMovieDAO{
     return $result;
     }
 
-
     public function Add($newMovie){
         
         $this->RetrieveData();
