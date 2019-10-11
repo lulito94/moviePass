@@ -33,6 +33,11 @@
                                              <td>
                                               <button type="submit" name="btnRemove" class="btn btn-danger" value="<?php echo $cinema->getCinemaName();?>"> Eliminar </button>
                                               </td>
+                                              <td>
+                                              <li><a href="#">Modificar</a></li>
+                                              </td>
+
+                                             
                                         </tr>
                                         <?php
                                    }}
