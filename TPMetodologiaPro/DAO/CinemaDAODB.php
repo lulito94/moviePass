@@ -61,6 +61,28 @@ class CinemaDAODB {
             throw $ex;
         }
     }
+
+    public function DeleteCinema($cinemaName)
+    {
+        try
+        {
+            $cinemaList = $this->GetAll();
+            foreach($cinemaList as $cinemaToRemove)
+            {
+            
+                if($cinemaToRemove->getCinemaName() == $cinemaName)
+                {
+                    $query = "DELETE FROM ".$this->tableName." WHERE ". $this->tableName . ".cinemaName ='$cinemaName'";
+                    $this->connection = Connection::GetInstance();
+                    $this->connection->ExecuteNonQuery($query);
+                }
+            }
+        }
+        catch(Exception $ex)
+        {
+            throw $ex;
+        }
+    }
 }
 
 ?>

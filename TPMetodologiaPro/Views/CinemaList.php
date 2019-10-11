@@ -20,7 +20,7 @@
                          <th>Valor de la entrada</th>
                     </thead>
                     <tbody>  
-                    <!--<form action="Process/removeBill.php" method="POST" >   -->                   
+                    <form action="<?php echo FRONT_ROOT;?>Cinema/delete" method="POST" >                
                          <?php
                                    if(isset($cinemaList) && !empty($cinemaList)){
                                    foreach($cinemaList as $cinema){
@@ -31,8 +31,8 @@
                                              <td><?php echo $cinema->getCapacity(); ?></td>
                                              <td><?php echo $cinema->getTicketValue(); ?></td>
                                              <td>
-                                                <!--  <button type="submit" name="btnRemove" class="btn btn-danger" value="<?php// echo ; ?>"> Eliminar </button> -->
-                                             </td>
+                                              <button type="submit" name="btnRemove" class="btn btn-danger" value="<?php echo $cinema->getCinemaName();?>"> Eliminar </button>
+                                              </td>
                                         </tr>
                                         <?php
                                    }}

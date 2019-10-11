@@ -76,5 +76,30 @@ class CinemaController
         }
 
     }
+    public function delete($cinemaName)
+    {
+        try{
+            $repo = new CinemaDAODB();
+           $repo->DeleteCinema($cinemaName);
+           echo "<script>alert ('Cines Actualizados');</script>";
+           $this->ShowCinemaListView();
+        }catch (PDOException $e)
+        {
+            $e->getmessage();
+        }
+    }
+    public function modify($cinemaName)
+    {
+        try{
+            $repo = new CinemaDAODB();
+            $repo->ModifyCinema($cinemaName);
+            echo "<script>alert ('Cines Actualizados');</script>";
+            $this->ShowCinemaListView();
+         
+        }catch (PDOException $e)
+        {
+            $e->getmessage();
+        }
+    }
 }
 ?>
