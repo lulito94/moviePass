@@ -1,21 +1,25 @@
 <?php
     namespace Controllers;
-  
+    
+    use DAO\UserDAODB as UserDAODB;
     use DAO\UserDAO as UserDAO;
     use Models\User as User;
 
     class UserController
     {
-        private $userDAO;
+        //private $userDAO; js
+        private $userDAODB;
 
         public function __construct()
         {
-            $this->userDAO = new UserDAO();
+            //$this->userDAO = new UserDAO(); js
+            $this->userDAODB = new UserDAODB();
         }
 
         public function Check($username,$password)
         {
-            $usercheck = $this->userDAO->getByUserName($username);
+           // $usercheck = $this->userDAO->getByUserName($username); js
+           $usercheck = $this->userDAODB->getByUserName($username);
             if(!empty($usercheck))
             {
                 if($usercheck->getPassword() == $password)
