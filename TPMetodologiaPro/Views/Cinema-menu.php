@@ -1,12 +1,8 @@
 <?php
+include('header.php');
+include('nav-bar.php');
+require_once ('validate-session.php');
 
-if($_SESSION['loggeduser'])
-{
-    echo  "Te logeaste ameo";
-}
-else
-{
-    echo "no te logeaste nada";
-}
+
 
 ?>
