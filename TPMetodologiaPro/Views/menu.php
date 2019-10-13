@@ -23,7 +23,7 @@
         <form action="" method="post"  style="background-color: #EAEDED;padding: 2rem !important;">
         <ul class="home-sidelinks">
             <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>User/ShowLogin">Login</a></li>
-            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaView">Logintomovie</a></li>
+            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Movie/RequestMovies">Logintomovie</a></li>
            
             <li><a class="smooth-link" href="<?php echo FRONT_ROOT ?>User/SignIn">Sign in</a></li>
             <!--<li><a  class="smoothscroll" href="#contact">Contact<span>get in touch</span></a></li> -->
