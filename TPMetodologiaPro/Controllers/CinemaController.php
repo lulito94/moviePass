@@ -88,11 +88,11 @@ class CinemaController
             $e->getmessage();
         }
     }
-    public function modify($cinemaName)
+    public function modify($cinemaName,$ticketValue)
     {
         try{
             $repo = new CinemaDAODB();
-            $repo->ModifyCinema($cinemaName);
+            $repo->ModifyCinema($cinemaName,$ticketValue);
             echo "<script>alert ('Cines Actualizados');</script>";
             $this->ShowCinemaListView();
          
