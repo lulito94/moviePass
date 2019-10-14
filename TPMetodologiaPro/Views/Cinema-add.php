@@ -17,7 +17,7 @@ require_once ('validate-session.php');
   </div>
 </div>
 <!-- ################################################################################################ -->
-<main class="d-flex align-items-center justify-content-center height-100" >
+<main class="d-flex align-items-center justify-content-center height-100" style="background-image:url('https://i.pinimg.com/originals/02/a3/95/02a395a756b4756bfd985d8343538313.jpg');">
           <div class="content">
                <header class="text-center">
                     <h2>Add Cinema</h2>
