@@ -1,7 +1,7 @@
 <?php
     //use DAO\CinemaDAO as CinemaDAO; js
     use DAO\CinemaDAODB as CinemaDAODB;
-    require_once ('validate-session.php');
+    require_once ('validate-session-admin.php');
 
 
    // $repo = new CinemaDAO(); js
