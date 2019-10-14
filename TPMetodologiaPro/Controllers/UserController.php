@@ -18,13 +18,20 @@
             $usercheck = $this->userDAO->getByUserName($username);
             if(!empty($usercheck))
             {
-                if($usercheck->getPassword() == $password)
+                if(($usercheck->getUsername() == "Mati") && ($usercheck->getPassword() == "sarasa"))
                 {
-                    $_SESSION['loggeduser'] = $usercheck;
-                    $this->ShowCinemaView();
-                }else{
-                    echo '<script>alert("Contraseña incorrecta!");</script>';
-                   $this->ShowLogin();
+                    $_SESSION['loggedadmin'] = $usercheck;
+                    $this->ShowAdminView();
+                }
+                else{
+                   if($usercheck->getPassword() == $password)
+                    {
+                     $_SESSION['loggeduser'] = $usercheck;
+                      $this->ShowCinemaView();
+                    } else{
+                        echo '<script>alert("Contraseña incorrecta!");</script>';
+                        $this->ShowLogin();
+                    }
                 }
             }
             else
@@ -33,11 +40,18 @@
             $this->ShowLogin();
             }
         }
-
+        public function ShowAdminView()
+        {
+            require_once(VIEWS_PATH."Admin-menu.php");
+        }
 
         public function ShowCinemaView()
         {
             require_once(VIEWS_PATH."Cinema-menu.php");
+        }
+        public function ShowLobby()
+        {
+            require_once(VIEWS_PATH."menu.php");
         }
 
         public function ShowLogin()
