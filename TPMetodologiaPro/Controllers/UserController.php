@@ -1,30 +1,41 @@
 <?php
     namespace Controllers;
-  
-    use DAO\UserDAO as UserDAO;
+    
+    use DAO\UserDAODB as UserDAODB;
+    //use DAO\UserDAO as UserDAO;
     use Models\User as User;
 
     class UserController
     {
-        private $userDAO;
+        //private $userDAO; js
+        private $userDAODB;
 
         public function __construct()
         {
-            $this->userDAO = new UserDAO();
+            //$this->userDAO = new UserDAO(); js
+            $this->userDAODB = new UserDAODB();
         }
 
         public function Check($username,$password)
         {
-            $usercheck = $this->userDAO->getByUserName($username);
+           // $usercheck = $this->userDAO->getByUserName($username); js
+           $usercheck = $this->userDAODB->getByUserName($username);
             if(!empty($usercheck))
             {
-                if($usercheck->getPassword() == $password)
+                if(($usercheck->getUsername() == "Mati") && ($usercheck->getPassword() == "sarasa"))
                 {
-                    $_SESSION['loggeduser'] = $usercheck;
-                    $this->ShowCinemaView();
-                }else{
-                    echo '<script>alert("Contraseña incorrecta!");</script>';
-                   $this->ShowLogin();
+                    $_SESSION['loggedadmin'] = $usercheck;
+                    $this->ShowAdminView();
+                }
+                else{
+                   if($usercheck->getPassword() == $password)
+                    {
+                     $_SESSION['loggeduser'] = $usercheck;
+                      $this->ShowCinemaView();
+                    } else{
+                        echo '<script>alert("Contraseña incorrecta!");</script>';
+                        $this->ShowLogin();
+                    }
                 }
             }
             else
@@ -33,11 +44,18 @@
             $this->ShowLogin();
             }
         }
-
+        public function ShowAdminView()
+        {
+            require_once(VIEWS_PATH."Admin-menu.php");
+        }
 
         public function ShowCinemaView()
         {
             require_once(VIEWS_PATH."Cinema-menu.php");
+        }
+        public function ShowLobby()
+        {
+            require_once(VIEWS_PATH."menu.php");
         }
 
         public function ShowLogin()
@@ -65,7 +83,9 @@
             $user->setName($name);
             $user->setSurname($surname);
             $user->setSex($sex);
-            $repo = new UserDAO();
+            
+            //$repo = new UserDAO(); js
+            $repo = new UserDAODB();
             $newuser = $repo->getByUserName($user->getUserName());
             if(!empty($newuser)) {
                 echo "<script>alert('El usuario ya se encuentra registrado');</script>";
