@@ -76,9 +76,15 @@ class CinemaController
         }
 
     }
+    public function showModify()
+    {
+        require_once(VIEWS_PATH . "Cinema-Modify.php");
+
+    }
     public function delete($cinemaName)
     {
         try{
+            
             $repo = new CinemaDAODB();
            $repo->DeleteCinema($cinemaName);
            echo "<script>alert ('Cines Actualizados');</script>";
@@ -92,13 +98,15 @@ class CinemaController
     {
         try{
             $repo = new CinemaDAODB();
-            $repo->ModifyCinema($cinemaName,$ticketValue);
+            echo $cinemaName . " cinema name";
+            echo $ticketValue . " valor ";
+            /*$repo->ModifyCinema($cinemaName,$ticketValue);
             echo "<script>alert ('Cines Actualizados');</script>";
             $this->ShowCinemaListView();
-         
+         */
         }catch (PDOException $e)
         {
-            $e->getmessage();
+           // $e->getmessage();
         }
     }
 }

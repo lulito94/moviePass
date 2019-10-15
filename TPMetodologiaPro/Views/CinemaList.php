@@ -33,8 +33,9 @@
                                              <td><?php echo $cinema->getCapacity(); ?></td>
                                              <td><?php echo $cinema->getTicketValue(); ?></td>
                                              <td>
-                                              <button type="submit" name="btnRemove" class="btn btn-danger" value="<?php echo $cinema->getCinemaName();?>"> Eliminar </button>
+                                              <button type="submit" name="remove" class="btn btn-danger" value="<?php echo $cinema->getCinemaName();?>"> Eliminar </button>
                                               </td>
+                                             
                                         </tr>
                                         <?php
                                    }}

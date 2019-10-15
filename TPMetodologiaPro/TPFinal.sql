@@ -13,3 +13,8 @@ create table Cinemas
 
 select *
 from Cinemas;
+
+create table Movies
+(
+
+)

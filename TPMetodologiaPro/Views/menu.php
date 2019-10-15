@@ -23,12 +23,8 @@
         <h2>Cinema</h2>
         <form action="" method="post"  style="background-color: #EAEDED;padding: 2rem !important;">
         <ul class="home-sidelinks">
-<<<<<<< HEAD
-            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>User/ShowLogin">Login</a></li>
-            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaView">Logintomovie</a></li>
-=======
-            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Movie/RequestMovies">Logintomovie</a></li>
->>>>>>> 0bf98846bc8d9b63afa9997d1cd6c203218e8fb7
+
+            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Movie/test">Logintomovie</a></li>
            
             <!--<li><a  class="smoothscroll" href="#contact">Contact<span>get in touch</span></a></li> -->
         </ul> <!-- end home-sidelinks -->
