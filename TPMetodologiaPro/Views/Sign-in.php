@@ -15,12 +15,15 @@ include('nav-bar.php');
                <?php //Ojo si se modifican el orden de los campos los datos se graban mal, por ende hay que modificar el 
                //orden en las demas funciones?>
                <form action="<?php echo FRONT_ROOT;?>User/SignInAdd" method="post" class="login-form bg-dark-alpha p-5 text-white">
-                     <div class="form-group">
-                        <label for="">Sexo</label>
-                        <input type="radio" name="sex" value="Masculino" checked> Masculino
-                        <input type="radio" name="sex" value="Femenino"> Femenino
-                        <input type="radio" name="sex" value="Otro"> Otro
-                    </div>    
+               <div class="form-group" >
+                        <label for="" style="color: #0E76A8;font-weight: bold">Sexo</label>
+                        <p style="color: white;display: inline-block">Masculino</p>
+                        <input type="radio" name="sex" value="Masculino" style="display: inline-block" required checked>
+                        <p style="color: white;display: inline-block">Femenino</p>
+                        <input type="radio" name="sex" value="Femenino" style="display: inline-block">
+                        <p style="color: white;display: inline-block">Otro</p>
+                        <input type="radio" name="sex" value="Otro" style="display: inline-block">
+                   </div>
                 
                     <div class="form-group">
                     <label for="" style="color: #0E76A8;font-weight: bold">Nombre</label>
@@ -33,10 +36,7 @@ include('nav-bar.php');
                     <div class="form-group">
                          <label for="">Dni</label>
                          <input type="dni" name="dni" class="form-control form-control-lg" placeholder="Ingresar dni">
-                    </div>   
-                         <label for="" style="color: #0E76A8;font-weight: bold">Contraseña</label>
-                         <input type="password" name="password" class="form-control form-control-lg" placeholder="Ingresar constraseña">
-                    </div>
+                    
                     <div class="form-group">
                          <label for="" style="color: #0E76A8;font-weight: bold">Email</label>
                          <input type="email" name="email" class="form-control form-control-lg" placeholder="Ingresar email">
@@ -50,20 +50,6 @@ include('nav-bar.php');
                          <input type="password" name="password" class="form-control form-control-lg" placeholder="Ingresar constraseña">
                     </div>
                     
-                    
-                  
-                         <label for="" style="color: #0E76A8;font-weight: bold">Dni</label>
-                         <input type="dni" name="dni" class="form-control form-control-lg" placeholder="Ingresar dni">
-                    </div>
-                    <div class="form-group" >
-                        <label for="" style="color: #0E76A8;font-weight: bold">Sexo</label>
-                        <p style="color: white;display: inline-block">Masculino</p>
-                        <input type="radio" name="sex" value="Masculino" style="display: inline-block" required>
-                        <p style="color: white;display: inline-block">Femenino</p>
-                        <input type="radio" name="sex" value="Femenino" style="display: inline-block">
-                        <p style="color: white;display: inline-block">Otro</p>
-                        <input type="radio" name="sex" value="Otro" style="display: inline-block">
-                   </div>
                     <button class="btn btn-dark btn-block btn-lg" type="submit">Iniciar Sesión</button>
                </form>
           </div>

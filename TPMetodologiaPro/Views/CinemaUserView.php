@@ -1,7 +1,10 @@
 <?php
+require_once ('validate-session.php');
+
     //use DAO\CinemaDAO as CinemaDAO; js
     use DAO\CinemaDAODB as CinemaDAODB;
     use DAO\MovieDAO as MovieDAO;
+    use Models\Movie as Movie;
     use DAO\MovieDAODB as MovieDAODB;
 
 
@@ -9,12 +12,18 @@
     $repo = new CinemaDAODB();
     $movies = new MovieDAO();
     $movieDB = new MovieDAODB();
-
+    $movie = new Movie();
     $movieList = $movies->GetAll();
-    foreach($movieList as $movie){
-        $count =0;
-        $movieDB->Add($movie);
-        var_dump($count);
+    foreach($movieList as $valuesArray){
+                $movie->setPopularity($valuesArray->getPopularity());
+                $movie->setTitle($valuesArray->getTitle());
+                $movie->setRelease_date($valuesArray->getRelease_date());
+                $movie->setOriginal_language($valuesArray->getOriginal_language());
+                $movie->setVote_count($valuesArray->getVote_count());
+                $movie->setPoster_path($valuesArray->getPoster_path());
+                $movie->setVote_average($valuesArray->getVote_average());
+                $movie->setOverview($valuesArray->getOverview());
+               $movieDB->Add($movie);
     }
     $cinemaList = $repo->GetAll();
 ?>

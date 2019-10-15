@@ -9,9 +9,11 @@ class Movie{
     private $original_language;
     private $original_title;
     private $vote_count;
+    private $poster_path;
     private $vote_average;
     private $isAdult;
     private $overview;
+    private $genre_ids;
     
 
     /**
@@ -210,6 +212,46 @@ class Movie{
     public function setOverview($overview)
     {
         $this->overview = $overview;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of poster_path
+     */ 
+    public function getPoster_path()
+    {
+        return $this->poster_path;
+    }
+
+    /**
+     * Set the value of poster_path
+     *
+     * @return  self
+     */ 
+    public function setPoster_path($poster_path)
+    {
+        $this->poster_path = $poster_path;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of genre_ids
+     */ 
+    public function getGenre_ids()
+    {
+        return $this->genre_ids;
+    }
+
+    /**
+     * Set the value of genre_ids
+     *
+     * @return  self
+     */ 
+    public function setGenre_ids($genre_ids)
+    {
+        $this->genre_ids = $genre_ids;
 
         return $this;
     }

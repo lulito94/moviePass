@@ -75,9 +75,11 @@ class MovieDAO implements IMovieDAO{
             $valuesArray["release_date"] = $movie->getRelease_date();
             $valuesArray["original_language"] = $movie->getOriginal_language();
             $valuesArray["vote_count"] = $movie->getVote_count();
+            $valuesArray["poster_path"] = $movie->getPoster_path();
             $valuesArray["vote_average"] = $movie->getVote_average();
             $valuesArray["isAdult"] = $movie->getIsAdult();
             $valuesArray["overview"] = $movie->getOverview();
+            $valuesArray["genre_ids"] = $movie->getGenre_ids();
             
             array_push($arrayToEncode, $valuesArray);
         }
@@ -91,22 +93,25 @@ class MovieDAO implements IMovieDAO{
     {
         $this->MovieList = array();
         //$arrayToDecode = $this->getToApi(); #Solo para traer de la bd (api)
-      /* $arrayToDecode =  file_get_contents('Data/Movies.json'); // Aca habia un users
-            $arrayToDecode = $arrayToDecode['results'];*/
+     // $arrayToDecode =  file_get_contents('Data/Movies.json'); // Aca habia un users
+            //$arrayToDecode2 = $arrayToDecode['results'];
             $jsonContent =  file_get_contents('Data/Movies.json');
             $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
             foreach($arrayToDecode as $valuesArray)
             {
                 $movie = new Movie();
+                
                 $movie->setId($valuesArray["id"]);
                 $movie->setPopularity($valuesArray["popularity"]);
                 $movie->setTitle($valuesArray["title"]);
                 $movie->setRelease_date($valuesArray["release_date"]);
                 $movie->setOriginal_language($valuesArray["original_language"]);
                 $movie->setVote_count($valuesArray["vote_count"]);
+                $movie->setPoster_path($valuesArray["poster_path"]);
                 $movie->setVote_average($valuesArray["vote_average"]);
                 $movie->setIsAdult($valuesArray["isAdult"]);
                 $movie->setOverview($valuesArray["overview"]);
+                $movie->setGenre_ids($valuesArray["genre_ids"]);
 
                 array_push($this->MovieList, $movie);
             }

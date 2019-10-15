@@ -14,8 +14,9 @@ class MovieDAODB {
        
         try
         {
-            $query = "INSERT INTO ".$this->tableName." (id, popularity, title, release_date, original_language, vote_count, vote_average, isAdult, overview)
-                                             VALUES (:id, :popularity, :title, :release_date, :original_language, :vote_count, :vote_average, :isAdult, :overview);";
+            
+            $query = "INSERT INTO ".$this->tableName." (id, popularity, title, release_date, original_language, vote_count,poster_path, vote_average, isAdult, overview)
+                                             VALUES (:id, :popularity, :title, :release_date, :original_language, :vote_count, :poster_path, :vote_average, :isAdult, :overview);";
             
             $parameters["id"] = $movie->getId();
             $parameters["popularity"] = $movie->getPopularity();
@@ -23,6 +24,7 @@ class MovieDAODB {
             $parameters['release_date'] = $movie->getRelease_date();
             $parameters["original_language"] = $movie->getOriginal_language();
             $parameters["vote_count"] = $movie->getVote_count();
+            $parameters["poster_path"] = $movie->getPoster_path();
             $parameters["vote_average"] = $movie->getVote_average();
             $parameters['isAdult'] = $movie->getIsAdult();
             $parameters['overview'] = $movie->getOverview();
@@ -59,6 +61,7 @@ class MovieDAODB {
                 $movie->setRelease_date($row["release_date"]);
                 $movie->setOriginal_language($row["original_language"]);
                 $movie->setVote_count($row["vote_count"]);
+                $movie->setPoster_path($row["poster_path"]);
                 $movie->setVote_average($row["vote_average"]);
                 $movie->setIsAdult($row["isAdult"]);
                 $movie->setOverview($row["overview"]);
