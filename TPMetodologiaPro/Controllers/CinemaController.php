@@ -41,7 +41,7 @@ class CinemaController
         
 
         try{
-           $repo = new CinemaDAODB();
+          
            $repo->Add($cinema);
            echo "<script>alert('Cinema agregado exitosamente!');</script>";
            $this->ShowCinemaListView();
@@ -85,7 +85,6 @@ class CinemaController
     {
         try{
             
-            $repo = new CinemaDAODB();
            $repo->DeleteCinema($cinemaName);
            echo "<script>alert ('Cines Actualizados');</script>";
            $this->ShowCinemaListView();
@@ -97,7 +96,6 @@ class CinemaController
     public function modify($cinemaName,$ticketValue)
     {
         try{
-            $repo = new CinemaDAODB();
             echo $cinemaName . " cinema name";
             echo $ticketValue . " valor ";
             /*$repo->ModifyCinema($cinemaName,$ticketValue);
