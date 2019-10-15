@@ -13,8 +13,8 @@ require_once ('validate-session.php');
     $movies = new MovieDAO();
     $movieDB = new MovieDAODB();
     $movie = new Movie();
-    $movieList = $movies->GetAll();
-    foreach($movieList as $valuesArray){
+    //$movieList = $movies->GetAll();           PASAJE A BD DESDE JSON
+   /* foreach($movieList as $valuesArray){
                 $movie->setPopularity($valuesArray->getPopularity());
                 $movie->setTitle($valuesArray->getTitle());
                 $movie->setRelease_date($valuesArray->getRelease_date());
@@ -24,8 +24,9 @@ require_once ('validate-session.php');
                 $movie->setVote_average($valuesArray->getVote_average());
                 $movie->setOverview($valuesArray->getOverview());
                $movieDB->Add($movie);
-    }
+    }*/
     $cinemaList = $repo->GetAll();
+    $movieListDB = $movieDB->GetAll();
 ?>
     <main class="py-5">
      
@@ -52,11 +53,13 @@ require_once ('validate-session.php');
                                              <td><?php echo $cinema->getCapacity(); ?></td>
                                              <td><?php echo $cinema->getTicketValue(); ?></td>
                                              <td><?php
-                                                if(isset($movieList) && !empty($movieList)){
+                                                if(isset($movieListDB) && !empty($movieListDB)){
                                                 for($count =0 ; $count < 6; $count++){
-                                                    if(!empty($movieList)){
+                                                    if(!empty($movieListDB)){
                                                         ?> <div>
-                                                    <?php echo $movieList[$count]->getTitle();}
+                                                    <?php echo $movieListDB[$count]->getTitle()
+
+                                                    ;}
                                                 }}?>
                                                 </div></td>
                                         </tr>
