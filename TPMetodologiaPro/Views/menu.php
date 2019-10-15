@@ -25,7 +25,7 @@
         <ul class="home-sidelinks">
 <<<<<<< HEAD
             <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>User/ShowLogin">Login</a></li>
-            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaView">Logintomovie</a></li>
+            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaView">Cinemas</a></li>
 =======
             <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Movie/RequestMovies">Logintomovie</a></li>
 >>>>>>> 0bf98846bc8d9b63afa9997d1cd6c203218e8fb7

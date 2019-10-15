@@ -4,6 +4,6 @@ use Models\Movie as Movie;
 interface IMovieDAO
 {
     function Add(Movie $newMovie);
-    function DeleteMovie();
+    function DeleteMovie(Movie $movieTodrop);
 }
 ?>

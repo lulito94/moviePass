@@ -21,7 +21,8 @@ include('nav-bar.php');
                <header class="text-center">
                     <h2>Login</h2>
                </header>
-
+               <?php //Ojo si se modifican el orden de los campos los datos se graban mal, por ende hay que modificar el 
+               //orden en las demas funciones?>
                <form action="<?php echo FRONT_ROOT;?>User/SignInAdd" method="post" class="login-form bg-dark-alpha p-5 text-white">
                      <div class="form-group">
                         <label for="">Sexo</label>

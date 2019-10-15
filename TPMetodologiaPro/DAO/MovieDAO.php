@@ -45,14 +45,14 @@ class MovieDAO implements IMovieDAO{
 
         $this->SaveData();
     }
-    public function DeleteMovie($movieName)
+    public function DeleteMovie($movieTodrop)
     {
 
             $this->RetrieveData();
     
             foreach($this->movieList as $movie){
     
-                if($movie->getTitle() == $movieName){
+                if($movie->getTitle() == $movieTodrop->getTitle()){
                     $key = array_search($movie, $this->movieList);
                     unset($this->movieList[$key]);
                 }
@@ -91,9 +91,10 @@ class MovieDAO implements IMovieDAO{
     {
         $this->MovieList = array();
         //$arrayToDecode = $this->getToApi(); #Solo para traer de la bd (api)
-       $arrayToDecode =  file_get_contents('Data/users.json');
-            $arrayToDecode = $arrayToDecode['results'];
-
+      /* $arrayToDecode =  file_get_contents('Data/Movies.json'); // Aca habia un users
+            $arrayToDecode = $arrayToDecode['results'];*/
+            $jsonContent =  file_get_contents('Data/Movies.json');
+            $arrayToDecode = ($jsonContent) ? json_decode($jsonContent, true) : array();
             foreach($arrayToDecode as $valuesArray)
             {
                 $movie = new Movie();
@@ -102,10 +103,9 @@ class MovieDAO implements IMovieDAO{
                 $movie->setTitle($valuesArray["title"]);
                 $movie->setRelease_date($valuesArray["release_date"]);
                 $movie->setOriginal_language($valuesArray["original_language"]);
-                $movie->setOriginal_title($valuesArray["original_title"]);
                 $movie->setVote_count($valuesArray["vote_count"]);
                 $movie->setVote_average($valuesArray["vote_average"]);
-                $movie->setIsAdult($valuesArray["adult"]);
+                $movie->setIsAdult($valuesArray["isAdult"]);
                 $movie->setOverview($valuesArray["overview"]);
 
                 array_push($this->MovieList, $movie);

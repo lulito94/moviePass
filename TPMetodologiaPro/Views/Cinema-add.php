@@ -2,7 +2,7 @@
 
 include('header.php');
 include('nav-bar.php');
-require_once ('validate-session-admin.php');
+//require_once ('validate-session-admin.php');
 
 ?>
 <!-- ################################################################################################ -->

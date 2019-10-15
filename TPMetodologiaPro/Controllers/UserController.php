@@ -2,6 +2,7 @@
     namespace Controllers;
     
     use DAO\UserDAODB as UserDAODB;
+    use DAO\CinemaDAODB as CinemaDAODB; // Agregado 
     //use DAO\UserDAO as UserDAO;
     use Models\User as User;
 
@@ -31,7 +32,8 @@
                    if($usercheck->getPassword() == $password)
                     {
                      $_SESSION['loggeduser'] = $usercheck;
-                      $this->ShowCinemaView();
+                      $this->ShowCinemaView(); 
+                     
                     } else{
                         echo '<script>alert("Contraseña incorrecta!");</script>';
                         $this->ShowLogin();
@@ -51,7 +53,7 @@
 
         public function ShowCinemaView()
         {
-            require_once(VIEWS_PATH."Cinema-menu.php");
+            require_once(VIEWS_PATH."CinemaUserView.php");
         }
         public function ShowLobby()
         {
