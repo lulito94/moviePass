@@ -28,7 +28,6 @@ create table Users(
     constraint unq_email unique(email)
 );
 
-<<<<<<< HEAD
 select *
 from Cinemas;
 
@@ -36,5 +35,3 @@ create table Movies
 (
 
 )
-=======
->>>>>>> 3d913d134c112795a6da1904a753f7c76a863838
