@@ -1,6 +1,6 @@
-<div class="wrapper row1" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcXrI_nL26T6yMRgLYWLcuPoozStq-4EoH51tgoJkQaUZFmiGdYg');">
+<div class="wrapper row1" style="background-image: url('https://image.freepik.com/vector-gratis/logo-cine_23-2147503279.jpg');">
   <header id="header" class="clear"> 
-    <div id="logo" class="fl_left" style="color: white">
+    <div id="logo" class="fl_left" style="color: black">
       <h1>Cinema</h1>
     </div>
     <nav id="mainav" class="fl_right">

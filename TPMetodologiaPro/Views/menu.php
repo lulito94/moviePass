@@ -7,27 +7,16 @@
 
 
 
-        <div style="float: right; display: flex; justify-content: center;">
+<div style="float: right; display: flex; justify-content: center;">
 
-            <a class="smooth-link"  href="<?php echo FRONT_ROOT ?>User/ShowLogin"><button  style="display: inline-block">Login</button></a>
-            <a class="smooth-link" href="<?php echo FRONT_ROOT ?>User/SignIn"><button  style="display: inline-block">Sign up</button></a>
+<a class="smooth-link"  href="<?php echo FRONT_ROOT ?>User/ShowLogin"><button  style="display: inline-block">Login</button></a>
+<a class="smooth-link" href="<?php echo FRONT_ROOT ?>User/SignIn"><button  style="display: inline-block">Sign up</button></a>
 
-        </div>
+</div>
 
 
 <!-- ################################################################################################ -->
-<div class="wrapper row4" style="background-image:url('https://i.pinimg.com/originals/02/a3/95/02a395a756b4756bfd985d8343538313.jpg');">
-<main class="container clear"> 
-    <div class="content"> 
-      <div id="comments" >
-        <h2>Cinema</h2>
-     
-        
-        </form>
-      </div>
-    </div>
-  </main>
-</div>
+
 <!-- ################################################################################################ -->
 
 <?php 
