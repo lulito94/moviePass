@@ -8,7 +8,6 @@ class Cinema{
     private $capacity;
     private $ticketValue;
 
-   
 
     /**
      * Get the value of cinemaName

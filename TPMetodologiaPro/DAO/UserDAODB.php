@@ -16,7 +16,7 @@ class UserDAODB {
        
         try
         {
-            $query = "INSERT INTO ".$this->tableName." (sex, name, surname, dni, email, serName, password, email) VALUES (:sex, :name, :surname, :dni, :email, :serName, :password, :email);";
+            $query = "INSERT INTO ".$this->tableName."(sex, name, surname, dni, email, serName, password, email) VALUES (:sex, :name, :surname, :dni, :email, :serName, :password, :email);";
             
             $parameters["sex"] = $user->getSex();
             $parameters["name"] = $user->getName();
@@ -41,7 +41,7 @@ class UserDAODB {
     {
         try
         {
-            $userList = array();
+            $this->userList = array();
 
             $query = "SELECT * FROM ".$this->tableName;
 
@@ -52,24 +52,39 @@ class UserDAODB {
             foreach ($resultSet as $row)
             {                
                 $user = new user();
+                $user->setSex($row["sex"]);
                 $user->setName($row["name"]);
                 $user->setSurname($row["surname"]);
                 $user->setDni($row["dni"]);
                 $user->setEmail($row["email"]);
                 $user->setUserName($row["userName"]);
                 $user->setPassword($row["password"]);
-                $user->setSex($row["sex"]);
+                
 
-                array_push($userList, $user);
+                array_push($this->userList, $user);
             }
 
-            return $userList;
         }
         catch(Exception $ex)
         {
             throw $ex;
         }
     }
-}
 
+    public function GetByUserName($userName)
+    {
+        $this->GetAll();
+        $userFounded = null;
+
+        if(!empty($this->userList)){
+            foreach($this->userList as $user){
+                if($user->getUserName() == $userName){
+                    $userFounded = $user;
+                }
+            }
+        }
+        return $userFounded;
+    }
+    
+}
 ?>

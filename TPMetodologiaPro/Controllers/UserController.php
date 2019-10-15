@@ -2,7 +2,7 @@
     namespace Controllers;
     
     use DAO\UserDAODB as UserDAODB;
-    use DAO\UserDAO as UserDAO;
+    //use DAO\UserDAO as UserDAO;
     use Models\User as User;
 
     class UserController
@@ -83,7 +83,9 @@
             $user->setName($name);
             $user->setSurname($surname);
             $user->setSex($sex);
-            $repo = new UserDAO();
+            
+            //$repo = new UserDAO(); js
+            $repo = new UserDAODB();
             $newuser = $repo->getByUserName($user->getUserName());
             if(!empty($newuser)) {
                 echo "<script>alert('El usuario ya se encuentra registrado');</script>";
