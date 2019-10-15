@@ -28,3 +28,10 @@ create table Users(
     constraint unq_email unique(email)
 );
 
+select *
+from Cinemas;
+
+create table Movies
+(
+
+)
