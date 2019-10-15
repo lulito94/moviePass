@@ -73,16 +73,17 @@
             $this->ShowSignIn();
         }
 
-        public function SignInAdd($userName,$name,$surname,$password,$email,$dni,$sex)
+        public function SignInAdd($sex,$name,$surname,$dni,$email,$userName,$password)
         {
             $user = new User();
-            $user->setUserName($userName);
-            $user->setPassword($password);
-            $user->setEmail($email);
-            $user->setDni($dni);
+            $user->setSex($sex);
             $user->setName($name);
             $user->setSurname($surname);
-            $user->setSex($sex);
+            $user->setDni($dni);
+            $user->setEmail($email);
+            $user->setUserName($userName);
+            $user->setPassword($password);
+            
             
             //$repo = new UserDAO(); js
             $repo = new UserDAODB();

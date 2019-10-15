@@ -16,7 +16,7 @@ class UserDAODB {
        
         try
         {
-            $query = "INSERT INTO ".$this->tableName."(sex, name, surname, dni, email, serName, password, email) VALUES (:sex, :name, :surname, :dni, :email, :serName, :password, :email);";
+            $query = "INSERT INTO ".$this->tableName."(sex, name, surname, dni, email,userName, password) VALUES (:sex, :name, :surname, :dni, :email, :userName, :password);";
             
             $parameters["sex"] = $user->getSex();
             $parameters["name"] = $user->getName();
