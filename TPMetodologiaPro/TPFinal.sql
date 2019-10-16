@@ -64,7 +64,6 @@ create table MoviesXCinema(
     constraint fk_moviesXcinema_movies foreign key (id) references Movies(id),
     constraint fk_moviesXcinema_cinema foreign key (idCinema) references Cinemas(idCinema)
 );
-select *
-from Users;
+
 
 
