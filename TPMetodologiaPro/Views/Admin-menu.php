@@ -8,9 +8,8 @@
   <div class="overlay">
     <div id="breadcrumb" class="clear"> 
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Add</a></li>
-        <li><a href="#">List - Remove</a></li>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Home</a></li>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowAdminLobby">MenuAdmin</a></li>
       </ul>
     </div>
   </div>
