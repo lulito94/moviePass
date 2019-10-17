@@ -49,6 +49,19 @@ class MovieDAODB
         }
     }
 
+    public function GetToMovieName($MovieName)
+    {
+        $repo = $this->GetAll();
+        foreach($repo as $valuesArray)
+        {
+                if($valuesArray->getName() == $MovieName)
+                {
+                    return $valuesArray;
+                }
+        }
+        return null;
+    }
+
     public function AddGenres()
     {
         try {
