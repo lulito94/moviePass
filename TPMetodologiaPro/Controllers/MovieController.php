@@ -33,15 +33,24 @@ class MovieController
                 $movie->setOverview($valuesArray->getOverview());
                 $movie->setGenre_ids($valuesArray->getGenre_ids());
                $repo->Add($movie);
+               echo "<script>alert('Peliculas Cargadas en BD');</script>";
+               $this->ShowAdminMenu();
+
                
     }
-    
-    
+
     }
     public function GetToApiGenres()
     {
         $repo = new MovieDAODB();
        $repo->AddGenres();
+       echo "<script>alert('Generos cargados en BD');</script>";
+       $this->ShowAdminMenu();
+       
+    }
+    public function ShowAdminMenu()
+    {
+        require_once(VIEWS_PATH."admin-menu.php");
     }
 
 }

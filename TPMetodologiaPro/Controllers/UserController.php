@@ -51,6 +51,10 @@
             require_once(VIEWS_PATH."Admin-menu.php");
         }
 
+        public function AdminOptions()
+        {
+            require_once(VIEWS_PATH."AddMovies&Genres.php");
+        }
         public function ShowCinemaView()
         {
             require_once(VIEWS_PATH."CinemaUserView.php");
