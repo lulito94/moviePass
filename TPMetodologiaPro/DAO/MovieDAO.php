@@ -34,8 +34,12 @@ class MovieDAO implements IMovieDAO{
     $repo = new MovieDAO();
     $jsonObject = file_get_contents('https://api.themoviedb.org/3/movie/now_playing?api_key=c65889a54974a405a970caef706f7005');
     $result = json_decode($jsonObject, true);
+    //https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US
+
     return $result;
     }
+    
+    
 
     public function Add($newMovie){
         

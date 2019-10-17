@@ -28,17 +28,62 @@ class MovieDAODB {
             $parameters["vote_average"] = $movie->getVote_average();
             $parameters['isAdult'] = $movie->getIsAdult();
             $parameters['overview'] = $movie->getOverview();
-
+            $array = $movie->getGenre_ids();
 
             $this->connection = Connection::GetInstance();
 
             $this->connection->ExecuteNonQuery($query, $parameters);
+
+            foreach($array as $values)
+            {
+
+                $query_Genre = "INSERT INTO "."MoviesxGenres"." (id,id_genre)
+                                                    VALUES (:id, :id_genre)";
+               $parameters2["id"] = $movie->getId();
+               $parameters2["id_genre"] = $values;
+               $this->connection->ExecuteNonQuery($query_Genre, $parameters2);
+
+            }
+            
+        
+
         }
         catch(Exception $ex)
         {
             throw $ex;
         }
     }
+
+    public function AddGenres()
+    {
+        try{
+        $array = $this->getToApiGeners();
+        
+        foreach($array as $fatherArray)
+        {
+            foreach($fatherArray as $sunArray)
+            {
+            
+
+            $query = "INSERT INTO "."Genres"." (id_genre,name)
+            VALUES (:id_genre, :name)";
+
+            $parameters["id_genre"] = $sunArray['id'];
+            $parameters["name"] = $sunArray['name'];
+            $this->connection = Connection::GetInstance();
+            $this->connection->ExecuteNonQuery($query, $parameters);
+            }
+        }
+
+    }catch(Exception $ex)
+    {
+        throw $ex;
+    }
+    
+    }
+    
+
+
 
     public function GetAll()
     {
@@ -77,6 +122,16 @@ class MovieDAODB {
             throw $ex;
         }
     }
+
+    public function getToApiGeners()
+    {
+    $repo = new MovieDAODB();
+    $jsonObject = file_get_contents('https://api.themoviedb.org/3/genre/movie/list?api_key=c65889a54974a405a970caef706f7005&language=en-US');
+    $result = json_decode($jsonObject, true);
+    
+    return $result;
+    }
+    
 
     public function DeleteMovie(Movie $movie)
     {
