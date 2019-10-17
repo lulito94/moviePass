@@ -17,6 +17,7 @@ class CinemaController
     {
        // $this->CinemaDAO = new CinemaDAO(); js
        $this->CinemaDAODB = new CinemaDAODB();
+       
     }
 
     public function ShowCinemaView()
@@ -81,10 +82,10 @@ class CinemaController
         require_once(VIEWS_PATH . "Cinema-Modify.php");
 
     }
-    public function delete($cinemaName)
+    public function Delete($cinemaName)
     {
         try{
-            
+            $repo = $this->CinemaDAODB;
            $repo->DeleteCinema($cinemaName);
            echo "<script>alert ('Cines Actualizados');</script>";
            $this->ShowCinemaListView();
@@ -93,7 +94,7 @@ class CinemaController
             $e->getmessage();
         }
     }
-    public function modify($cinemaName,$ticketValue)
+    public function Modify($cinemaName,$ticketValue)
     {
         try{
             echo $cinemaName . " cinema name";
