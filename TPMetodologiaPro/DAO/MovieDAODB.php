@@ -117,26 +117,26 @@ class MovieDAODB
 
         return $result;
     }
-    /*
-    public function GetMovieGeners(Movie $movie)
+    
+    public function GetMovieGenres(Movie $movie)
     {
-
         try {
-            $movieFounded = null;
+            //$movieFounded = null;
             $movieList = $this->GetAll();
             foreach ($movieList as $values) {
 
-                if ($movie->getId == $values->getId) {
+                if ($movie->getId() == $values->getId()) {
                     $query = "SELECT Genres.name FROM MoviesxGenres JOIN Genres ON MoviesxGenres.id_genre = Genres.id_genre JOIN Movies ON MoviesxGenres" . $movie->getId() . "= Movies." . $movie->getId();
                     var_dump($query);
                     $this->connection = Connection::GetInstance();
                     $resultSet = $this->connection->Execute($query);
+                    var_dump($resultSet);
                 }
             }
         } catch (Exception $ex) {
             throw $ex;
         }
-    }*/
+    }
 
 
     public function DeleteMovie(Movie $movie)

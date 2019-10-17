@@ -6,7 +6,6 @@ use DAO\MovieDAODB as MovieDAODB;
 
 class MovieController
 {
-
     //private $CinemaDAO; js
     private $MovieDAODB;
 
@@ -38,7 +37,11 @@ class MovieController
 
                
     }
-
+}
+    public function GetGenres(Movie $movie){
+        $repo = $this->MovieDAODB;
+        $genres = $repo->GetMovieGenres($movie);
+        var_dump($genres);
     }
     public function GetToApiGenres()
     {
