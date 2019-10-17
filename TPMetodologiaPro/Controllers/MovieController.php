@@ -22,7 +22,7 @@ class MovieController
     $movie = new Movie();
     $movieList = $moviesJS->GetAll();      
     foreach($movieList as $valuesArray){
-        $movie->setId($valuesArray->getId());
+                $movie->setId($valuesArray->getId());
                 $movie->setPopularity($valuesArray->getPopularity());
                 $movie->setTitle($valuesArray->getTitle());
                 $movie->setRelease_date($valuesArray->getRelease_date());
@@ -33,12 +33,9 @@ class MovieController
                 $movie->setOverview($valuesArray->getOverview());
                 $movie->setGenre_ids($valuesArray->getGenre_ids());
                $repo->Add($movie);
-               echo "<script>alert('Peliculas Cargadas en BD');</script>";
-               $this->ShowAdminMenu();
-
-               
-    }
-
+              }
+    echo "<script>alert('Peliculas Cargadas en BD');</script>";
+    $this->ShowAdminMenu();
     }
     public function GetToApiGenres()
     {
