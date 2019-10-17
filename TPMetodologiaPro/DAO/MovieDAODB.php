@@ -1,23 +1,25 @@
 <?php
+
 namespace DAO;
+
 use Models\Movie as Movie;
 use DAO\Connection as Connection;
 
 
-class MovieDAODB {
+class MovieDAODB
+{
 
     private $moviesList = array();
     private $connection;
     private $tableName = "Movies";
     public function Add(Movie $movie)
     {
-       
-        try
-        {
-            
-            $query = "INSERT INTO ".$this->tableName." (id, popularity, title, release_date, original_language, vote_count,poster_path, vote_average, isAdult, overview)
+
+        try {
+
+            $query = "INSERT INTO " . $this->tableName . " (id, popularity, title, release_date, original_language, vote_count,poster_path, vote_average, isAdult, overview)
                                              VALUES (:id, :popularity, :title, :release_date, :original_language, :vote_count, :poster_path, :vote_average, :isAdult, :overview);";
-            
+
             $parameters["id"] = $movie->getId();
             $parameters["popularity"] = $movie->getPopularity();
             $parameters["title"] = $movie->getTitle();
@@ -34,71 +36,57 @@ class MovieDAODB {
 
             $this->connection->ExecuteNonQuery($query, $parameters);
 
-            foreach($array as $values)
-            {
+            foreach ($array as $values) {
 
-                $query_Genre = "INSERT INTO "."MoviesxGenres"." (id,id_genre)
+                $query_Genre = "INSERT INTO " . "MoviesxGenres" . " (id,id_genre)
                                                     VALUES (:id, :id_genre)";
-               $parameters2["id"] = $movie->getId();
-               $parameters2["id_genre"] = $values;
-               $this->connection->ExecuteNonQuery($query_Genre, $parameters2);
-
+                $parameters2["id"] = $movie->getId();
+                $parameters2["id_genre"] = $values;
+                $this->connection->ExecuteNonQuery($query_Genre, $parameters2);
             }
-            
-        
-
-        }
-        catch(Exception $ex)
-        {
+        } catch (Exception $ex) {
             throw $ex;
         }
     }
 
     public function AddGenres()
     {
-        try{
-        $array = $this->getToApiGeners();
-        
-        foreach($array as $fatherArray)
-        {
-            foreach($fatherArray as $sunArray)
-            {
-            
+        try {
+            $array = $this->getToApiGeners();
 
-            $query = "INSERT INTO "."Genres"." (id_genre,name)
+            foreach ($array as $fatherArray) {
+                foreach ($fatherArray as $sunArray) {
+
+
+                    $query = "INSERT INTO " . "Genres" . " (id_genre,name)
             VALUES (:id_genre, :name)";
 
-            $parameters["id_genre"] = $sunArray['id'];
-            $parameters["name"] = $sunArray['name'];
-            $this->connection = Connection::GetInstance();
-            $this->connection->ExecuteNonQuery($query, $parameters);
+                    $parameters["id_genre"] = $sunArray['id'];
+                    $parameters["name"] = $sunArray['name'];
+                    $this->connection = Connection::GetInstance();
+                    $this->connection->ExecuteNonQuery($query, $parameters);
+                }
             }
+        } catch (Exception $ex) {
+            throw $ex;
         }
+    }
 
-    }catch(Exception $ex)
-    {
-        throw $ex;
-    }
-    
-    }
-    
 
 
 
     public function GetAll()
     {
-        try
-        {
+        try {
             $movieList = array();
 
-            $query = "SELECT * FROM ".$this->tableName;
+            $query = "SELECT * FROM " . $this->tableName;
 
             $this->connection = Connection::GetInstance();
 
             $resultSet = $this->connection->Execute($query);
-            
-            foreach ($resultSet as $row)
-            {                
+
+            foreach ($resultSet as $row) {
                 $movie = new movie();
                 $movie->setId($row["id"]);
                 $movie->setPopularity($row["popularity"]);
@@ -111,47 +99,60 @@ class MovieDAODB {
                 $movie->setIsAdult($row["isAdult"]);
                 $movie->setOverview($row["overview"]);
 
-             
+
                 array_push($movieList, $movie);
             }
 
             return $movieList;
-        }
-        catch(Exception $ex)
-        {
+        } catch (Exception $ex) {
             throw $ex;
         }
     }
 
     public function getToApiGeners()
     {
-    $repo = new MovieDAODB();
-    $jsonObject = file_get_contents('https://api.themoviedb.org/3/genre/movie/list?api_key=c65889a54974a405a970caef706f7005&language=en-US');
-    $result = json_decode($jsonObject, true);
-    
-    return $result;
+        $repo = new MovieDAODB();
+        $jsonObject = file_get_contents('https://api.themoviedb.org/3/genre/movie/list?api_key=c65889a54974a405a970caef706f7005&language=en-US');
+        $result = json_decode($jsonObject, true);
+
+        return $result;
     }
-    
+    /*
+    public function GetMovieGeners(Movie $movie)
+    {
+
+        try {
+            $movieFounded = null;
+            $movieList = $this->GetAll();
+            foreach ($movieList as $values) {
+
+                if ($movie->getId == $values->getId) {
+                    $query = "SELECT Genres.name FROM MoviesxGenres JOIN Genres ON MoviesxGenres.id_genre = Genres.id_genre JOIN Movies ON MoviesxGenres" . $movie->getId() . "= Movies." . $movie->getId();
+                    var_dump($query);
+                    $this->connection = Connection::GetInstance();
+                    $resultSet = $this->connection->Execute($query);
+                }
+            }
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }*/
+
 
     public function DeleteMovie(Movie $movie)
     {
-        try
-        {
+        try {
             $movieList = $this->GetAll();
-            foreach($movieList as $movieToRemove)
-            {
-            
-                if($movieToRemove->getTitle() == $movie->getTitle())
-                {
-                    $query = "DELETE FROM ".$this->tableName." WHERE ". $this->tableName . "title ='$movie->getTitle()'";
+            foreach ($movieList as $movieToRemove) {
+
+                if ($movieToRemove->getTitle() == $movie->getTitle()) {
+                    $query = "DELETE FROM " . $this->tableName . " WHERE " . $this->tableName . "title ='$movie->getTitle()'";
                     var_dump($query);
                     $this->connection = Connection::GetInstance();
                     $this->connection->ExecuteNonQuery($query);
                 }
             }
-        }
-        catch(Exception $ex)
-        {
+        } catch (Exception $ex) {
             throw $ex;
         }
     }

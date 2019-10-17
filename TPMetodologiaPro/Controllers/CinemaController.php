@@ -17,6 +17,7 @@ class CinemaController
     {
        // $this->CinemaDAO = new CinemaDAO(); js
        $this->CinemaDAODB = new CinemaDAODB();
+       
     }
 
     public function ShowCinemaView()
@@ -41,7 +42,7 @@ class CinemaController
         
 
         try{
-          
+            
            $repo->Add($cinema);
            echo "<script>alert('Cinema agregado exitosamente!');</script>";
            $this->ShowCinemaListView();
@@ -70,6 +71,7 @@ class CinemaController
         }
         else
         {
+            $repo = $this->CinemaDAODB;
             $repo->Add($cinema);
             echo "<script>alert ('EEl cine fue generado con exito');</script>";
             $this->ShowCinemaListView();
@@ -84,7 +86,7 @@ class CinemaController
     public function delete($cinemaName)
     {
         try{
-            
+           $repo = $this->CinemaDAODB;            
            $repo->DeleteCinema($cinemaName);
            echo "<script>alert ('Cines Actualizados');</script>";
            $this->ShowCinemaListView();
