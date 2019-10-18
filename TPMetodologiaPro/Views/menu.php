@@ -53,15 +53,17 @@ foreach($list as $movieList)
     <div class="carousel-inner">
       <div class="item active">
       <img class="d-block w-100" src="https://image.tmdb.org/t/p/w300<?php echo $peli1[1]->getPoster_path() ?>" alt="<?php echo $peli1[1]->getTitle();?>" width="300" height="200">
+      
       </div>
       <?php
       foreach($list as $movieList)
       { 
         ?>
       <div class="item">
+      
       <img class="d-block w-100" src="https://image.tmdb.org/t/p/w300<?php echo $movieList->getPoster_path() ?>" alt="<?php echo $movieList->getTitle();?>" width="300" height="350">
       </div>
-    
+
       
       <?php
        }

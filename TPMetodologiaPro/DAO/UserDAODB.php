@@ -63,7 +63,7 @@ class UserDAODB {
 
                 array_push($this->userList, $user);
             }
-
+            return $this->userList;
         }
         catch(Exception $ex)
         {

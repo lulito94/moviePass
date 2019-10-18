@@ -32,7 +32,7 @@
                    if($usercheck->getPassword() == $password)
                     {
                      $_SESSION['loggeduser'] = $usercheck;
-                      $this->ShowCinemaView(); 
+                      $this->ShowUserHome(); 
                      
                     } else{
                         echo '<script>alert("Contraseña incorrecta!");</script>';
@@ -78,6 +78,28 @@
         {
             $this->ShowSignIn();
         }
+        
+        public function UserShowCinemas()
+        {
+            require_once(VIEWS_PATH."CinemaUserView.php");
+        }
+        public function ShowUserHome()
+        {
+            require_once(VIEWS_PATH."User-menu.php");
+        }
+        public function User_Info()
+        {
+            require_once(VIEWS_PATH."User_Info.php");
+        }
+        public function AdminProfile()
+        {
+            require_once(VIEWS_PATH."Admin_info.php");
+        }
+        public function UsersProfiles()
+        {
+            require_once(VIEWS_PATH."UsersProfiles.php");
+        }
+        
 
         public function SignInAdd($sex,$name,$surname,$dni,$email,$userName,$password)
         {

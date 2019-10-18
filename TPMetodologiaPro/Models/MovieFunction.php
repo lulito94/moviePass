@@ -4,7 +4,7 @@ namespace Models;
  //3 inserts 
  //en el controlador vamos a traer el
  // id de la rooom de la pelucla y un neww function con el horario y le asignams las dos cosas
-class Functions{
+class MovieFunction{
     private $id;
     private $room;
     private $movie;
