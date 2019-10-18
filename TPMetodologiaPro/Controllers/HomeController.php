@@ -17,7 +17,7 @@
         }
         public function ShowUserLobby()
         {
-            require_once(VIEWS_PATH."CinemaUserView.php");
+            require_once(VIEWS_PATH."User-menu.php");
         }
         public function ShowAdminLobby()
         {

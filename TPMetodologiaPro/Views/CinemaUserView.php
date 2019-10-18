@@ -51,29 +51,18 @@ require_once ('validate-session.php');
                          <th>Direccion</th>
                          <th>Capacidad</th>
                          <th>Valor de la entrada</th>
-                         <th>Funciones</th>
                     </thead>
                     <tbody>  
-                    <form action="<?php // Aca se echo FRONT_ROOT;?>/" method="POST" >                
                          <?php
                                    if(isset($cinemaList) && !empty($cinemaList)){
                                    foreach($cinemaList as $cinema){
                          ?>
                                         <tr> 
-                                             <td><?php echo $cinema->getCinemaName(); ?></td>
-                                             <td><?php echo $cinema->getAddress(); ?></td>
-                                             <td><?php echo $cinema->getCapacity(); ?></td>
-                                             <td><?php echo $cinema->getTicketValue(); ?></td>
-                                             <td><?php
-                                                if(isset($movieListDB) && !empty($movieListDB)){
-                                                for($count =0 ; $count < 6; $count++){
-                                                    if(!empty($movieListDB)){
-                                                        ?> <div>
-                                                    <?php echo $movieListDB[$count]->getTitle()
-
-                                                    ;}
-                                                }}?>
-                                                </div></td>
+                                             <td><p><?php echo $cinema->getCinemaName(); ?></p></td>
+                                             <td><p><?php echo $cinema->getAddress(); ?></p></td>
+                                             <td><p><?php echo $cinema->getCapacity(); ?></p></td>
+                                             <td><p><?php echo $cinema->getTicketValue(); ?></p></td>
+                                            
                                         </tr>
                                         <?php
                                    }}
