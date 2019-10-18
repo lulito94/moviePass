@@ -54,7 +54,7 @@ class MovieDAODB
         $repo = $this->GetAll();
         foreach($repo as $valuesArray)
         {
-                if($valuesArray->getName() == $MovieName)
+                if($valuesArray->getTitle() == $MovieName)
                 {
                     return $valuesArray;
                 }
@@ -139,11 +139,22 @@ class MovieDAODB
             foreach ($movieList as $values) {
 
                 if ($movie->getId() == $values->getId()) {
-                    $query = "SELECT Genres.name FROM MoviesxGenres JOIN Genres ON MoviesxGenres.id_genre = Genres.id_genre JOIN Movies ON MoviesxGenres" . $movie->getId() . "= Movies." . $movie->getId();
-                    var_dump($query);
+                    $query = "SELECT Genres.name 
+                            FROM MoviesxGenres 
+                            JOIN Genres 
+                            ON MoviesxGenres.id_genre = Genres.id_genre 
+                            JOIN Movies 
+                            ON MoviesxGenres.id = Movies.id
+                            WHERE Movies.id =" .$values->getId();
+                    //var_dump($query);
                     $this->connection = Connection::GetInstance();
                     $resultSet = $this->connection->Execute($query);
-                    var_dump($resultSet);
+                    $genreArray = array();
+                    foreach($resultSet as $value){
+                        $genreName = $value['name'];
+                        array_push($genreArray,$genreName);
+                    }
+                    var_dump($genreArray);
                 }
             }
         } catch (Exception $ex) {
