@@ -1,3 +1,5 @@
+drop database TPFinal;
+
 create database TPFinal;
 
 use TPFinal;
@@ -27,16 +29,14 @@ create table Users(
     constraint unq_dni unique(dni),
     constraint unq_email unique(email)
 );
-drop table Genres;
+
 create table Genres(
 	id_genre integer not null,
     name varchar(30),
     constraint pk_genre primary key (id_genre)
 );
 
-drop table Genres;
-select *
-from Genres;
+
 
 create table MoviesxGenres(
 id integer not null,
@@ -46,10 +46,7 @@ constraint pk_id_moviexgenres primary key(id,id_genre),
 constraint fk_id_movie foreign key (id) references Movies(id),
 constraint fk_id_genre foreign key (id_genre) references Genres(id_genre)
 );
-select * 
-from MoviesxGenres;
-select * 
-from Movies;
+
 
 create table Movies(
 	id integer not null,
@@ -68,9 +65,7 @@ create table Movies(
     constraint unq_movieTitle unique (title),
     constraint fk_movies_genre foreign key (id_genre) references Genres (id_genre)
 );
-select *
-from Cinemas;
-drop table Movies;
+
 
 create table MoviesXCinema(
 	id integer,
@@ -83,7 +78,6 @@ create table MoviesXCinema(
     constraint fk_moviesXcinema_movies foreign key (id) references Movies(id),
     constraint fk_moviesXcinema_cinema foreign key (idCinema) references Cinemas(idCinema)
 );
-select *
-from Users;
+
 
 
