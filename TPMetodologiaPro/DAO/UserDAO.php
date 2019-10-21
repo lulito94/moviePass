@@ -86,6 +86,11 @@ class UserDAO implements IUserDAO{
             }
         }
     }
+
+    function Delete($username)
+    {
+        // TODO: Implement Delete() method.
+    }
 }
 
 ?>

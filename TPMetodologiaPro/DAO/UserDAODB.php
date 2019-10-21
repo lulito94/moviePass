@@ -4,7 +4,7 @@ use Models\User as User;
 use DAO\Connection as Connection;
 
 
-class UserDAODB {
+class UserDAODB implements IUserDAO {
 
     private $userList = array();
     private $connection;
@@ -85,6 +85,21 @@ class UserDAODB {
         }
         return $userFounded;
     }
-    
+
+
+
+    function Delete($username)
+    {
+        try{
+            $query = "DELETE FROM ".$this->tableName." WHERE userName = $username";
+
+            $this->connection = Connection::GetInstance();
+
+            $this->connection->ExecuteNonQuery($query);
+        }
+        catch (Exception $ex){
+            throw $ex;
+        }
+    }
 }
 ?>
