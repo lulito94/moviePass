@@ -4,6 +4,18 @@
  require_once ('validate-session-admin.php');
  ?>
 <!-- ################################################################################################ -->
+<div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
+  <div class="overlay">
+    <div id="breadcrumb" class="clear"> 
+      <ul>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Home</a></li>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowAdminLobby">MenuAdmin</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+ <main class="py-5">
+ 
 <div class="wrapper row4" style="">
 <main class="container clear"> 
     <div class="content"> 

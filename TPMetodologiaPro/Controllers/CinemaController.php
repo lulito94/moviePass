@@ -42,7 +42,11 @@ class CinemaController
         
 
         try{
+<<<<<<< HEAD
             
+=======
+          $repo = $this->CinemaDAODB;
+>>>>>>> 006ab18b245e015c725d451cf335e74ce5cfccda
            $repo->Add($cinema);
            echo "<script>alert('Cinema agregado exitosamente!');</script>";
            $this->ShowCinemaListView();
@@ -53,6 +57,7 @@ class CinemaController
             $this->ShowCinemaView();
         }
     }
+<<<<<<< HEAD
     public function AddToJson($cinemaName,$address,$capacity,$ticketValue)
     {
         $cinema = new Cinema();
@@ -78,6 +83,9 @@ class CinemaController
         }
 
     }
+=======
+    
+>>>>>>> 006ab18b245e015c725d451cf335e74ce5cfccda
     public function showModify()
     {
         require_once(VIEWS_PATH . "Cinema-Modify.php");
@@ -95,18 +103,17 @@ class CinemaController
             $e->getmessage();
         }
     }
-    public function Modify($cinemaName,$ticketValue)
+    public function Modify(Cinema $cinema)
     {
         try{
-            echo $cinemaName . " cinema name";
-            echo $ticketValue . " valor ";
-            /*$repo->ModifyCinema($cinemaName,$ticketValue);
+            $repo = $this->CinemaDAODB;
+            $repo->ModifyCinema($cinema);
             echo "<script>alert ('Cines Actualizados');</script>";
             $this->ShowCinemaListView();
-         */
+        
         }catch (PDOException $e)
         {
-           // $e->getmessage();
+            $e->getmessage();
         }
     }
 }
