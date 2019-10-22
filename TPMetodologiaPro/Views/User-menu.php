@@ -2,6 +2,7 @@
  include('header.php');
  include('nav-bar.php');
  require_once ('validate-session.php');
+
  ?>
 <!-- ################################################################################################ -->
 <div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
