@@ -127,6 +127,15 @@
             }
 
         }
+
+        public function Delete($username){
+
+            $repo = new UserDAODB();
+
+            $repo->Delete($username);
+
+            $this->UsersProfiles();
+        }
         
 
     }

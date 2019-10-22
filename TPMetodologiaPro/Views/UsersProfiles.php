@@ -23,7 +23,7 @@ $listUsers = $repo->GetAll();
  <section id="listado" class="mb-5">
       <div class="container">
            <h2 class="mb-4"style="color:#FF0000"> About users information in Database</h2>
-           <table class="table bg-light-alpha">
+           <table action="<?php echo FRONT_ROOT;?>User/Delete" class="table bg-light-alpha">
                 <thead>
                      <th>Nombre</th>
                      <th>Apellido</th>
@@ -31,7 +31,8 @@ $listUsers = $repo->GetAll();
                      <th>password</th>
                      <th>email</th>
                      <th>dni</th>
-                     <th>sex</th>
+                     <th>sexo</th>
+                     <th>Accion</th>
                 </thead>
                 <tbody>  
                      <?php
@@ -48,6 +49,11 @@ $listUsers = $repo->GetAll();
                                          <td><p><?php echo $user->getEmail(); ?></p></td>
                                          <td><p><?php echo $user->getDni(); ?></p></td>
                                          <td><p><?php echo $user->getSex(); ?></p></td>
+
+                                        <td>
+                                            <button type="submit" name="username" value="<?php echo $user->getUserName(); ?>" style="display: inline-block"><p>Eliminar</p></button>
+                                            <button style="display: inline-block"><p>Modificar</p></button>
+                                        </td>
                                     </tr>
                                     <?php
                                }
