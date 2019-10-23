@@ -2,7 +2,7 @@
 namespace Models;
 
 class Cinema{
-
+    private $idCinema;
     private $cinemaName;
     private $address;
     private $capacity;
@@ -108,6 +108,26 @@ class Cinema{
         array_push($this->getRooms(),$room);
     }
 
+
+    /**
+     * Get the value of idCinema
+     */ 
+    public function getIdCinema()
+    {
+        return $this->idCinema;
+    }
+
+    /**
+     * Set the value of idCinema
+     *
+     * @return  self
+     */ 
+    public function setIdCinema($idCinema)
+    {
+        $this->idCinema = $idCinema;
+
+        return $this;
+    }
 }
 
 ?>
