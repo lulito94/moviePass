@@ -103,7 +103,7 @@ class CinemaController
         $updatedCinema->setAddress($address);
         $updatedCinema->setCinemaName($cinemaName);
         $updatedCinema->setTicketValue($ticketValue);
-       
+
 
 
             try{
