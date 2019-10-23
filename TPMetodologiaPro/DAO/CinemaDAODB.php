@@ -83,7 +83,7 @@ class CinemaDAODB {
             throw $ex;
         }
     }
-    public function ModifyCinema($cinemaName,$ticketValue)
+    public function ModifyCinema(Cinema $cinema,Cinema $newCinema)
     {
         try
         {
@@ -91,9 +91,8 @@ class CinemaDAODB {
             foreach($cinemaList as $cinemaToRemove)
             {
             
-                if($cinemaToRemove->getCinemaName() == $cinemaName)
+                if($cinemaToRemove->getCinemaName() == $cinema->getCinemaName())
                 {
-                    $query = "UPDATE ".$this->tableName." SET ". $this->$ticketValue = $ticketValue . " WHERE " . $this->tableName . ".cinemaName = '$cinemaName'";
                     $this->connection = Connection::GetInstance();
                     $this->connection->ExecuteNonQuery($query);
                 }
