@@ -51,20 +51,20 @@ $currentCinema = null;
                 </select>
 
                 <label for=""> Nuevo Nombre </label>
-                <input type="text" name="cinemaName" class="form-control form-control-lg" placeholder="Nombre">
+                <input type="text" name="cinemaName" class="form-control form-control-lg" placeholder="Nombre" required>
             </div>
             <div class="form-group">
                 <label for=""> Nueva Direccion </label>
-                <input type="text" name="address" class="form-control form-control-lg" placeholder="Direccion">
+                <input type="text" name="address" class="form-control form-control-lg" placeholder="Direccion" required>
             </div>
             <div class="form-group">
                 <?php // Si sobra tiempo mejorar tipo de dato de los horarios ?>
                 <label for=""> Nueva Capacidad </label>
-                <input type="number" name="capacity" class="form-control form-control-lg" placeholder="Capacidad">
+                <input type="number" name="capacity" class="form-control form-control-lg" placeholder="Capacidad" required>
             </div>
             <div class="form-group">
                 <label for=""> Nuevo Valor de ticket</label>
-                <input type="number" name="ticketValue" class="form-control form-control-lg" placeholder="Valor Ticket">
+                <input type="number" name="ticketValue" class="form-control form-control-lg" placeholder="Valor Ticket" required>
             </div>
 
 
