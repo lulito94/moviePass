@@ -11,6 +11,7 @@ include('nav-bar.php');
     $repo = new CinemaDAODB();
 
     $cinemaList = $repo->GetAll();
+    $currentCinema = null;
 ?><!-- ################################################################################################ -->
 <div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
   <div class="overlay">
@@ -28,10 +29,18 @@ include('nav-bar.php');
                <header class="text-center">
                     <h2>Modificar Cinema</h2>
                </header>
+
+              <select>
+                  <?php
+                  foreach ($cinemaList as $cinema){
+                      echo '<option value="'.$cinema->getName().'" >'.$cinema->getName().'</option>';
+                  }
+                  ?>
+              </select>
               <form action="<?php echo FRONT_ROOT;?>Cinema/Modify" method="post" class="login-form bg-dark-alpha p-5 text-white">
                    <div class="form-group">
                         <label for=""> Nombre </label>
-                        <input type="text" name="cinemaName" class="form-control form-control-lg" placeholder="Ingresar nombre del Cine">
+                        <input type="text" name="cinemaName" class="form-control form-control-lg" placeholder="<?php if($currentCinema == null){echo "Nombre del cinema";}else {echo $currentMovie->getName();} ?>">
                    </div>
                    <div class="form-group">
                    <label for=""> Direccion </label>

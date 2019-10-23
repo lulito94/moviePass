@@ -91,6 +91,6 @@ class CinemaController
                 $e->getmessage();
             }
         }
-    }
+    
 }
 ?>
