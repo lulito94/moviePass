@@ -5,87 +5,90 @@ namespace Models;
  //en el controlador vamos a traer el
  // id de la rooom de la pelucla y un neww function con el horario y le asignams las dos cosas
 class MovieFunction{
-    private $id;
-    private $room;
-    private $movie;
-    private $time;
+    private $id_function;
+    private $id_room;
+    private $id_movie;
+    private $function_time;
+
+  
 
     /**
-     * Get the value of id
+     * Get the value of id_function
      */ 
-    public function getId()
+    public function getId_function()
     {
-        return $this->id;
+        return $this->id_function;
     }
 
     /**
-     * Set the value of id
+     * Set the value of id_function
      *
      * @return  self
      */ 
-    public function setId($id)
+    public function setId_function($id_function)
     {
-        $this->id = $id;
+        $this->id_function = $id_function;
 
         return $this;
     }
 
     /**
-     * Get the value of room
+     * Get the value of id_room
      */ 
-    public function getRoom()
+    public function getId_room()
     {
-        return $this->room;
+        return $this->id_room;
     }
 
     /**
-     * Set the value of room
+     * Set the value of id_room
      *
      * @return  self
      */ 
-    public function setRoom($room)
+    public function setId_room($id_room)
     {
-        $this->room = $room;
+        $this->id_room = $id_room;
 
         return $this;
     }
 
     /**
-     * Get the value of movie
+     * Get the value of id_movie
      */ 
-    public function getMovie()
+    public function getId_movie()
     {
-        return $this->movie;
+        return $this->id_movie;
     }
 
     /**
-     * Set the value of movie
+     * Set the value of id_movie
      *
      * @return  self
      */ 
-    public function setMovie($movie)
+    public function setId_movie($id_movie)
     {
-        $this->movie = $movie;
+        $this->id_movie = $id_movie;
 
         return $this;
     }
 
+
     /**
-     * Get the value of time
+     * Get the value of function_time
      */ 
-    public function getTime()
+    public function getFunction_time()
     {
-        return $this->time;
+        return $this->function_time;
     }
 
     /**
-     * Set the value of time
+     * Set the value of function_time
      *
      * @return  self
      */ 
-    public function setTime($time)
+    public function setFunction_time($function_time)
     {
-        $this->time = $time;
+        $this->function_time = $function_time;
 
         return $this;
     }
