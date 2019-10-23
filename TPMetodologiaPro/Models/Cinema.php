@@ -7,6 +7,7 @@ class Cinema{
     private $address;
     private $capacity;
     private $ticketValue;
+    private $rooms;
 
 
     /**
@@ -88,6 +89,25 @@ class Cinema{
 
         return $this;
     }
+
+    /**
+     * Get the value of rooms
+     */ 
+    public function getRooms()
+    {
+        return $this->rooms;
+    }
+
+    /**
+     * Set the value of rooms
+     *
+     * @return  self
+     */ 
+    public function setRooms($room)
+    {
+        array_push($this->getRooms(),$room);
+    }
+
 }
 
 ?>
