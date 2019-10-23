@@ -95,20 +95,29 @@ class CinemaController
     }
   
 
-    public function Modify($cinemaName,$address,$capacity,$ticketValue)
+    public function Modify($currentCinema,$cinemaName,$address,$capacity,$ticketValue)
     {
-      
+
+        $updatedCinema = new Cinema();
+        $updatedCinema->setCapacity($capacity);
+        $updatedCinema->setAddress($address);
+        $updatedCinema->setCinemaName($cinemaName);
+        $updatedCinema->setTicketValue($ticketValue);
+       
+
+
             try{
                 $repo = $this->CinemaDAODB;
-                $repo->Add($cinema);
+                $repo->ModifyCinema($currentCinema,$updatedCinema);
                 echo "<script>alert ('Cines Actualizados');</script>";
                 $this->ShowCinemaListView();
-        
-               }catch (PDOException $e)
-            {
-                $e->getmessage();
+
+                }catch (PDOException $e){
+                $e->getMessage();
             }
         }
+
+
     
 }
 ?>
