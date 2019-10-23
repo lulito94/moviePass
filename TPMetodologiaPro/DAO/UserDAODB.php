@@ -91,7 +91,11 @@ class UserDAODB implements IUserDAO {
     function Delete($username)
     {
         try{
+<<<<<<< HEAD
+            $query = "DELETE FROM ".$this->tableName." WHERE ". $this->tableName . ".userName ='$username'";
+=======
             $query = "DELETE FROM ".$this->tableName." WHERE userName = ".$username;
+>>>>>>> f0e0ffacd9a7e273c954ad960b03ae704ab896c3
 
             $this->connection = Connection::GetInstance();
 
