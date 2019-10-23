@@ -23,7 +23,9 @@ $listUsers = $repo->GetAll();
  <section id="listado" class="mb-5">
       <div class="container">
            <h2 class="mb-4"style="color:#FF0000"> About users information in Database</h2>
-           <table action="<?php echo FRONT_ROOT;?>User/Delete" class="table bg-light-alpha">
+           <form action="" method="POST" >                
+
+           <table class="table bg-light-alpha">
                 <thead>
                      <th>Nombre</th>
                      <th>Apellido</th>
@@ -51,8 +53,9 @@ $listUsers = $repo->GetAll();
                                          <td><p><?php echo $user->getSex(); ?></p></td>
 
                                         <td>
-                                            <button type="submit" name="username" value="<?php echo $user->getUserName(); ?>" style="display: inline-block"><p>Eliminar</p></button>
-                                            <button style="display: inline-block"><p>Modificar</p></button>
+                                        <button type="submit" name="remove" class="btn btn-danger"  onclick = "this.form.action = '<?php echo FRONT_ROOT;?>User/Delete'" value="<?php echo $user->getUserName();?>"> Eliminar </button>
+                                        <button type="submit" name="modify" class="btn btn-danger"  onclick = "this.form.action = '<?php echo FRONT_ROOT;?>User/Modify'" value="<?php echo $user->getUserName();?>"> Modificar </button>
+
                                         </td>
                                     </tr>
                                     <?php
@@ -60,6 +63,7 @@ $listUsers = $repo->GetAll();
                                     ?>
                 </tbody>
            </table>
+           </form>
       </div>
  </section>
 

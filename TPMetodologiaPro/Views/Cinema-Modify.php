@@ -23,59 +23,34 @@ include('nav-bar.php');
   </div>
 </div>
 <!-- ################################################################################################ -->
- <main class="py-5">
-     
-     <section id="listado" class="mb-5">
-          <div class="container">
-<h2>Modificar Cinema</h2>
-               <table class="table bg-light-alpha">
-                    <thead>
-                         <th>Nombre</th>
-                         <th>Direccion</th>
-                         <th>Capacidad</th>
-                         <th>Valor de la entrada</th>
-                    </thead>
-                    <tbody>  
-                    <form action="<?php echo FRONT_ROOT;?>Cinema/ModifyCinema" method="post" class="login-form bg-dark-alpha p-5 text-white">
-                         <?php
-                                   if(isset($cinemaList) && !empty($cinemaList)){
-                                   foreach($cinemaList as $cinema){
-                         ?>
-                                        <tr> 
-                                             <td><?php echo $cinema->getCinemaName(); ?></td>
-                                             <td><?php echo $cinema->getAddress(); ?></td>
-                                             <td><?php echo $cinema->getCapacity(); ?></td>
-                                             <td><?php echo $cinema->getTicketValue(); ?></td>
-                                             <td>
-                                             <label for=""> Valor de ticket Nuevo </label>
-                        <button type="submit" name="modify" class="btn btn-danger" value="<?php echo $cinema->getCinemaName(); ?>"> Modificar </button>
-                        </td><td>
-                        <input type="text" name="ticketValue" class="form-control form-control-lg" value="" placeholder="Valor de ticket" require>
-                        </td>
-                                        </tr>
-                                        <?php
-                                   }}
-                                        ?>
-                         </form>
-                    </tbody>
-               </table>
-          </div>
-     </section>
-
-</main>
-
-
-
-
+<main class="d-flex align-items-center justify-content-center height-100" >
+          <div class="content">
+               <header class="text-center">
+                    <h2>Modificar Cinema</h2>
                </header>
-              <form action="<?php echo FRONT_ROOT;?>Cinema/ModifyCinema" method="post" class="login-form bg-dark-alpha p-5 text-white">
+              <form action="<?php echo FRONT_ROOT;?>Cinema/Modify" method="post" class="login-form bg-dark-alpha p-5 text-white">
                    <div class="form-group">
-                        <label for=""> Valor de ticket Nuevo </label>
-                        <button type="submit" name="modify" class="btn btn-danger" value="<?php echo $cinema->getCinemaName(); ?>"> Modificar </button>
-
-                        <input type="text" name="ticketValue" class="form-control form-control-lg" placeholder="Valor de ticket">
-
+                        <label for=""> Nombre </label>
+                        <input type="text" name="cinemaName" class="form-control form-control-lg" placeholder="Ingresar nombre del Cine">
+                   </div>
+                   <div class="form-group">
+                   <label for=""> Direccion </label>
+                        <input type="text" name="address" class="form-control form-control-lg" placeholder="Direccion">
+                   </div>
+                   <div class="form-group">
+                        <?php // Si sobra tiempo mejorar tipo de dato de los horarios ?>
+                       <label for=""> Capacidad </label>
+                            <input type="number" name="capacity" class="form-control form-control-lg" placeholder="Capacidad">
+                       </div>
+                   <div class="form-group">
+                        <label for="">Valor de ticket</label>
+                        <input type="number" name="ticketValue" class="form-control form-control-lg" placeholder="Valor Ticket">
+                   </div>
                    
                   
-                   <button class="btn btn-dark btn-block btn-lg" type="submit"> Agregar Cine </button>
+                   <button class="btn btn-dark btn-block btn-lg" type="submit"> Modificar Cine </button>
               </form>
+         </div>
+    </main>
+
+

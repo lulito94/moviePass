@@ -24,6 +24,10 @@ class CinemaController
     {
         require_once(VIEWS_PATH . "Cinema-add.php");
     }
+    public function ShowCinemaModify()
+    {
+        require_once(VIEWS_PATH . "Cinema-Modify.php");
+    }
 
     public function ShowCinemaListView()
     {
@@ -32,7 +36,7 @@ class CinemaController
 
         require_once(VIEWS_PATH . "CinemaList.php");
     }
-
+    
     public function Add($cinemaName,$address,$capacity,$ticketValue){
         $cinema = new Cinema();
         $cinema->setCinemaName($cinemaName);
@@ -54,11 +58,6 @@ class CinemaController
         }
     }
     
-    public function showModify()
-    {
-        require_once(VIEWS_PATH . "Cinema-Modify.php");
-
-    }
     public function Delete($cinemaName)
     {
         try{
@@ -71,17 +70,21 @@ class CinemaController
             $e->getmessage();
         }
     }
-    public function Modify(Cinema $cinema)
+  
+
+    public function Modify($cinemaName,$address,$capacity,$ticketValue)
     {
-        try{
-            $repo = $this->CinemaDAODB;
-            $repo->ModifyCinema($cinema);
-            echo "<script>alert ('Cines Actualizados');</script>";
-            $this->ShowCinemaListView();
+      
+            try{
+                $repo = $this->CinemaDAODB;
+                $repo->Add($cinema);
+                echo "<script>alert ('Cines Actualizados');</script>";
+                $this->ShowCinemaListView();
         
-        }catch (PDOException $e)
-        {
-            $e->getmessage();
+               }catch (PDOException $e)
+            {
+                $e->getmessage();
+            }
         }
     }
 }
