@@ -37,12 +37,12 @@ include('nav-bar.php');
                    <div class="form-group">
 
                        <label for="">Selecionar cinema a modificar</label>
-                       <select>
+                       <select name="currentCinema">
                            <?php
                            if(isset($cinemaList) && !empty($cinemaList)){
                                foreach($cinemaList as $cinema){
                                    ?>
-                                   <option onclick="<?php $currentCinema = $cinema; ?>" value="<?php echo $cinema->getCinemaName(); ?>" > <?php echo $cinema->getCinemaName(); ?> </option>
+                                   <option value="<?php echo $cinema->getCinemaName(); ?>" > <?php echo $cinema->getCinemaName(); ?> </option>
 
                               <?php }
                            }
@@ -50,20 +50,20 @@ include('nav-bar.php');
 
                        </select>
 
-                       <label for=""> Nombre </label>
-                        <input type="text" name="cinemaName" class="form-control form-control-lg" placeholder="<?php if($currentCinema == null){echo "Nombre del cinema";}else {echo $currentCinema->getCinemaName();} ?>">
+                       <label for=""> Nuevo Nombre </label>
+                        <input type="text" name="cinemaName" class="form-control form-control-lg" placeholder="Nombre">
                    </div>
                    <div class="form-group">
-                   <label for=""> Direccion </label>
+                   <label for=""> Nueva Direccion </label>
                         <input type="text" name="address" class="form-control form-control-lg" placeholder="Direccion">
                    </div>
                    <div class="form-group">
                         <?php // Si sobra tiempo mejorar tipo de dato de los horarios ?>
-                       <label for=""> Capacidad </label>
+                       <label for=""> Nueva Capacidad </label>
                             <input type="number" name="capacity" class="form-control form-control-lg" placeholder="Capacidad">
                        </div>
                    <div class="form-group">
-                        <label for="">Valor de ticket</label>
+                        <label for=""> Nuevo Valor de ticket</label>
                         <input type="number" name="ticketValue" class="form-control form-control-lg" placeholder="Valor Ticket">
                    </div>
                    
