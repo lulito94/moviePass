@@ -57,7 +57,12 @@ class CinemaController
             $this->ShowCinemaView();
         }
     }
-    
+
+    public function showModify()
+    {
+        require_once(VIEWS_PATH . "Cinema-Modify.php");
+
+    }
     public function Delete($cinemaName)
     {
         try{
