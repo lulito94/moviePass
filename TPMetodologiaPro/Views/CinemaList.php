@@ -28,6 +28,7 @@
                <h2 class="mb-4"> Cines Habilitados </h2>
                <table class="table bg-light-alpha">
                     <thead>
+                          <th>ID</th>
                          <th>Nombre</th>
                          <th>Direccion</th>
                          <th>Capacidad</th>
@@ -41,6 +42,7 @@
                                    foreach($cinemaList as $cinema){
                          ?>
                                         <tr> 
+                                             <td><?php echo $cinema->getIdCinema() ?></td>
                                              <td><?php echo $cinema->getCinemaName(); ?></td>
                                              <td><?php echo $cinema->getAddress(); ?></td>
                                              <td><?php echo $cinema->getCapacity(); ?></td>

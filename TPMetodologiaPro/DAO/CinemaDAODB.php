@@ -46,6 +46,7 @@ class CinemaDAODB {
             foreach ($resultSet as $row)
             {                
                 $cinema = new Cinema();
+                $cinema->setIdCinema($row["idCinema"]);
                 $cinema->setCinemaName($row["cinemaName"]);
                 $cinema->setAddress($row["address"]);
                 $cinema->setCapacity($row["capacity"]);
