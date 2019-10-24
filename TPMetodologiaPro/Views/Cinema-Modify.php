@@ -67,8 +67,10 @@ $currentCinema = null;
                 <input type="number" name="ticketValue" class="form-control form-control-lg" placeholder="Valor Ticket" required>
             </div>
 
-
+<br>
             <button class="btn btn-dark btn-block btn-lg" type="submit"> Modificar Cine </button>
+            <button type="submit" name="room" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/ShowAddRoom'" value="<?php echo $cinema->getIdCinema();?>"> Agregar nueva sala </button>
+
         </form>
     </div>
 </main>

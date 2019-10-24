@@ -16,7 +16,6 @@ include('nav-bar.php');
 </div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<main class="d-flex align-items-center justify-content-center height-100" style="background-image:url('https://i.pinimg.com/originals/02/a3/95/02a395a756b4756bfd985d8343538313.jpg');" >
           <div class="content">
               
                <header class="text-center">
@@ -57,7 +56,7 @@ include('nav-bar.php');
                     </div>
                     <div class="form-group">
                          <label for="">Contraseña</label>
-                         <input type="password" name="password" class="form-control form-control-lg" placeholder="Ingresar constraseña">
+                         <input type="password" name="password" class="form-control form-control-lg" pattern="{5,10}" required title= "Min 5 caracteres Max 10!!" placeholder="Ingresar constraseña" require>
                     </div>
                     
                     <button class="btn btn-dark btn-block btn-lg" type="submit">Iniciar Sesión</button>

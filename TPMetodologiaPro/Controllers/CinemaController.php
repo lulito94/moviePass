@@ -37,22 +37,7 @@ class CinemaController
         require_once(VIEWS_PATH . "CinemaList.php");
     }
 
-    public function AddRoom($cinema_name,$seating,$room_name)
-    {
-        $cinemasList = $this->CinemaDAODB->GetAll();
 
-       foreach($cinemasList as $cinema)
-       {
-           if($cinema_name == $cinema->getCinemaName())
-           {
-               $room = new Room();
-               $room->setSeatings($seating);
-               $room->setRoom_name($room_name);
-               $room->setRooms($room);
-               //modify cinema.
-           }
-       } 
-    }
     
     public function Add($cinemaName,$address,$capacity,$ticketValue){
         $cinema = new Cinema();
@@ -93,7 +78,23 @@ class CinemaController
             $e->getmessage();
         }
     }
-  
+
+    public function ShowAddRoom()
+    {
+        require_once(VIEWS_PATH."RoomAdd.php");
+    }
+
+    public function AddRoom($roomName,$seatings)
+    {
+        $room = new Room();
+        $room->setRoom_name($roomName);
+        $room->setSeating($seatings);
+
+        $repo = $this->CinemaDAODB;
+        $repo->ModifyRoom($_SESSION['idCinema'],$room);
+        unset($_SESSION['idCinema']);
+    }
+
 
     public function Modify($currentCinema,$cinemaName,$address,$capacity,$ticketValue)
     {
@@ -103,6 +104,7 @@ class CinemaController
         $updatedCinema->setAddress($address);
         $updatedCinema->setCinemaName($cinemaName);
         $updatedCinema->setTicketValue($ticketValue);
+        $_SESSION['idCinema'] = $currentCinema->getIdCinema();
 
 
 

@@ -33,6 +33,7 @@
                 </thead>
                 <tbody>  
                      <?php
+                     $user = $_SESSION['loggeduser'];
                                if(isset($user))
                                {
 
