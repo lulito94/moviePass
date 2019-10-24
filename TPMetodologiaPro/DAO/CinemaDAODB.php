@@ -116,7 +116,7 @@ class CinemaDAODB {
             foreach($cinemaList as $cmod){
                 if($cmod->getIdCinema() == $idCinema){
                     foreach($cmod->getRooms() as $croom){
-                        if($croom->getRoom_name() == $room->getRoom_name()){
+                        if($croom->getId_room() == $room->getId_room()){
                             $query =  "UPDATE Rooms SET seating = ".$croom->getSeating().",
                                                          room_name = ".$croom->getRoom_name()." 
                                                          WHERE id_room =".$croom->getId_room();
