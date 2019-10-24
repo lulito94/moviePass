@@ -2,11 +2,12 @@
 namespace Models;
 
 class Cinema{
-
+    private $idCinema;
     private $cinemaName;
     private $address;
     private $capacity;
     private $ticketValue;
+    private $rooms;
 
 
     /**
@@ -85,6 +86,45 @@ class Cinema{
     public function setTicketValue($ticketValue)
     {
         $this->ticketValue = $ticketValue;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of rooms
+     */ 
+    public function getRooms()
+    {
+        return $this->rooms;
+    }
+
+    /**
+     * Set the value of rooms
+     *
+     * @return  self
+     */ 
+    public function setRooms($room)
+    {
+        array_push($this->getRooms(),$room);
+    }
+
+
+    /**
+     * Get the value of idCinema
+     */ 
+    public function getIdCinema()
+    {
+        return $this->idCinema;
+    }
+
+    /**
+     * Set the value of idCinema
+     *
+     * @return  self
+     */ 
+    public function setIdCinema($idCinema)
+    {
+        $this->idCinema = $idCinema;
 
         return $this;
     }

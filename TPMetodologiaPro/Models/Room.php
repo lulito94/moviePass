@@ -2,27 +2,30 @@
 namespace Models;
 
 class Room{
-    private $id;
+    private $id_room;
     private $seating;
-    private $name;
+    private $room_name;
+
+
+    
 
 
     /**
-     * Get the value of id
+     * Get the value of id_room
      */ 
-    public function getId()
+    public function getId_room()
     {
-        return $this->id;
+        return $this->id_room;
     }
 
     /**
-     * Set the value of id
+     * Set the value of id_room
      *
      * @return  self
      */ 
-    public function setId($id)
+    public function setId_room($id_room)
     {
-        $this->id = $id;
+        $this->id_room = $id_room;
 
         return $this;
     }
@@ -48,21 +51,21 @@ class Room{
     }
 
     /**
-     * Get the value of name
+     * Get the value of room_name
      */ 
-    public function getName()
+    public function getRoom_name()
     {
-        return $this->name;
+        return $this->room_name;
     }
 
     /**
-     * Set the value of name
+     * Set the value of room_name
      *
      * @return  self
      */ 
-    public function setName($name)
+    public function setRoom_name($room_name)
     {
-        $this->name = $name;
+        $this->room_name = $room_name;
 
         return $this;
     }

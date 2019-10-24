@@ -23,6 +23,7 @@
         <form action="" method="post"  style="background-color: #EAEDED;padding: 2rem !important;">
         <ul class="home-sidelinks">
             <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaView">Add-Cinemas</a></li>
+            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaModify">Modify-Cinemas</a></li>
             <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaListView">List-Cinemas</a></li>
             <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>user/AdminOptions">API Options</a></li>
             <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>user/AdminProfile">My Profile</a></li>

@@ -28,10 +28,12 @@
                <h2 class="mb-4"> Cines Habilitados </h2>
                <table class="table bg-light-alpha">
                     <thead>
+                          <th>ID</th>
                          <th>Nombre</th>
                          <th>Direccion</th>
                          <th>Capacidad</th>
                          <th>Valor de la entrada</th>
+                         <th>Accion</th>
                     </thead>
                     <tbody>  
                     <form action="" method="POST" >                
@@ -40,13 +42,13 @@
                                    foreach($cinemaList as $cinema){
                          ?>
                                         <tr> 
+                                             <td><?php echo $cinema->getIdCinema() ?></td>
                                              <td><?php echo $cinema->getCinemaName(); ?></td>
                                              <td><?php echo $cinema->getAddress(); ?></td>
                                              <td><?php echo $cinema->getCapacity(); ?></td>
                                              <td><?php echo $cinema->getTicketValue(); ?></td>
                                              <td> 
                                               <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/Delete'" value="<?php echo $cinema->getCinemaName();?>"> Eliminar </button>
-                                              <button type="submit" name="modify" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/PreModify'" value="<?php echo $cinema->getCinemaName();?>"> Modificiar </button>
                                               </td>
                                              
                                         </tr>

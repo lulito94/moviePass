@@ -36,6 +36,8 @@ class CinemaController
 
         require_once(VIEWS_PATH . "CinemaList.php");
     }
+
+
     
     public function Add($cinemaName,$address,$capacity,$ticketValue){
         $cinema = new Cinema();
@@ -43,6 +45,7 @@ class CinemaController
         $cinema->setAddress($address);
         $cinema->setCapacity($capacity);
         $cinema->setTicketValue($ticketValue);
+        $cinema->setRooms(null);
         
 
         try{
@@ -75,22 +78,48 @@ class CinemaController
             $e->getmessage();
         }
     }
-  
 
-    public function Modify($cinemaName,$address,$capacity,$ticketValue)
+    public function ShowAddRoom()
     {
-      
+        require_once(VIEWS_PATH."RoomAdd.php");
+    }
+
+    public function AddRoom($roomName,$seatings)
+    {
+        $room = new Room();
+        $room->setRoom_name($roomName);
+        $room->setSeating($seatings);
+
+        $repo = $this->CinemaDAODB;
+        $repo->ModifyRoom($_SESSION['idCinema'],$room);
+        unset($_SESSION['idCinema']);
+    }
+
+
+    public function Modify($currentCinema,$cinemaName,$address,$capacity,$ticketValue)
+    {
+
+        $updatedCinema = new Cinema();
+        $updatedCinema->setCapacity($capacity);
+        $updatedCinema->setAddress($address);
+        $updatedCinema->setCinemaName($cinemaName);
+        $updatedCinema->setTicketValue($ticketValue);
+        $_SESSION['idCinema'] = $currentCinema->getIdCinema();
+
+
+
             try{
                 $repo = $this->CinemaDAODB;
-                $repo->Add($cinema);
+                $repo->ModifyCinema($currentCinema,$updatedCinema);
                 echo "<script>alert ('Cines Actualizados');</script>";
                 $this->ShowCinemaListView();
-        
-               }catch (PDOException $e)
-            {
-                $e->getmessage();
+
+                }catch (PDOException $e){
+                $e->getMessage();
             }
         }
+
+
     
 }
 ?>
