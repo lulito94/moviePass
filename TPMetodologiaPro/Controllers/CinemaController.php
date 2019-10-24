@@ -96,7 +96,7 @@ class CinemaController
     }
 
 
-    public function Modify($currentCinema,$cinemaName,$address,$capacity,$ticketValue)
+    public function Modify($currentCinemaID,$cinemaName,$address,$capacity,$ticketValue)
     {
 
         $updatedCinema = new Cinema();
@@ -104,13 +104,13 @@ class CinemaController
         $updatedCinema->setAddress($address);
         $updatedCinema->setCinemaName($cinemaName);
         $updatedCinema->setTicketValue($ticketValue);
-        $_SESSION['idCinema'] = $currentCinema->getIdCinema();
+        $_SESSION['idCinema'] = $currentCinemaID;
 
 
 
             try{
                 $repo = $this->CinemaDAODB;
-                $repo->ModifyCinema($currentCinema,$updatedCinema);
+                $repo->ModifyCinema($updatedCinema);
                 echo "<script>alert ('Cines Actualizados');</script>";
                 $this->ShowCinemaListView();
 

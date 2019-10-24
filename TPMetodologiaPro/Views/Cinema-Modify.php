@@ -37,12 +37,12 @@ $currentCinema = null;
             <div class="form-group">
 
                 <label for="">Selecionar cinema a modificar</label>
-                <select name="currentCinema">
+                <select name="currentCinemaID">
                     <?php
                     if(isset($cinemaList) && !empty($cinemaList)){
                         foreach($cinemaList as $cinema){
                             ?>
-                            <option value="<?php echo $cinema->getCinemaName(); ?>" > <?php echo $cinema->getCinemaName(); ?> </option>
+                            <option value="<?php echo $cinema->getIdCinema(); ?>" > <?php echo $cinema->getCinemaName(); ?> </option>
 
                         <?php }
                     }
