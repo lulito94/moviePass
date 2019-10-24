@@ -83,20 +83,48 @@ class CinemaDAODB {
             throw $ex;
         }
     }
-    public function ModifyCinema(Cinema $cinema,Cinema $newCinema)
+    public function ModifyCinema($cinemaName,Cinema $newCinema)
     {
         try
         {
             $cinemaList = $this->GetAll();
-            foreach($cinemaList as $cinemaToRemove)
+            foreach($cinemaList as $cmod)
             {
             
-                if($cinemaToRemove->getCinemaName() == $cinema->getCinemaName())
+                if($cmod->getCinemaName() == $cinemaName)
                 {
+                    $query = "UPDATE ".$this->tableName." SET cinemaName = ".$newCinema->getCinemaName().",
+                                                                address = ".$newCinema->getAddress().", 
+                                                                capacity = ".$newCinema->getCapacity().",
+                                                                ticketValue = ".$newCinema->getTicketValue()."
+                                                                WHERE idCinema = ".$newCinema->getIdCinema();
                     $this->connection = Connection::GetInstance();
                     $this->connection->ExecuteNonQuery($query);
+
                 }
             }
+        }
+        catch(Exception $ex)
+        {
+            throw $ex;
+        }
+    }
+    public function ModifyRoom($idCinema,Room $room){
+        try{
+            $cinemaList = $this->GetAll();
+            foreach($cinemaList as $cmod){
+                if($cmod->getIdCinema() == $idCinema){
+                    foreach($cmod->getRooms() as $croom){
+                        if($croom->getRoom_name() == $room->getRoom_name()){
+                            $query =  "UPDATE Rooms SET seating = ".$croom->getSeating().",
+                                                         room_name = ".$croom->getRoom_name()." 
+                                                         WHERE id_room =".$croom->getId_room();
+                        }
+                    }
+                    
+                }
+            }
+
         }
         catch(Exception $ex)
         {
