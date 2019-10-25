@@ -6,6 +6,7 @@ namespace Controllers;
 use Models\Cinema as Cinema;
 use DAO\CinemaDAO as CinemaDAO;
 use DAO\CinemaDAODB as CinemaDAODB;
+use Models\Room as Room;
 
 class CinemaController
 {
@@ -89,14 +90,24 @@ class CinemaController
         $room = new Room();
         $room->setRoom_name($roomName);
         $room->setSeating($seatings);
-
+        $repo = $this->CinemaDAODB;
+        $repo->AddRoom($_SESSION['idCinema'],$room);
+        unset($_SESSION['idCinema']);
+        $this->ShowCinemaListView();
+    }
+    public function ModifyRoom($id_room,$roomName,$seatings)
+    {
+        $room = new Room();
+        $room->setId_room($id_room);
+        $room->setRoom_name($roomName);
+        $room->setSeating($seatings);
         $repo = $this->CinemaDAODB;
         $repo->ModifyRoom($_SESSION['idCinema'],$room);
-        unset($_SESSION['idCinema']);
+        $this->ShowCinemaListView();
     }
 
 
-    public function Modify($currentCinemaID,$cinemaName,$address,$capacity,$ticketValue)
+    public function Modify($cinemaName,$address,$capacity,$ticketValue)
     {
 
         $updatedCinema = new Cinema();
@@ -104,16 +115,16 @@ class CinemaController
         $updatedCinema->setAddress($address);
         $updatedCinema->setCinemaName($cinemaName);
         $updatedCinema->setTicketValue($ticketValue);
-        $_SESSION['idCinema'] = $currentCinemaID;
 
 
 
             try{
                 $repo = $this->CinemaDAODB;
                 $repo->ModifyCinema($updatedCinema);
+                unset($_SESSION['idCinema']);
                 echo "<script>alert ('Cines Actualizados');</script>";
                 $this->ShowCinemaListView();
-
+                
                 }catch (PDOException $e){
                 $e->getMessage();
             }

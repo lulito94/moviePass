@@ -33,7 +33,11 @@
                          <th>Direccion</th>
                          <th>Capacidad</th>
                          <th>Valor de la entrada</th>
+                         <th>Nombre salas</th>
+                         <th>Asientos</th>
                          <th>Accion</th>
+
+
                     </thead>
                     <tbody>  
                     <form action="" method="POST" >                
@@ -47,12 +51,19 @@
                                              <td><?php echo $cinema->getAddress(); ?></td>
                                              <td><?php echo $cinema->getCapacity(); ?></td>
                                              <td><?php echo $cinema->getTicketValue(); ?></td>
+                                             <?php $list = $cinema->getRooms();
+                                             foreach($list as $room){?>
+                                             <td><?php echo $room->getRoom_name() ?></td>
+                                             <td><?php echo $room->getSeating() ?></td>
+
+                                             <?php  } ?>
+
                                              <td> 
                                               <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/Delete'" value="<?php echo $cinema->getCinemaName();?>"> Eliminar </button>
-                                              </td>
-                                             
+                                              </td>   
                                         </tr>
                                         <?php
+                                        
                                    }}
                                         ?>
                          </form>

@@ -51,26 +51,29 @@ $currentCinema = null;
                 </select>
 
                 <label for=""> Nuevo Nombre </label>
-                <input type="text" name="cinemaName" class="form-control form-control-lg" placeholder="Nombre" required>
+                <input type="text" name="cinemaName" class="form-control form-control-lg" placeholder="Nombre" >
             </div>
             <div class="form-group">
                 <label for=""> Nueva Direccion </label>
-                <input type="text" name="address" class="form-control form-control-lg" placeholder="Direccion" required>
+                <input type="text" name="address" class="form-control form-control-lg" placeholder="Direccion" >
             </div>
             <div class="form-group">
                 <?php // Si sobra tiempo mejorar tipo de dato de los horarios ?>
                 <label for=""> Nueva Capacidad </label>
-                <input type="number" name="capacity" class="form-control form-control-lg" placeholder="Capacidad" required>
+                <input type="number" name="capacity" class="form-control form-control-lg" placeholder="Capacidad" >
             </div>
             <div class="form-group">
                 <label for=""> Nuevo Valor de ticket</label>
-                <input type="number" name="ticketValue" class="form-control form-control-lg" placeholder="Valor Ticket" required>
+                <input type="number" name="ticketValue" class="form-control form-control-lg" placeholder="Valor Ticket" >
             </div>
 
 <br>
             <button class="btn btn-dark btn-block btn-lg" type="submit"> Modificar Cine </button>
-            <button type="submit" name="room" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/ShowAddRoom'" value="<?php echo $cinema->getIdCinema();?>"> Agregar nueva sala </button>
-
+            <button type="submit" name="room" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/ShowAddRoom'" value=""> Agregar nueva sala </button>
+    
         </form>
     </div>
 </main>
+<?php
+        $_SESSION['idCinema'] = $cinema->getIdCinema();
+?>

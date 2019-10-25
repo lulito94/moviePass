@@ -2,6 +2,16 @@ create database TPFinal;
 
 use TPFinal;
 
+create table Rooms(
+	id_room integer auto_increment,
+    seating integer not null,
+    room_name varchar(30),
+    idCinema integer,
+    
+    constraint pk_rooms primary key (id_room),
+    constraint unq_nameRoom unique (room_name),
+    constraint fk_room_cinema foreign key (idCinema) references Cinemas(idCinema)
+);
 create table Cinemas
 (
  idCinema integer auto_increment,
@@ -15,7 +25,8 @@ create table Cinemas
  constraint unq_cinemaName unique (cinemaName),
  constraint fk_cinemas_room foreign key (id_room) references Rooms(id_room)
 );
-
+select * 
+from Rooms;
 create table Users(
     idUser integer auto_increment,
     sex varchar(9),
@@ -30,7 +41,6 @@ create table Users(
     constraint unq_dni unique(dni),
     constraint unq_email unique(email)
 );
-
 
 create table Genres(
 	id_genre integer not null,
@@ -55,7 +65,7 @@ create table Movies(
     constraint unq_movieTitle unique (title),
     constraint fk_movies_genre foreign key (id_genre) references Genres (id_genre)
 );
-drop table MoviesxGenres;
+
 create table MoviesxGenres(
 	id integer,
     id_genre integer,
@@ -65,19 +75,6 @@ create table MoviesxGenres(
 	constraint fk_MoviesxGenre_genre foreign key (id_genre) references Genres(id_genre)
 );
 
-create table Rooms(
-	id_room integer auto_increment,
-    seating integer not null,
-    room_name varchar(30),
-    idCinema integer,
-    
-    constraint pk_rooms primary key (id_room),
-    constraint unq_nameRoom unique (room_name),
-    constraint fk_room_cinema foreign key (idCinema) references Cinemas(idCinema)
-);
-
-
-#update cinemas set id_room = "lo que trae del add" where cinemas.idCinema = "el id del cinema que modificamos"
 
 create table MovieFunctions(
 	id_function integer auto_increment,
@@ -93,6 +90,7 @@ create table MovieFunctions(
 create table MoviesXCinema(
 	id integer,
     idCinema integer,
+    function_time time,
     ticket_price float not null,
     tickets_sold integer,
     
@@ -100,6 +98,5 @@ create table MoviesXCinema(
     constraint fk_moviesXcinema_movies foreign key (id) references Movies(id),
     constraint fk_moviesXcinema_cinema foreign key (idCinema) references Cinemas(idCinema)
 );
-
 
 

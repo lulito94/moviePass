@@ -7,7 +7,7 @@ class Cinema{
     private $address;
     private $capacity;
     private $ticketValue;
-    private $rooms;
+    private $rooms = array();
 
 
     /**
@@ -105,7 +105,7 @@ class Cinema{
      */ 
     public function setRooms($room)
     {
-        array_push($this->getRooms(),$room);
+        array_push($this->rooms,$room);
     }
 
 
