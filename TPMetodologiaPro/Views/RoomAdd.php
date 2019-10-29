@@ -27,11 +27,11 @@ require_once ('validate-session-admin.php');
               <form action="<?php echo FRONT_ROOT;?>Cinema/AddRoom" method="post" class="login-form bg-dark-alpha p-5 text-white">
                    <div class="form-group">
                         <label for=""> Nombre Sala </label>
-                        <input type="text" name="roomName" class="form-control form-control-lg" placeholder="Ingresar nombre Sala">
+                        <input type="text" name="roomName" class="form-control form-control-lg" placeholder="Ingresar nombre Sala" required>
                    </div>
                    <div class="form-group">
                    <label for=""> Asientos </label>
-                        <input type="text" name="seatings" class="form-control form-control-lg" placeholder="Asientos">
+                        <input type="text" name="seatings" class="form-control form-control-lg" placeholder="Asientos" required>
                    </div>
                                             
                    <button class="btn btn-dark btn-block btn-lg" type="submit"> Agregar Sala </button>
