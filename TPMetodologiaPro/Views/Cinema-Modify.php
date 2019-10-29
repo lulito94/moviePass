@@ -11,7 +11,6 @@ require_once ('validate-session-admin.php');
 $repo = new CinemaDAODB();
 
 $cinemaList = $repo->GetAll();
-$currentCinema = null;
 ?><!-- ################################################################################################ -->
 <div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
     <div class="overlay">
@@ -37,18 +36,15 @@ $currentCinema = null;
             <div class="form-group">
 
                 <label for="">Selecionar cinema a modificar</label>
-                <select name="currentCinemaID">
                     <?php
                     if(isset($cinemaList) && !empty($cinemaList)){
                         foreach($cinemaList as $cinema){
                             ?>
-                            <option value="<?php echo $cinema->getIdCinema(); ?>" > <?php echo $cinema->getCinemaName(); ?> </option>
-
+                            <button type="submit" name="idCinema" class="btn btn-danger"  onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/SetIdCinema'" value="<?php echo $cinema->getIdCInema();?>"> <?php echo $cinema->getCinemaName(); ?> </button>
                         <?php }
                     }
                     ?>
 
-                </select>
 
                 <label for=""> Nuevo Nombre </label>
                 <input type="text" name="cinemaName" class="form-control form-control-lg" placeholder="Nombre" >
@@ -74,6 +70,3 @@ $currentCinema = null;
         </form>
     </div>
 </main>
-<?php
-        $_SESSION['idCinema'] = $cinema->getIdCinema();
-?>

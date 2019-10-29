@@ -128,7 +128,13 @@ class CinemaController
                 }catch (PDOException $e){
                 $e->getMessage();
             }
-        }
+    }
+
+    public function SetIdCinema($idCinema)
+    {
+        $_SESSION['idCinema'] = $idCinema;
+        $this->ShowCinemaModify();
+    }
 
 
     

@@ -51,7 +51,7 @@ class CinemaDAODB
                 $cinema->setCapacity($row["capacity"]);
                 $cinema->setTicketValue($row["ticketValue"]);
             
-            $RoomsList = $this->GetRooms($cinema->getIdCinema());
+            $RoomsList = $this->GetRoomById($cinema->getIdCinema());
             foreach($RoomsList as $room)
             {
                 $cinema->setRooms($room);
@@ -73,9 +73,18 @@ class CinemaDAODB
             foreach ($cinemaList as $cinemaToRemove) {
 
                 if ($cinemaToRemove->getCinemaName() == $cinemaName) {
+                    $RoomList = $this->GetRoomById($cinemaToRemove->getIdCinema());
+                    if($RoomList)
+                {
+                    foreach($RoomList as $room)
+                    {
+                        $this->DeleteRoom($room->getId_room());    
+                    }
                     $query = "DELETE FROM " . $this->tableName . " WHERE " . $this->tableName . ".cinemaName ='$cinemaName'";
                     $this->connection = Connection::GetInstance();
                     $this->connection->ExecuteNonQuery($query);
+                    
+                }
                 }
             }
         } catch (Exception $ex) {
@@ -83,7 +92,26 @@ class CinemaDAODB
         }
     }
 
-    public function GetRooms($idCinema)
+    public function DeleteRoom($idRoom)
+    {
+    
+        try {
+            $RoomList = $this->GetAllRooms();
+            foreach ($RoomList as $room) {
+
+                if ($room->getId_room() == $idRoom) {
+                    $query = "DELETE FROM Rooms  WHERE Rooms.id_room ='$idRoom'";
+                    $this->connection = Connection::GetInstance();
+                    $this->connection->ExecuteNonQuery($query);
+                }
+                
+            }
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+
+    public function GetRoomById($idCinema)
     {
         try {
             $roomList = array();
@@ -104,6 +132,31 @@ class CinemaDAODB
             }
 
             return $roomList;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+    public function GetAllRooms()
+    {
+        try {
+            $RoomList = array();
+
+            $query = "SELECT * FROM Rooms";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            foreach ($resultSet as $row) {
+                $room = new Room();
+                $room->setId_room($row["id_room"]);
+                $room->setRoom_name($row["room_name"]);
+                $room->setSeating($row["seating"]);
+            array_push($RoomList,$room);
+        }
+
+
+            return $RoomList;
         } catch (Exception $ex) {
             throw $ex;
         }
