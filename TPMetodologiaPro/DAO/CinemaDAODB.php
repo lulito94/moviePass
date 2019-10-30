@@ -5,6 +5,7 @@ namespace DAO;
 use Models\Cinema as Cinema;
 use DAO\Connection as Connection;
 use Models\Room as Room;
+use Models\MovieFunction as MovieFunction;
 use Exception;
 
 class CinemaDAODB
@@ -282,15 +283,14 @@ class CinemaDAODB
         }
     }
     
-    public function AddMovieFunction ($id_cinema,$id_room,MovieFunction $function)
+    public function AddMovieFunction(MovieFunction $function)
     {
-
         try {
-            $query = "INSERT INTO MovieFunctions (id_cinema,id_room, id_movie, function_time) VALUES (:id_cinema, :id_room, :id_movie, :function_time);";
+            $query = "INSERT INTO MovieFunctions (idCinema,id_room, id, function_time) VALUES (:idCinema, :id_room, :id, :function_time);";
 
-            $parameters["id_cinema"] = $id_cinema;
-            $parameters["id_room"] = $id_room;
-            $parameters["id_movie"] = $function->getId_movie();
+            $parameters["idCinema"] = $_SESSION['idCinema'];
+            $parameters["id_room"] = $function->getId_room();
+            $parameters["id"] = $function->getId_movie();
             $parameters["function_time"] = $function->getFunction_time();
 
             $this->connection = Connection::GetInstance();
@@ -301,13 +301,13 @@ class CinemaDAODB
         }
     }
 
-    public function GetMovieFunctions ($id_cinema, $id_room)
+    public function GetMovieFunctions ($id_cinema)
     {
         try {
             $functionList = array();
-            $query = "SELECT * FROM ". 
-            $this->tableName . " JOIN Rooms ON ". $this->tableName . ".idCinema = Rooms.idCinema JOIN MovieFunctions ON".
-            "MovieFunctions.id_room = Rooms.id_room Join Movies ON MovieFunctions.id = Movies.id Where MovieFunctions.idCinema ='$id_cinema'";                                                                            
+            $query = "SELECT MovieFunctions.id_function,MovieFunctions.id_room,MovieFunctions.id,MovieFunctions.function_time  FROM ". 
+            $this->tableName." JOIN Rooms ON ".$this->tableName.".idCinema = Rooms.idCinema JOIN MovieFunctions ON ".
+            "MovieFunctions.id_room = Rooms.id_room Join Movies ON MovieFunctions.id = Movies.id WHERE MovieFunctions.idCinema ='$id_cinema'";                                                                            
 
 
             $this->connection = Connection::GetInstance();

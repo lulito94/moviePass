@@ -7,6 +7,7 @@ use Models\Cinema as Cinema;
 use DAO\CinemaDAO as CinemaDAO;
 use DAO\CinemaDAODB as CinemaDAODB;
 use Models\Room as Room;
+use Models\MovieFunction as MovieFunction;
 
 class CinemaController
 {
@@ -99,6 +100,10 @@ class CinemaController
     {
         require_once(VIEWS_PATH."RoomAdd.php");
     }
+    public function ShowAddFunction()
+    {
+        require_once(VIEWS_PATH."SelectCinema.php");
+    }
 
     public function AddRoom($roomName,$seatings)
     {
@@ -110,6 +115,7 @@ class CinemaController
         unset($_SESSION['idCinema']);
         $this->ShowCinemaListView();
     }
+
     public function ModifyRoom($id_room,$roomName,$seatings)
     {
         $room = new Room();
@@ -121,6 +127,26 @@ class CinemaController
         $this->ShowCinemaListView();
     }
 
+    public function ShowSelectRoom()
+    {
+        require_once(VIEWS_PATH."SelectRoom.php");
+    }
+
+    public function ShowSelectMovie()
+    {
+        require_once(VIEWS_PATH."SelectMovie.php");
+    }
+
+    public function SelectRoom($idCinema)
+    {
+        $_SESSION['idCinema'] = $idCinema;
+        $this->ShowSelectRoom();
+    }
+    public function SelectMovie($id_room)
+    {
+        $_SESSION['idRoom'] = $id_room;
+        $this->ShowSelectMovie();
+    }
 
     public function Modify($cinemaName,$address,$capacity,$ticketValue)
     {
@@ -150,7 +176,36 @@ class CinemaController
         $_SESSION['idCinema'] = $idCinema;
         $this->ShowCinemaModify();
     }
+    public function AddMovie($idMovie)
+    {
+        $_SESSION['idMovie'] = $idMovie;
+        $this->ShowFunction();
+    }
 
+    public function ShowFunction()
+    {
+        require_once(VIEWS_PATH."FunctionAdd.php");
+    }
+    
+    public function ShowFunctions()
+    {
+        require_once(VIEWS_PATH."FunctionList.php");
+    }
+    public function AddMovieFunction($function_date)
+    {
+        $MovieFunction = new MovieFunction();
+        $MovieFunction->setId_room($_SESSION['idRoom']);
+        $MovieFunction->setId_movie($_SESSION['idMovie']);
+        $MovieFunction->setFunction_time($function_date);
+
+        $repo = $this->CinemaDAODB;
+        $repo->AddMovieFunction($MovieFunction);
+        unset($_SESSION['idRoom']);
+        unset($_SESSION['idCinema']);
+        unset($_SESSION['idMovie']);
+        echo "<script>alert ('Cines Actualizados');</script>";
+        $this->ShowFunctions();
+    }
 
     
 }
