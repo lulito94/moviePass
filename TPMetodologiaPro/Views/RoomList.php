@@ -43,7 +43,7 @@ $cinemaList = $repo->GetAll();
                     <?php
                     if(isset($cinemaList) && !empty($cinemaList)){
                         foreach($cinemaList as $cinema){
-                            foreach ($cinema->getRooms() as $room)
+                            foreach ($cinema->getRooms() as $room){
                             ?>
                             <tr>
                                 <div>
@@ -60,7 +60,7 @@ $cinemaList = $repo->GetAll();
                             </tr>
                             <?php
 
-                        }}
+                        }}}
                     ?>
                 </form>
                 </tbody>
