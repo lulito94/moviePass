@@ -132,11 +132,8 @@ class CinemaController
         $cinemaId = $repo->getCinemaIdByRoomId($_SESSION['idRoom']);
         $room->setRoom_name($roomName);
         $room->setSeating($seatings);
-        foreach ($cinemaId as $cinema)
-        {
-            $id = $cinema;
-        }
-        $repo->ModifyRoom($id[0],$room);
+
+        $repo->ModifyRoom($cinemaId,$room);
         $this->ShowRoomList();
     }
 

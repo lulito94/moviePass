@@ -364,7 +364,11 @@ class CinemaDAODB
 
             $resultSet = $this->connection->Execute($query);
 
-            return $resultSet;
+            $ids = null;
+            foreach ($resultSet as $result){
+                $ids = $result;
+            }
+            return $ids[0];
         } catch (Exception $ex) {
             throw $ex;
         }
