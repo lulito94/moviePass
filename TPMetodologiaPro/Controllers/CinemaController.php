@@ -38,6 +38,21 @@ class CinemaController
         require_once(VIEWS_PATH . "CinemaList.php");
     }
 
+    public function ShowRoomList()
+    {
+        require_once (VIEWS_PATH . "RoomList.php");
+    }
+
+    public function ShowRoomFunctions()
+    {
+        require_once (VIEWS_PATH . "RoomFunctions.php");
+    }
+
+    public function ShowRoomModify()
+    {
+        require_once (VIEWS_PATH . "RoomModify.php");
+    }
+
 
     
     public function Add($cinemaName,$address,$capacity,$ticketValue){

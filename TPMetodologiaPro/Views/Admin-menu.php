@@ -25,7 +25,7 @@
             <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaView">Add-Cinemas</a></li>
             <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaModify">Modify-Cinemas</a></li>
             <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaListView">List-Cinemas</a></li>
-            <li><a class="smooth-link"  href="">Room Functions</a></li>
+            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowRoomFunctions">Room Functions</a></li>
             <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>user/AdminOptions">API Options</a></li>
             <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>user/AdminProfile">My Profile</a></li>
             <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>user/UsersProfiles">Users Profiles</a></li>
