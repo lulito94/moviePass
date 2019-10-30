@@ -32,8 +32,6 @@
                          <th>ID Room</th>
                          <th>ID Movie</th>
                          <th>Dia y hora de la funcion</th>
-                        
-
 
                     </thead>
                     <tbody>  
