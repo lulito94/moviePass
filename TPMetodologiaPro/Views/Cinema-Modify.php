@@ -66,7 +66,7 @@ $cinemaList = $repo->GetAll();
 <br>
             <button class="btn btn-dark btn-block btn-lg" type="submit"> Modificar Cine </button>
             <button type="submit" name="room" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/ShowAddRoom'" value=""> Agregar nueva sala </button>
-    
+            
         </form>
     </div>
 </main>

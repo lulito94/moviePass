@@ -281,5 +281,55 @@ class CinemaDAODB
             throw $ex;
         }
     }
+    
+    public function AddMovieFunction ($id_cinema,$id_room,MovieFunction $function)
+    {
+
+        try {
+            $query = "INSERT INTO MovieFunctions (id_cinema,id_room, id_movie, function_time) VALUES (:id_cinema, :id_room, :id_movie, :function_time);";
+
+            $parameters["id_cinema"] = $id_cinema;
+            $parameters["id_room"] = $id_room;
+            $parameters["id_movie"] = $function->getId_movie();
+            $parameters["function_time"] = $function->getFunction_time();
+
+            $this->connection = Connection::GetInstance();
+
+            $this->connection->ExecuteNonQuery($query, $parameters);
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+
+    public function GetMovieFunctions ($id_cinema, $id_room)
+    {
+        try {
+            $functionList = array();
+            $query = "SELECT * FROM ". 
+            $this->tableName . " JOIN Rooms ON ". $this->tableName . ".idCinema = Rooms.idCinema JOIN MovieFunctions ON".
+            "MovieFunctions.id_room = Rooms.id_room Join Movies ON MovieFunctions.id = Movies.id Where MovieFunctions.idCinema ='$id_cinema'";                                                                            
+
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+           
+            foreach ($resultSet as $row) {
+                $function = new MovieFunction();
+                $function->setId_function($row["id_function"]);
+                $function->setId_room($row["id_room"]);
+                $function->setId_movie($row["id"]);
+                $function->setFunction_time($row["function_time"]);
+
+
+                array_push($functionList, $function);
+            }
+
+            return $functionList;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+    
 }
 ?>
