@@ -93,7 +93,7 @@ class MovieDAODB
         try {
             $movieList = array();
 
-            $query = "SELECT * FROM " . $this->tableName;
+            $query = "SELECT * FROM " .$this->tableName;
 
             $this->connection = Connection::GetInstance();
 
