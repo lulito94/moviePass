@@ -46,27 +46,20 @@ $cinemaList = $repo->GetAll();
                 }
                 ?>
 
+                <label for="">Selecionar sala a modificar</label>
+
+
 
                 <label for=""> Nuevo Nombre </label>
                 <input type="text" name="cinemaName" class="form-control form-control-lg" placeholder="Nombre" >
             </div>
             <div class="form-group">
-                <label for=""> Nueva Direccion </label>
+                <label for=""> Nuevos Asientos </label>
                 <input type="text" name="address" class="form-control form-control-lg" placeholder="Direccion" >
             </div>
             <div class="form-group">
-                <?php // Si sobra tiempo mejorar tipo de dato de los horarios ?>
-                <label for=""> Nueva Capacidad </label>
-                <input type="number" name="capacity" class="form-control form-control-lg" placeholder="Capacidad" >
-            </div>
-            <div class="form-group">
-                <label for=""> Nuevo Valor de ticket</label>
-                <input type="number" name="ticketValue" class="form-control form-control-lg" placeholder="Valor Ticket" >
-            </div>
 
-            <br>
-            <button class="btn btn-dark btn-block btn-lg" type="submit"> Modificar Cine </button>
-            <button type="submit" name="room" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/ShowAddRoom'" value=""> Agregar nueva sala </button>
+            <button class="btn btn-dark btn-block btn-lg" type="submit"> Modificar Sala </button>
 
         </form>
     </div>
