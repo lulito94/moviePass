@@ -33,29 +33,33 @@ $cinemaList = $repo->GetAll();
 
 
 
-        <form action="<?php echo FRONT_ROOT;?>Cinema/Modify" method="post" class="login-form bg-dark-alpha p-5 text-white">
+        <form action="<?php echo FRONT_ROOT;?>Cinema/ModifyRoom" method="post" class="login-form bg-dark-alpha p-5 text-white">
             <div class="form-group">
 
                 <label for="">Selecionar cinema a modificar</label>
                 <?php
                 if(isset($cinemaList) && !empty($cinemaList)){
-                    foreach($cinemaList as $cinema){
-                        ?>
-                        <button type="submit" name="idCinema" class="btn btn-danger"  onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/SetIdCinema'" value="<?php echo $cinema->getIdCInema();?>"> <?php echo $cinema->getCinemaName(); ?> </button>
-                    <?php }
+                    foreach($cinemaList as $cinema) {
+                        foreach ($cinema->getRooms() as $room) {
+                            ?>
+                            <button type="submit" name="id_room" class="btn btn-danger"
+                                    onclick="this.form.action = '<?php echo FRONT_ROOT; ?>Cinema/SetIdCinema'"
+                                    value="<?php echo $room->getId_room(); ?>"> <?php echo $room->getRoom_name(); ?> </button>
+                        <?php }
+                    }
                 }
                 ?>
 
-                <label for="">Selecionar sala a modificar</label>
+
 
 
 
                 <label for=""> Nuevo Nombre </label>
-                <input type="text" name="cinemaName" class="form-control form-control-lg" placeholder="Nombre" >
+                <input type="text" name="roomName" class="form-control form-control-lg" placeholder="Nombre" >
             </div>
             <div class="form-group">
                 <label for=""> Nuevos Asientos </label>
-                <input type="text" name="address" class="form-control form-control-lg" placeholder="Direccion" >
+                <input type="text" name="seatings" class="form-control form-control-lg" placeholder="Assientos" >
             </div>
             <div class="form-group">
 
