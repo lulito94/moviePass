@@ -116,6 +116,13 @@ class CinemaController
         $this->ShowCinemaListView();
     }
 
+    public function DeleteFunction($id_function)
+    {
+        $repo = $this->CinemaDAODB;
+        $repo->DeleteMovieFunction($id_function);
+        echo "<script>alert ('Funciones Actualizadas');</script>";
+        $this->ShowFunctions();
+    }
     public function ModifyRoom($roomName,$seatings)
     {
 

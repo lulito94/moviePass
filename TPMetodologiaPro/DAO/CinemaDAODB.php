@@ -294,7 +294,7 @@ class CinemaDAODB
                 $function = new MovieFunction();
                 $function->setId_function($row["id_function"]);
                 $function->setId_room($row["id_room"]);
-                $function->setId_movie($row["id_movie"]);
+                $function->setId_movie($row["id"]);
                 $function->setFunction_time($row["function_time"]);
 
                 array_push($functionList, $function);
@@ -306,7 +306,7 @@ class CinemaDAODB
     }
 
 
-    public function GetMovieFunctionByCinema($id_cinema)
+    public function GetMovieFunctions($id_cinema)
     {
         try {
             $functionList = array();
