@@ -128,15 +128,10 @@ class CinemaController
 
         $repo = $this->CinemaDAODB;
         $room = new Room();
-        $room->setId_room($_SESSION['idRoom']);
-        $cinemaId = $repo->getCinemaIdByRoomId($_SESSION['idRoom']);
         $room->setRoom_name($roomName);
         $room->setSeating($seatings);
-        foreach ($cinemaId as $cinema)
-        {
-            $id = $cinema;
-        }
-        $repo->ModifyRoom($id[0],$room);
+    
+        $repo->ModifyRoom($_SESSION['idRoom'],$room);
         $this->ShowRoomList();
     }
 

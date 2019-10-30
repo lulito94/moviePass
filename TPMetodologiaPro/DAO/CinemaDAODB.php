@@ -224,42 +224,50 @@ class CinemaDAODB
         }
     }
 
-    public function ModifyRoom($idCinema, Room $room)
+    public function ModifyRoom($idRoom, Room $room)
     {
         try {
-            $cinemaList = $this->GetAll();
-            foreach ($cinemaList as $cinema) {
-
-                if ($cinema->getIdCinema() == $idCinema) {
-                    for ($i = 0; $i < count($cinema->getRooms()); $i++) {
-                        $roomCompare = $cinema->getRooms(); //Short form
-
-                        if ($roomCompare->getId_room() == $room->getId_room()) {
-
-                            $room_name = $room->getRoom_name();
-                            $seating = $room->getSeating();
-                            $id_room = $room->getId_room();
-
-                            //check integrity of dates
-                            if (!isset($room_name) || $room_name == "") {
-                                $room_name = $roomCompare->getRoom_name();
-                            }
-                            if (!isset($seating) || $seating == null) {
-                                $seating = $roomCompare->getSeating();
-                            }
+            $roomList = $this->GetAllRooms();
 
 
-                            $query = "UPDATE Rooms SET seating ='$seating', room_name ='$room_name' WHERE " . " Rooms.idCinema ='$idCinema'";
-                            $this->connection = Connection::GetInstance();
-                            $this->connection->ExecuteNonQuery($query);
-                        }
-                    }
+            foreach ($roomList as $list) {
+                if ($list->getId_room() == $idRoom) {
+                    $roomRepo = $list;
+                }
+            }
+
+            $room_name = $room->getRoom_name();
+            $seating = $room->getSeating();
+            
+
+            //Check Integrity of dates
+            if (!isset($room_name) || $room_name == "") {
+                $room_name = $roomRepo->getRoom_name();
+            }
+            if (!isset($seating) || $seating == "") {
+                $seating = $roomRepo->getSeating();
+            }
+            
+
+
+            foreach ($roomList as $cmod) {
+
+                if ($cmod->getId_room() == $idRoom) {
+                    $query = "UPDATE Rooms SET room_name ='$room_name', seating ='$seating' WHERE Rooms.id_room ='$idRoom'";
+                    $this->connection = Connection::GetInstance();
+                    $this->connection->ExecuteNonQuery($query);
                 }
             }
         } catch (Exception $ex) {
             throw $ex;
         }
     }
+
+
+    /*
+    $query = "UPDATE Rooms SET seating ='$seating', room_name ='$room_name' WHERE " . " Rooms.idCinema ='$idCinema'";
+    $this->connection = Connection::GetInstance();
+    $this->connection->ExecuteNonQuery($query);*/
 
     public function AddMovieFunction(MovieFunction $function)
     {
