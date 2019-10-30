@@ -29,12 +29,10 @@ $cinemaList = $repo->GetAll();
             <h2 class="mb-4"> Salas Habilitadas </h2>
             <table class="table bg-light-alpha">
                 <thead>
+                <th>Cinema</th>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Direccion</th>
-                <th>Capacidad</th>
-                <th>Valor de la entrada</th>
-                <th>Salas</th>
+                <th>Asssientos</th>
 
                 <th>Accion</th>
 
@@ -45,25 +43,16 @@ $cinemaList = $repo->GetAll();
                     <?php
                     if(isset($cinemaList) && !empty($cinemaList)){
                         foreach($cinemaList as $cinema){
+                            foreach ($cinema->getRooms() as $room)
                             ?>
                             <tr>
                                 <div>
-                                    <td><?php echo $cinema->getIdCinema() ?></td>
-                                    <td><?php echo $cinema->getCinemaName(); ?></td>
-                                    <td><?php echo $cinema->getAddress(); ?></td>
-                                    <td><?php echo $cinema->getCapacity(); ?></td>
-                                    <td><?php echo $cinema->getTicketValue(); ?></td>
+                                    <td><?php echo $cinema->getCinemaName() ?></td>
+                                    <td><?php echo $room->getId_room() ?></td>
+                                    <td><?php echo $room->getRoom_Name() ?></td>
+                                    <td><?php echo $room->getSeating() ?></td>
 
-                                    <td><ul>
-                                            <?php $list = $cinema->getRooms($cinema->getIdCinema());
 
-                                            foreach($list as $room){?>
-
-                                            <li><?php echo $room->getRoom_name(). " Capacidad : ". $room->getSeating(); ?>
-
-                                                <?php  } ?>
-                                        </ul>
-                                    </td>
                                     <td>
                                         <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/Delete'" value="<?php echo $cinema->getCinemaName();?>"> Eliminar </button>
                                     </td>
