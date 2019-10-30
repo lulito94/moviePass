@@ -116,14 +116,17 @@ class CinemaController
         $this->ShowCinemaListView();
     }
 
-    public function ModifyRoom($id_room,$roomName,$seatings)
+    public function ModifyRoom($roomName,$seatings)
     {
+
+        $repo = $this->CinemaDAODB;
+        $cinemaId = $repo->getCinemaIdByRoomId();
         $room = new Room();
-        $room->setId_room($id_room);
+        $room->setId_room($_SESSION['idRoom']);
         $room->setRoom_name($roomName);
         $room->setSeating($seatings);
         $repo = $this->CinemaDAODB;
-        $repo->ModifyRoom($_SESSION['idCinema'],$room);
+        $repo->ModifyRoom($cinemaId,$room);
         $this->ShowCinemaListView();
     }
 
@@ -175,6 +178,12 @@ class CinemaController
     {
         $_SESSION['idCinema'] = $idCinema;
         $this->ShowCinemaModify();
+    }
+
+    public function SetIdRoom($idRoom)
+    {
+        $_SESSION['idRoom'] = $idRoom;
+        $this->ShowRoomModify();
     }
     public function AddMovie($idMovie)
     {

@@ -43,7 +43,7 @@ $cinemaList = $repo->GetAll();
                     <?php
                     if(isset($cinemaList) && !empty($cinemaList)){
                         foreach($cinemaList as $cinema){
-                            foreach ($cinema->getRooms() as $room)
+                            foreach ($cinema->getRooms() as $room){
                             ?>
                             <tr>
                                 <div>
@@ -54,13 +54,13 @@ $cinemaList = $repo->GetAll();
 
 
                                     <td>
-                                        <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/Delete'" value="<?php echo $cinema->getCinemaName();?>"> Eliminar </button>
+                                        <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/DeleteRoom'" value="<?php echo $room->getRoom_name();?>"> Eliminar </button>
                                     </td>
                                 </div>
                             </tr>
                             <?php
 
-                        }}
+                        }}}
                     ?>
                 </form>
                 </tbody>
