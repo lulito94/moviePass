@@ -120,14 +120,17 @@ class CinemaController
     {
 
         $repo = $this->CinemaDAODB;
-        $cinemaId = $repo->getCinemaIdByRoomId();
         $room = new Room();
         $room->setId_room($_SESSION['idRoom']);
+        $cinemaId = $repo->getCinemaIdByRoomId($_SESSION['idRoom']);
         $room->setRoom_name($roomName);
         $room->setSeating($seatings);
-        $repo = $this->CinemaDAODB;
-        $repo->ModifyRoom($cinemaId,$room);
-        $this->ShowCinemaListView();
+        foreach ($cinemaId as $cinema)
+        {
+            $id = $cinema;
+        }
+        $repo->ModifyRoom($id[0],$room);
+        $this->ShowRoomList();
     }
 
     public function ShowSelectRoom()

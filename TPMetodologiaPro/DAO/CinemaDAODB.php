@@ -357,7 +357,7 @@ class CinemaDAODB
     public function GetCinemaIdByRoomId($id_room){
 
         try {
-            $functionList = array();
+
             $query = "SELECT ". $this->tableName.".idCinema FROM Rooms JOIN ".$this->tableName." ON ".$this->tableName.".idCinema = Rooms.idCinema WHERE Rooms.id_room = '$id_room'";
 
             $this->connection = Connection::GetInstance();
