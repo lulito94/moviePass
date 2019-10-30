@@ -43,7 +43,7 @@ $cinemaList = $repo->GetAll();
                         foreach ($cinema->getRooms() as $room) {
                             ?>
                             <button type="submit" name="id_room" class="btn btn-danger"
-                                    onclick="this.form.action = '<?php echo FRONT_ROOT; ?>Cinema/SetIdCinema'"
+                                    onclick="this.form.action = '<?php echo FRONT_ROOT; ?>Cinema/SetIdRoom'"
                                     value="<?php echo $room->getId_room(); ?>"> <?php echo $room->getRoom_name(); ?> </button>
                         <?php }
                     }
