@@ -1,3 +1,5 @@
+drop database TPFinal;
+
 create database TPFinal;
 
 use TPFinal;
@@ -37,7 +39,7 @@ create table Genres(
     name varchar(30),
     constraint pk_genre primary key (id_genre)
 );
-drop table Movies;
+
 create table Movies(
 	id integer not null,
     popularity int, 
@@ -55,7 +57,7 @@ create table Movies(
     constraint unq_movieTitle unique (title),
     constraint fk_movies_genre foreign key (id_genre) references Genres (id_genre)
 );
-drop table MoviesxGenres;
+
 create table MoviesxGenres(
 	id integer,
     id_genre integer,
@@ -64,7 +66,7 @@ create table MoviesxGenres(
     constraint fk_MoviesxGenre_movie foreign key (id) references Movies(id),
 	constraint fk_MoviesxGenre_genre foreign key (id_genre) references Genres(id_genre)
 );
-drop table Rooms;
+
 create table Rooms(
 	id_room integer auto_increment,
     seating integer not null,
@@ -102,5 +104,3 @@ create table MoviesXCinema(
     constraint fk_moviesXcinema_movies foreign key (id) references Movies(id),
     constraint fk_moviesXcinema_cinema foreign key (idCinema) references Cinemas(idCinema)
 );
-
-
