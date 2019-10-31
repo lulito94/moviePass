@@ -33,8 +33,8 @@ require_once ('validate-session.php');
   <div class="overlay">
     <div id="breadcrumb" class="clear"> 
       <ul>
-        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Home</a></li>
-        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowUserLobby">MenuUser</a></li>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Pagina inicial</a></li>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowUserLobby">Menu del Usuario</a></li>
       </ul>
     </div>
   </div>
