@@ -11,8 +11,8 @@
   <div class="overlay">
     <div id="breadcrumb" class="clear"> 
       <ul>
-        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Home</a></li>
-        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowAdminLobby">MenuAdmin</a></li>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Pagina Inicial</a></li>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowAdminLobby">Menu del Administrador</a></li>
       </ul>
     </div>
   </div>
@@ -21,8 +21,8 @@
      
  <section id="listado" class="mb-5">
       <div class="container">
-           <h1 class="mb-4"style="color:#FF0000"> Welcome Admin!!</h1>
-           <p class="mb-4"style="color:#FF0000"> Your Status: </p>
+           <h1 class="mb-4"style="color:#FF0000"> Bienvenido Admin!!</h1>
+           <p class="mb-4"style="color:#FF0000"> Su status: </p>
 
            <table class="table bg-light-alpha">
                 <thead>

@@ -10,7 +10,7 @@ include('nav-bar.php');
   <div class="overlay">
     <div id="breadcrumb" class="clear"> 
       <ul>
-        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Home</a></li>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Pagina inicial</a></li>
       </ul>
     </div>
   </div>
@@ -26,11 +26,11 @@ include('nav-bar.php');
                <form action="<?php  echo FRONT_ROOT;?>User/Check" method="post" class="login-form bg-dark-alpha p-5 bg-light">
               
                <div class="form-group">
-                         <label for="" style="color: #0E76A8">UserName</label>
+                         <label for="" style="color: #0E76A8">Nombre de Usuario</label>
                          <input type="text" name="username" class="form-control form-control-lg" placeholder="Ingresar usuario" required>
                     </div>
                     <div class="form-group">
-                         <label for="" style="color: #0E76A8">Password</label>
+                         <label for="" style="color: #0E76A8">Clave</label>
                          <input type="password" name="password" class="form-control form-control-lg" placeholder="Ingresar constraseña" required>
                     </div>
                     <button class="btn btn-primary btn-block btn-lg" type="submit">Iniciar Sesión</button>
