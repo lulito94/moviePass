@@ -41,13 +41,13 @@ $movieList = $movierepo->GetAll();
                          <form action="" method="POST">
                               <?php
                               if (isset($movieList) && !empty($movieList)) {
-                                   var_dump($movieList);
                                    foreach ($movieList as $movie) {
                                         ?>
                                         <tr>
                                              <div>
                                                   
-                                                  <td><img class="" src="https://image.tmdb.org/t/p/w300<?php echo $movie->getPoster_path() ?>" alt="<?php echo $movie->getTitle(); ?>" width="100" height="100"> </td>
+                                                  <td><img class="" src="https://image.tmdb.org/t/p/w300<?php echo $movie->getPoster_path() ?>" alt="<?php echo $movie->getTitle(); ?>" width="100" height="100"> <br> 
+                                                  <button type="submit" name="remove" class="btn btn-danger" onclick="this.form.action = '<?php echo FRONT_ROOT; ?>Cinema/AddMovie'" value="<?php echo $movie->getId(); ?>"> Seleccionar </button> </td>
                                                   <td><?php echo $movie->getTitle(); ?></td>
                                                   <td>
                                                        <u> Fecha de Lanzamiento :</u>  <?php echo $movie->getRelease_date(); ?><br><br>    
@@ -58,9 +58,7 @@ $movieList = $movierepo->GetAll();
                                                        </ul>
                                                   </td>
 
-                                                  <td>
-                                                       <button type="submit" name="remove" class="btn btn-danger" onclick="this.form.action = '<?php echo FRONT_ROOT; ?>Cinema/AddMovie'" value="<?php echo $movie->getId(); ?>"> Seleccionar </button>
-                                                  </td>
+                                                 
 
                                              </div>
                                         </tr>
