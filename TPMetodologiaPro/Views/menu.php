@@ -14,6 +14,22 @@
 <a class="smooth-link"  href="<?php echo FRONT_ROOT ?>User/ShowLogin"><button  style="display: inline-block">Login</button></a>
 <a class="smooth-link" href="<?php echo FRONT_ROOT ?>User/SignIn"><button  style="display: inline-block">Sign up</button></a>
 </div>
+
+<?php
+$fb = new Facebook\Facebook([
+  'app_id' => '{app-id}', // Replace {app-id} with your app id
+  'app_secret' => '{app-secret}',
+  'default_graph_version' => 'v3.2',
+  ]);
+
+$helper = $fb->getRedirectLoginHelper();
+
+$permissions = ['email']; // Optional permissions
+$url = require_once(VIEWS_PATH."fb_callback.php");
+$loginUrl = $helper->getLoginUrl('$url', $permissions);
+
+echo '<a href="' . htmlspecialchars($loginUrl) . '">Log in with Facebook!</a>';
+?>
 <?php
 use DAO\MovieDAODB as MovieDAODB;
 $repo = new MovieDAODB();
