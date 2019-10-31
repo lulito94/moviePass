@@ -77,7 +77,7 @@
                                              <td><?php echo $function->getFunction_time(); ?></td>
 
                                              <td>
-                                             <button type="submit" name="modify" class="btn btn-danger" onclick = "this.form.action = '<?php ?>"> Modificar </button>
+                                             <button type="submit" name="modify" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/ModifyFunction'" value="<?php echo $function->getId_function(); ?>" "> Modificar </button>
                                               <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/DeleteFunction'" value="<?php echo $function->getId_function(); ?>"> Eliminar </button>
                                               </td>   
                                               </div>
