@@ -22,8 +22,8 @@ require_once ('validate-session-admin.php');
                     <h2>Cinema Room Options</h2>
                     <form action="" method="post"  style="background-color: #EAEDED;padding: 2rem !important;">
                         <ul class="home-sidelinks">
-                            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowRoomList">Room List</a></li>
-                            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowRoomModify">Modify Rooms</a></li>
+                            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowRoomList">Listas Salas</a></li>
+                            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowRoomModify">Modificar Salas</a></li>
 
 
                             <!--<li><a  class="smoothscroll" href="#contact">Contact<span>get in touch</span></a></li> -->
