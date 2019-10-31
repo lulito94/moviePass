@@ -54,7 +54,11 @@ class CinemaController
         require_once (VIEWS_PATH . "RoomModify.php");
     }
 
-
+    public function ShowModifyFunction($id_function)
+    {
+        $_SESSION['idFunction'] = $id_function;
+        require_once(VIEWS_PATH."FunctionModify.php");
+    }
     
     public function Add($cinemaName,$address,$capacity,$ticketValue){
         $cinema = new Cinema();
@@ -226,6 +230,14 @@ class CinemaController
         unset($_SESSION['idCinema']);
         unset($_SESSION['idMovie']);
         echo "<script>alert ('Cines Actualizados');</script>";
+        $this->ShowFunctions();
+    }
+
+    public function ModifyFunction($function_date)
+    {
+        $repo = $this->CinemaDAODB;
+        $repo->ModifyMovieFunction($_SESSION['idFunction'],$function_date);
+        unset($_SESSION['idFunction']);
         $this->ShowFunctions();
     }
 

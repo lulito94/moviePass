@@ -380,7 +380,7 @@ class CinemaDAODB
     public function ModifyMovieFunction($id_function, $newFunction_time){
 
         try{
-            $oldFunction = GetMovieFunctionById($id_function);
+            $oldFunction = $this->GetMovieFunctionById($id_function);
             if($oldFunction != null){
                 $oldId_function = $oldFunction->getId_function();
                 $query = "UPDATE MovieFunctions SET function_time = '$newFunction_time' WHERE MovieFunctions.id_function = '$id_function'";
@@ -406,7 +406,7 @@ class CinemaDAODB
                 $function = new MovieFunction();
                 $function->setId_function($row["id_function"]);
                 $function->setId_room($row["id_room"]);
-                $function->setId_movie($row["id_movie"]);
+                $function->setId_movie($row["id"]);
                 $function->setFunction_time($row["function_time"]);
 
                 
