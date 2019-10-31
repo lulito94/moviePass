@@ -335,6 +335,29 @@ class CinemaDAODB
             throw $ex;
         }
     }
+    public function GetMovieFunctionById($id_function){
+        try {
+            
+            $query = "SELECT * FROM MovieFunctions WHERE MovieFunctions.id_function = '$id_function'";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            foreach ($resultSet as $row) {
+                $function = new MovieFunction();
+                $function->setId_function($row["id_function"]);
+                $function->setId_room($row["id_room"]);
+                $function->setId_movie($row["id_movie"]);
+                $function->setFunction_time($row["function_time"]);
+
+                
+            }
+            return $function;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
 
     public function DeleteMovieFunction($id_function)
     {
@@ -354,10 +377,11 @@ class CinemaDAODB
         }
     }
 
+
     public function GetCinemaIdByRoomId($id_room){
 
         try {
-            $functionList = array();
+           
             $query = "SELECT ". $this->tableName.".idCinema FROM Rooms JOIN ".$this->tableName." ON ".$this->tableName.".idCinema = Rooms.idCinema WHERE Rooms.id_room = '$id_room'";
 
             $this->connection = Connection::GetInstance();
@@ -369,5 +393,23 @@ class CinemaDAODB
             throw $ex;
         }
     }
+
+    public function ModifyMovieFunction($id_function, $newFunction_time){
+
+        try{
+            $oldFunction = GetMovieFunctionById($id_function);
+            if($oldFunction != null){
+                $oldId_function = $oldFunction->getId_function();
+                $query = "UPDATE MovieFunctions SET function_time = '$newFunction_time' WHERE MovieFunctions.id_function = '$id_function'";
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($query);
+            }
+
+        }catch(Exception $ex){
+            throw $ex;
+        }
+    }
+
+
 }
 ?>
