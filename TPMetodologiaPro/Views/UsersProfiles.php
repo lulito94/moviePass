@@ -12,8 +12,8 @@ $listUsers = $repo->GetAll();
   <div class="overlay">
     <div id="breadcrumb" class="clear"> 
       <ul>
-        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Home</a></li>
-        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowAdminLobby">MenuAdmin</a></li>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Pagina inicial</a></li>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowAdminLobby">Menu del Administrador</a></li>
       </ul>
     </div>
   </div>
@@ -22,15 +22,15 @@ $listUsers = $repo->GetAll();
      
  <section id="listado" class="mb-5">
       <div class="container">
-           <h2 class="mb-4"style="color:#FF0000"> About users information in Database</h2>
+           <h2 class="mb-4"style="color:#FF0000"> Informacion del los Usuarios</h2>
            <form action="" method="POST" >                
 
            <table class="table bg-light-alpha">
                 <thead>
                      <th>Nombre</th>
                      <th>Apellido</th>
-                     <th>Username</th>
-                     <th>password</th>
+                     <th>Nombre de Usuario</th>
+                     <th>Clave</th>
                      <th>email</th>
                      <th>dni</th>
                      <th>sexo</th>
