@@ -224,42 +224,45 @@ class CinemaDAODB
         }
     }
 
-    public function ModifyRoom($idCinema, Room $room)
+    public function ModifyRoom($idRoom, Room $room)
     {
         try {
-            $cinemaList = $this->GetAll();
-            foreach ($cinemaList as $cinema) {
-
-                if ($cinema->getIdCinema() == $idCinema) {
-                    for ($i = 0; $i < count($cinema->getRooms()); $i++) {
-                        $roomCompare = $cinema->getRooms(); //Short form
-
-                        if ($roomCompare->getId_room() == $room->getId_room()) {
-
-                            $room_name = $room->getRoom_name();
-                            $seating = $room->getSeating();
-                            $id_room = $room->getId_room();
-
-                            //check integrity of dates
-                            if (!isset($room_name) || $room_name == "") {
-                                $room_name = $roomCompare->getRoom_name();
-                            }
-                            if (!isset($seating) || $seating == null) {
-                                $seating = $roomCompare->getSeating();
-                            }
+            $roomList = $this->GetAllRooms();
 
 
-                            $query = "UPDATE Rooms SET seating ='$seating', room_name ='$room_name' WHERE " . " Rooms.idCinema ='$idCinema'";
-                            $this->connection = Connection::GetInstance();
-                            $this->connection->ExecuteNonQuery($query);
-                        }
-                    }
+            foreach ($roomList as $list) {
+                if ($list->getId_room() == $idRoom) {
+                    $roomRepo = $list;
+                }
+            }
+
+            $room_name = $room->getRoom_name();
+            $seating = $room->getSeating();
+            
+
+            //Check Integrity of dates
+            if (!isset($room_name) || $room_name == "") {
+                $room_name = $roomRepo->getRoom_name();
+            }
+            if (!isset($seating) || $seating == "") {
+                $seating = $roomRepo->getSeating();
+            }
+            
+
+
+            foreach ($roomList as $cmod) {
+
+                if ($cmod->getId_room() == $idRoom) {
+                    $query = "UPDATE Rooms SET room_name ='$room_name', seating ='$seating' WHERE Rooms.id_room ='$idRoom'";
+                    $this->connection = Connection::GetInstance();
+                    $this->connection->ExecuteNonQuery($query);
                 }
             }
         } catch (Exception $ex) {
             throw $ex;
         }
     }
+
 
     public function AddMovieFunction(MovieFunction $function)
     {
@@ -294,7 +297,7 @@ class CinemaDAODB
                 $function = new MovieFunction();
                 $function->setId_function($row["id_function"]);
                 $function->setId_room($row["id_room"]);
-                $function->setId_movie($row["id_movie"]);
+                $function->setId_movie($row["id"]);
                 $function->setFunction_time($row["function_time"]);
 
                 array_push($functionList, $function);
@@ -306,7 +309,7 @@ class CinemaDAODB
     }
 
 
-    public function GetMovieFunctionByCinema($id_cinema)
+    public function GetMovieFunctions($id_cinema)
     {
         try {
             $functionList = array();
@@ -335,7 +338,62 @@ class CinemaDAODB
             throw $ex;
         }
     }
-    public function GetMovieFunctionById($id_function){
+
+    public function DeleteMovieFunction($id_function)
+    {
+
+        try {
+            $functionList = $this->GetAllMovieFunctions();
+            foreach ($functionList as $function) {
+
+                if ($function->getId_function() == $id_function) {
+                    $query = "DELETE FROM MovieFunctions  WHERE MovieFunctions.id_function ='$id_function'";
+                    $this->connection = Connection::GetInstance();
+                    $this->connection->ExecuteNonQuery($query);
+                }
+            }
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+
+    public function GetCinemaIdByRoomId($id_room){
+
+        try {
+
+            $query = "SELECT ". $this->tableName.".idCinema FROM Rooms JOIN ".$this->tableName." ON ".$this->tableName.".idCinema = Rooms.idCinema WHERE Rooms.id_room = '$id_room'";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            $ids = null;
+            foreach ($resultSet as $result){
+                $ids = $result;
+            }
+            return $ids[0];
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+
+    public function ModifyMovieFunction($id_function, $newFunction_time){
+
+        try{
+            $oldFunction = GetMovieFunctionById($id_function);
+            if($oldFunction != null){
+                $oldId_function = $oldFunction->getId_function();
+                $query = "UPDATE MovieFunctions SET function_time = '$newFunction_time' WHERE MovieFunctions.id_function = '$id_function'";
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($query);
+            }
+
+        }catch(Exception $ex){
+            throw $ex;
+        }
+    }
+
+     public function GetMovieFunctionById($id_function){
         try {
             
             $query = "SELECT * FROM MovieFunctions WHERE MovieFunctions.id_function = '$id_function'";
@@ -358,58 +416,5 @@ class CinemaDAODB
             throw $ex;
         }
     }
-
-    public function DeleteMovieFunction($id_function)
-    {
-
-        try {
-            $functionList = $this->GetAllMovieFunctions();
-            foreach ($functionList as $function) {
-
-                if ($function->getId_function() == $id_function) {
-                    $query = "DELETE FROM MovieFunctions  WHERE MovieFunctions.id_function ='$id_function'";
-                    $this->connection = Connection::GetInstance();
-                    $this->connection->ExecuteNonQuery($query);
-                }
-            }
-        } catch (Exception $ex) {
-            throw $ex;
-        }
-    }
-
-
-    public function GetCinemaIdByRoomId($id_room){
-
-        try {
-           
-            $query = "SELECT ". $this->tableName.".idCinema FROM Rooms JOIN ".$this->tableName." ON ".$this->tableName.".idCinema = Rooms.idCinema WHERE Rooms.id_room = '$id_room'";
-
-            $this->connection = Connection::GetInstance();
-
-            $resultSet = $this->connection->Execute($query);
-
-            return $resultSet;
-        } catch (Exception $ex) {
-            throw $ex;
-        }
-    }
-
-    public function ModifyMovieFunction($id_function, $newFunction_time){
-
-        try{
-            $oldFunction = GetMovieFunctionById($id_function);
-            if($oldFunction != null){
-                $oldId_function = $oldFunction->getId_function();
-                $query = "UPDATE MovieFunctions SET function_time = '$newFunction_time' WHERE MovieFunctions.id_function = '$id_function'";
-                $this->connection = Connection::GetInstance();
-                $this->connection->ExecuteNonQuery($query);
-            }
-
-        }catch(Exception $ex){
-            throw $ex;
-        }
-    }
-
-
 }
 ?>

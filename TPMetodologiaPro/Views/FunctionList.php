@@ -15,8 +15,8 @@
   <div class="overlay">
     <div id="breadcrumb" class="clear"> 
       <ul>
-        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Pagina inicial</a></li>
-        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowAdminLobby">Menu del Administrador</a></li>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Home</a></li>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowAdminLobby">MenuAdmin</a></li>
       </ul>
     </div>
   </div>
@@ -77,7 +77,7 @@
                                              <td><?php echo $function->getFunction_time(); ?></td>
 
                                              <td>
-                                             <button type="submit" name="modify" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/ModifyFunction'" value="<?php echo $function->getId_function(); ?>" "> Modificar </button>
+                                             <button type="submit" name="modify" class="btn btn-danger" onclick = "this.form.action = '<?php ?>"> Modificar </button>
                                               <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/DeleteFunction'" value="<?php echo $function->getId_function(); ?>"> Eliminar </button>
                                               </td>   
                                               </div>

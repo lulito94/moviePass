@@ -9,7 +9,7 @@ include('nav-bar.php');
   <div class="overlay">
     <div id="breadcrumb" class="clear"> 
       <ul>
-        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Pagina inicial</a></li>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Home</a></li>
       </ul>
     </div>
   </div>
@@ -19,7 +19,7 @@ include('nav-bar.php');
           <div class="content">
               
                <header class="text-center">
-                    <h2 style="color: #0E76A8">Registro</h2>
+                    <h2 style="color: #0E76A8">Sign Up</h2>
                </header>
                <?php //Ojo si se modifican el orden de los campos los datos se graban mal, por ende hay que modificar el 
                //orden en las demas funciones?>

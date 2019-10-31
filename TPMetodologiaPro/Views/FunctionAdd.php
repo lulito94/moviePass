@@ -12,8 +12,8 @@ require_once ('validate-session-admin.php');
     <div class="overlay">
         <div id="breadcrumb" class="clear">
             <ul>
-                <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Pagina inicial</a></li>
-                <li><a href="<?php echo FRONT_ROOT ?>Home/ShowAdminLobby">Menu del Administrador</a></li>
+                <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Home</a></li>
+                <li><a href="<?php echo FRONT_ROOT ?>Home/ShowAdminLobby">MenuAdmin</a></li>
             </ul>
         </div>
     </div>
