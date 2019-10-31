@@ -54,7 +54,7 @@ $cinemaList = $repo->GetAll();
 
 
                                     <td>
-                                        <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/DeleteRoom'" value="<?php echo $room->getRoom_name();?>"> Eliminar </button>
+                                        <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/DeleteRoom'" value="<?php echo $room->getId_room();?>"> Eliminar </button>
                                     </td>
                                 </div>
                             </tr>
