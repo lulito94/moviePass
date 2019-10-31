@@ -116,18 +116,31 @@ class CinemaController
         $this->ShowCinemaListView();
     }
 
+    public function DeleteRoom($id_room)
+    {
+        $repo = $this->CinemaDAODB;
+        $repo->DeleteRoom($id_room);
+        $this->ShowRoomList();
+    }
+
+    public function DeleteFunction($id_function)
+    {
+        $repo = $this->CinemaDAODB;
+        $repo->DeleteMovieFunction($id_function);
+        echo "<script>alert ('Funciones Actualizadas');</script>";
+        $this->ShowFunctions();
+    }
     public function ModifyRoom($roomName,$seatings)
     {
 
         $repo = $this->CinemaDAODB;
-        $cinemaId = $repo->getCinemaIdByRoomId();
         $room = new Room();
-        $room->setId_room($_SESSION['idRoom']);
         $room->setRoom_name($roomName);
         $room->setSeating($seatings);
-        $repo = $this->CinemaDAODB;
-        $repo->ModifyRoom($cinemaId,$room);
-        $this->ShowCinemaListView();
+    
+        $repo->ModifyRoom($_SESSION['idRoom'],$room);
+        unset($_SESSION['idRoom']);
+        $this->ShowRoomList();
     }
 
     public function ShowSelectRoom()
