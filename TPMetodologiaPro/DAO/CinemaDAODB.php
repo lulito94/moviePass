@@ -32,6 +32,34 @@ class CinemaDAODB
             throw $ex;
         }
     }
+    public function GetCinemaById($idCinema)
+    {
+        try {
+
+            $query = "SELECT * FROM " . $this->tableName . " WHERE " . $this->tableName . ".idCinema = '$idCinema'";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            foreach ($resultSet as $row) {
+                $cinema = new Cinema;
+                $cinema->setIdCinema($row["idCinema"]);
+                $cinema->setCinemaName($row["cinemaName"]);
+                $cinema->setAddress($row["id_room"]);
+                $cinema->setCapacity($row["capacity"]);
+                $cinema->setTicketValue($row["ticketValue"]);
+                
+                $RoomsList = $this->GetRoomById($cinema->getIdCinema());
+                foreach ($RoomsList as $room) {
+                    $cinema->setRooms($room);
+                }
+            }
+            return $cinema;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
 
     public function GetAll()
     {
@@ -132,6 +160,8 @@ class CinemaDAODB
             throw $ex;
         }
     }
+
+
     public function GetAllRooms()
     {
         try {
@@ -238,7 +268,7 @@ class CinemaDAODB
 
             $room_name = $room->getRoom_name();
             $seating = $room->getSeating();
-            
+
 
             //Check Integrity of dates
             if (!isset($room_name) || $room_name == "") {
@@ -247,7 +277,7 @@ class CinemaDAODB
             if (!isset($seating) || $seating == "") {
                 $seating = $roomRepo->getSeating();
             }
-            
+
 
 
             foreach ($roomList as $cmod) {
@@ -357,18 +387,19 @@ class CinemaDAODB
         }
     }
 
-    public function GetCinemaIdByRoomId($id_room){
+    public function GetCinemaIdByRoomId($id_room)
+    {
 
         try {
 
-            $query = "SELECT ". $this->tableName.".idCinema FROM Rooms JOIN ".$this->tableName." ON ".$this->tableName.".idCinema = Rooms.idCinema WHERE Rooms.id_room = '$id_room'";
+            $query = "SELECT " . $this->tableName . ".idCinema FROM Rooms JOIN " . $this->tableName . " ON " . $this->tableName . ".idCinema = Rooms.idCinema WHERE Rooms.id_room = '$id_room'";
 
             $this->connection = Connection::GetInstance();
 
             $resultSet = $this->connection->Execute($query);
 
             $ids = null;
-            foreach ($resultSet as $result){
+            foreach ($resultSet as $result) {
                 $ids = $result;
             }
             return $ids[0];
@@ -377,25 +408,26 @@ class CinemaDAODB
         }
     }
 
-    public function ModifyMovieFunction($id_function, $newFunction_time){
+    public function ModifyMovieFunction($id_function, $newFunction_time)
+    {
 
-        try{
+        try {
             $oldFunction = $this->GetMovieFunctionById($id_function);
-            if($oldFunction != null){
+            if ($oldFunction != null) {
                 $oldId_function = $oldFunction->getId_function();
                 $query = "UPDATE MovieFunctions SET function_time = '$newFunction_time' WHERE MovieFunctions.id_function = '$id_function'";
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query);
             }
-
-        }catch(Exception $ex){
+        } catch (Exception $ex) {
             throw $ex;
         }
     }
 
-     public function GetMovieFunctionById($id_function){
+    public function GetMovieFunctionById($id_function)
+    {
         try {
-            
+
             $query = "SELECT * FROM MovieFunctions WHERE MovieFunctions.id_function = '$id_function'";
 
             $this->connection = Connection::GetInstance();
@@ -408,8 +440,6 @@ class CinemaDAODB
                 $function->setId_room($row["id_room"]);
                 $function->setId_movie($row["id"]);
                 $function->setFunction_time($row["function_time"]);
-
-                
             }
             return $function;
         } catch (Exception $ex) {

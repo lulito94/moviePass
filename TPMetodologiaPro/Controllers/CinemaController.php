@@ -26,6 +26,11 @@ class CinemaController
     {
         require_once(VIEWS_PATH . "Cinema-add.php");
     }
+    public function ShowUserMenu($idCinema){
+        $_SESSION['cinemaElect']=$idCinema;
+        require_once(VIEWS_PATH . "User-menu.php");
+        
+    }
     public function ShowCinemaModify()
     {
         require_once(VIEWS_PATH . "Cinema-Modify.php");
