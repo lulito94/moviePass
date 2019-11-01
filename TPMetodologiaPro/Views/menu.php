@@ -164,6 +164,8 @@ foreach($list as $movieList)
 </head>
 <body>
 
+<div class="container">
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -207,6 +209,7 @@ foreach($list as $movieList)
         </div>
     </div>
 </div>
+</div>>
 
 
 </body>
