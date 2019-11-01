@@ -1,4 +1,4 @@
-session_start();
+<?phpsession_start();
 $fb = new Facebook\Facebook([
   'app_id' => '{app-id}', // Replace {app-id} with your app id
   'app_secret' => '{app-secret}',
@@ -69,3 +69,4 @@ $_SESSION['fb_access_token'] = (string) $accessToken;
 // User is logged in with a long-lived access token.
 // You can redirect them to a members-only page.
 //header('Location: https://example.com/members.php');
+?>

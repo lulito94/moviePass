@@ -27,13 +27,14 @@ include('nav-bar.php');
               
                <div class="form-group">
                          <label for="" style="color: #0E76A8">UserName</label>
-                         <input type="text" name="username" class="form-control form-control-lg" placeholder="Ingresar usuario" required>
+                         <input type="text" name="username" class="form-control form-control-lg" placeholder="Ingresar usuario" >
                     </div>
                     <div class="form-group">
                          <label for="" style="color: #0E76A8">Password</label>
-                         <input type="password" name="password" class="form-control form-control-lg" placeholder="Ingresar constraseña" required>
+                         <input type="password" name="password" class="form-control form-control-lg" placeholder="Ingresar constraseña" >
                     </div>
                     <button class="btn btn-primary btn-block btn-lg" type="submit">Iniciar Sesión</button>
+                    <button class="btn btn-primary btn-block btn-lg" name="register" type="submit" onclick="this.form.action ='<?php echo FRONT_ROOT?>User/SignIn'">Registrarse</button>
                </form>
           </div>
      </main>

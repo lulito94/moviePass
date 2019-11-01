@@ -2,7 +2,7 @@
 
 define("ROOT", dirname(__DIR__) . "/");
 //Path to your project's root folder
-define("FRONT_ROOT","/TPs/TP_Final/moviePass/TPMetodologiaPro/");
+define("FRONT_ROOT","/Laboratory IV/HTML Fundamentals/repoFinal/moviePass/TPMetodologiaPro/");
 define("VIEWS_PATH", "Views/");
 define("API_KEY", "c65889a54974a405a970caef706f7005");
 define("CSS_PATH", FRONT_ROOT.VIEWS_PATH . "layout/styles/");
