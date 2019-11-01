@@ -9,11 +9,8 @@
 
 
 <div style="float: right; display: flex; justify-content: center;">
+<a href="<?php echo FRONT_ROOT?>User/ShowLogin" rel="nofollow" class="button" ><img src="https://www.cinemarkhoyts.com.ar/images/res/user-outline.png"> </img></a>';
 
-
-<a class="smooth-link"  href="<?php echo FRONT_ROOT ?>User/ShowLogin"><button  style="display: inline-block">Iniciar Session</button></a>
-<a class="smooth-link" href="<?php echo FRONT_ROOT ?>User/SignIn"><button  style="display: inline-block">Registrarse</button></a>
-</div>
 
 <?php
 //fb inic
@@ -23,7 +20,7 @@
 $appId = '527391147827891'; //Facebook App ID
 $appSecret = '4d02cd4e8bce0b6e1a48b72888b3601c'; // Facebook App Secret
 $url = VIEWS_PATH."User-menu.php";
-$return_url = '$url';  //path to script folder
+$return_url = '$';  //path to script folder
 $fbPermissions = 'publish_actions,email'; //more permissions : https://developers.facebook.com/docs/authentication/permissions/
 
 ########## MySql details (Replace with yours) #############
@@ -42,7 +39,7 @@ if(!isset($_SESSION['logged_in']))
     echo '<!-- results will be placed here -->';
     echo '</div>';
     echo '<div id="LoginButton">';
-	echo '<a href="#" rel="nofollow" class="fblogin-button" onClick="javascript:CallAfterLogin();return false;">Login with Facebook</a>';
+	echo '<a href="#" rel="nofollow" class="fblogin-button" onClick="javascript:CallAfterLogin();return false;"><img src="https://www.cinemacenter.com.ar/images/icon-facebook-likebox.png"> </img></a>';
     echo '</div>';
 
 }
@@ -143,7 +140,7 @@ function login_user($loggedin,$user_name)
 ?>
 
 <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false" onlogin="javascript:CallAfterLogin();" scope="publish_actions,email"></div>
-
+</div>
 <?php
 use DAO\MovieDAODB as MovieDAODB;
 $repo = new MovieDAODB();

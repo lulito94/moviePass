@@ -1,10 +1,15 @@
-<div class="wrapper row1" style="background-image: url('https://image.freepik.com/vector-gratis/logo-cine_23-2147503279.jpg');">
+<div class="wrapper row1" style="background-image: url('https://www.cinemacenter.com.ar/images/header-bg.png');">
   <header id="header" class="clear"> 
-    <div id="logo" class="fl_left" style="color: black">
-      <h1>Cinema</h1>
-    </div>
-    <nav id="mainav" class="fl_right">
+    <div id="logo" class="fl_left" style="color: Red"> 
+    <img src="https://i.ibb.co/023MtCS/Logo-Makr-7km-GRP.png" width="100" height="100"></img>
 
+    <span>
+    </span>
+      </div>
+    
+    <nav id="mainav" class="fl_right">
+    <a <span id="fecha" style="text-transform:uppercase;" >Fecha: <?php echo date("Y-m-d");?> </span> </a>
     </nav>
+    
   </header>
 </div>
