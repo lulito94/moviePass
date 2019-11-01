@@ -164,52 +164,50 @@ foreach($list as $movieList)
 </head>
 <body>
 
-<div class="container">
-
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
-    <div class="carousel-inner">
-      <div class="item active">
-      <img class="d-block w-100" src="https://image.tmdb.org/t/p/w300<?php echo $peli1[1]->getPoster_path() ?>" alt="<?php echo $peli1[1]->getTitle();?>" width="300" height="200">
-      
-      </div>
-      <?php
-      foreach($list as $movieList)
-      { 
-        ?>
-      <div class="item">
-      
-      <img class="d-block w-100" src="https://image.tmdb.org/t/p/w300<?php echo $movieList->getPoster_path() ?>" alt="<?php echo $movieList->getTitle();?>" width="300" height="350">
-      </div>
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img class="d-block w-100" src="https://image.tmdb.org/t/p/w300<?php echo $peli1[1]->getPoster_path() ?>" alt="<?php echo $peli1[1]->getTitle();?>" width="300" height="200">
 
-      
-      <?php
-       }
-       ?>
-    </div>
+                </div>
+                <?php
+                foreach($list as $movieList)
+                {
+                    ?>
+                    <div class="item">
 
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
+                        <img class="d-block w-100" src="https://image.tmdb.org/t/p/w300<?php echo $movieList->getPoster_path() ?>" alt="<?php echo $movieList->getTitle();?>" width="300" height="350">
+                    </div>
+
+
+                    <?php
+                }
+                ?>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
     </div>
 </div>
-  </div>
-</div>
+
 
 </body>
 </html>
