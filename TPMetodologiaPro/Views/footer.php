@@ -1,9 +1,10 @@
-<!--<div class="wrapper row4">
+<div class="wrapper row4">
   <footer id="footer" class="clear"></footer>
 </div>
 <div class="wrapper row6">
   <div id="copyright" class="clear" align="center"> 
-    <p >Copyright &copy; <?php echo date('Y'); ?> - All Rights Reserved - Cinema Studio</p>
+    <p >Copyright &copy; <?php echo date('Y'); ?> - All Rights Reserved - Cinema Studio   --     Fecha Actual: <?php echo date("d-m-Y"); ?> </p>
+   
   </div>
 </div>-->
 <!-- JAVASCRIPTS -->

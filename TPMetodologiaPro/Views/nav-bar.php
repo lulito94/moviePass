@@ -5,9 +5,6 @@
 
     </div>
 
-    <nav id="mainav" class="fl_right">
-      <a <span id="fecha" style="text-transform:uppercase;">Fecha: <?php echo date("Y-m-d"); ?> </span> </a>
-    </nav>
-
+   
   </header>
 </div>
