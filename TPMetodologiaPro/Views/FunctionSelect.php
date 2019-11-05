@@ -12,12 +12,23 @@ use Models\Movie as Movie;
 // here starts the php
 if (isset($_POST['show_dowpdown_value'])) {
   
-  $cinemaElect = $_POST['dowpdown']; // this will print the value if downbox out
+  $dateElect = $_POST['dowpdown']; // this will print the value if downbox out
 }
 
 $repo = new CinemaDAODB();
-$functions = $repo->GetAllMovieFunctions();
-$cinemas = $repo->GetAll();
+$cinemas = $repo->GetCinemaById($_SESSION['cinemaElect']);
+$repoMovie = new MovieDAODB();
+$function = $repo->GetMovieFunctions($_SESSION['cinemaElect']);
+//$movie = $repoMovie-> Hacer un getMoviebyID ...
+foreach($function as $funct)
+{
+    $dato=$funct->getFunction_time();
+    $fecha = date('Y-m-d',strtotime($dato));
+    $hora = date('H:i:s',strtotime($dato)); 
+    echo "Fecha: ".$fecha;
+    echo " Hora: ".$hora;
+    echo "<br>"."--------------------"."<br>";
+}
 
 ?>
 
@@ -38,12 +49,7 @@ $cinemas = $repo->GetAll();
   <main class="container clear">
     <div class="content">
       <div id="comments">
-        <h2>Cinema</h2>
-        <form action="" method="post" style="background-color: #EAEDED;padding: 2rem !important;">
-          <ul class="home-sidelinks">
-            <li><a class="smooth-link" href="<?php echo FRONT_ROOT ?>User/UserShowCinemas">List-Cinemas</a></li>
-            <li><a class="smooth-link" href="<?php echo FRONT_ROOT ?>User/User_Info">View Info Account</a></li>
-
+       
             <!--<li><a  class="smoothscroll" href="#contact">Contact<span>get in touch</span></a></li> -->
           </ul> <!-- end home-sidelinks -->
 
@@ -54,14 +60,15 @@ $cinemas = $repo->GetAll();
 
           <body>
             <form action="" method="post">
+            <p>Cine Seleccionado "<?php echo $cinemas->getCinemaName(); ?>"</p>
+            <br>
+            <p>Pelicula Seleccionada "<?php echo "Aca va la peli" ?>"</p>
+
               <!-- here start the dropdown list -->
               <select name="dowpdown">
-                <?php
-
-                foreach ($cinemas as $cinema) {
-                  ?>
-                  <option value="<?php echo $cinema->getIdCinema(); ?>"><?php echo $cinema->getCinemaName() ?></option>
-                <?php } ?>
+               
+                  <option value=""></option>
+               
 
               </select>
               <button type="submit" name="show_dowpdown_value" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Cinema/ShowUserMenu'" value="<?php echo $cinema->getIdCinema(); ?>" >Elegir Cine</button>
@@ -69,14 +76,8 @@ $cinemas = $repo->GetAll();
               <br>
               <br>
               <select name="dowpdown2">
-                <?php
                 
-                  $repoMovies = new MovieDAODB();
-                  $MovieList = $repoMovies->getMoviesxCinema($cinemaElect);
-                foreach ($MovieList as $movie){
-                  ?>
-                  <option value="<?php  ?>"> <?php echo $movie->getTitle(); ?></option>
-                <?php }?>
+                  <option value=""></option>
 
               </select>
               <!--<input type="submit" name="show_dowpdown_value" value="show" />-->

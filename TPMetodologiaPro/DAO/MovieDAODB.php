@@ -154,7 +154,6 @@ class MovieDAODB
                         $genreName = $value['name'];
                         array_push($genreArray,$genreName);
                     }
-                    var_dump($genreArray);
                 }
             }
         } catch (Exception $ex) {
@@ -171,11 +170,30 @@ class MovieDAODB
 
                 if ($movieToRemove->getTitle() == $movie->getTitle()) {
                     $query = "DELETE FROM " . $this->tableName . " WHERE " . $this->tableName . "title ='$movie->getTitle()'";
-                    var_dump($query);
                     $this->connection = Connection::GetInstance();
-                    $this->connection->ExecuteNonQuery($query);
+                    $this->connection->Execute($query);
                 }
             }
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+
+    public function getMoviesxCinema($idCinema)
+    {
+        $MovieList = array();
+        try {
+            $query = "SELECT  Movies.title, Movies.id FROM Cinemas JOIN Rooms ON Cinemas.idCinema = Rooms.idCinema JOIN MovieFunctions ON Rooms.id_room = MovieFunctions.id_room JOIN Movies ON MovieFunctions.id = Movies.id WHERE Cinemas.idCinema = '$idCinema'"; 
+            $this->connection = Connection::GetInstance();
+            $result = $this->connection->Execute($query);
+
+            foreach($result as $value){
+                $movie = new Movie();
+                $movie->setId($value["id"]);
+                $movie->setTitle($value["title"]);
+                array_push($MovieList,$movie);
+            }
+            return $MovieList;
         } catch (Exception $ex) {
             throw $ex;
         }

@@ -23,7 +23,7 @@
            $usercheck = $this->userDAODB->getByUserName($username);
             if(!empty($usercheck))
             {
-                if(($usercheck->getUsername() == "Mati") && ($usercheck->getPassword() == "sarasa"))
+                if(($usercheck->getUsername() == "Mati") && ($password == "sarasa"))
                 {
                     $_SESSION['loggedadmin'] = $usercheck;
                     $this->ShowAdminView();
