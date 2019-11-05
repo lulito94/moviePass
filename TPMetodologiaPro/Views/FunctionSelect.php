@@ -19,7 +19,7 @@ $repo = new CinemaDAODB();
 $cinemas = $repo->GetCinemaById($_SESSION['cinemaElect']);
 $repoMovie = new MovieDAODB();
 $function = $repo->GetMovieFunctions($_SESSION['cinemaElect']);
-//$movie = $repoMovie-> Hacer un getMoviebyID ...
+$movie = $repoMovie->getMoviebyID($_SESSION['MovieElect']);
 foreach($function as $funct)
 {
     $dato=$funct->getFunction_time();
@@ -62,7 +62,7 @@ foreach($function as $funct)
             <form action="" method="post">
             <p>Cine Seleccionado "<?php echo $cinemas->getCinemaName(); ?>"</p>
             <br>
-            <p>Pelicula Seleccionada "<?php echo "Aca va la peli" ?>"</p>
+            <p>Pelicula Seleccionada "<?php echo $movie->getTitle();?>"</p>
 
               <!-- here start the dropdown list -->
               <select name="dowpdown">
@@ -71,7 +71,7 @@ foreach($function as $funct)
                
 
               </select>
-              <button type="submit" name="show_dowpdown_value" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Cinema/ShowUserMenu'" value="<?php echo $cinema->getIdCinema(); ?>" >Elegir Cine</button>
+              <button type="submit" name="show_dowpdown_value" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Cinema/ShowUserMenu'" value="" >Elegir Cine</button>
 
               <br>
               <br>
@@ -81,7 +81,7 @@ foreach($function as $funct)
 
               </select>
               <!--<input type="submit" name="show_dowpdown_value" value="show" />-->
-            <button type="submit" name="show_dowpdown_value2" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Ticket/ShowSelectFunction'" value="<?php echo $movie->GetId(); ?>" >Elegir Pelicula</button>
+            <button type="submit" name="show_dowpdown_value2" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Ticket/ShowSelectFunction'" value="" >Elegir Pelicula</button>
 
             </form>
           </body>

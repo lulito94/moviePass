@@ -14,11 +14,25 @@ if (isset($_POST['show_dowpdown_value'])) {
   
   $cinemaElect = $_POST['dowpdown']; // this will print the value if downbox out
 }
-
+if (isset($_POST['show_dowpdown_value2'])) {
+  
+  $MovieElect = $_POST['dowpdown2']; // this will print the value if downbox out
+}
 $repo = new CinemaDAODB();
 $functions = $repo->GetAllMovieFunctions();
 $cinemas = $repo->GetAll();
-
+$repoMovies = new MovieDAODB();
+if(!isset($cinemaElect))
+{
+  $MovieList = array();
+  $movie = new Movie();
+  $movie->setId(0);
+  $movie->setTitle("Seleccionar cinema antes");
+  array_push($MovieList,$movie);
+}else
+{
+$MovieList = $repoMovies->getMoviesxCinema($cinemaElect);
+}
 ?>
 
 <!-- ################################################################################################ -->
@@ -71,11 +85,10 @@ $cinemas = $repo->GetAll();
               <select name="dowpdown2">
                 <?php
                 
-                  $repoMovies = new MovieDAODB();
-                  $MovieList = $repoMovies->getMoviesxCinema($cinemaElect);
+                  
                 foreach ($MovieList as $movie){
                   ?>
-                  <option value="<?php  ?>"> <?php echo $movie->getTitle(); ?></option>
+                  <option value="<?php echo $movie->getId(); ?>"> <?php echo $movie->getTitle(); ?></option>
                 <?php }?>
 
               </select>
