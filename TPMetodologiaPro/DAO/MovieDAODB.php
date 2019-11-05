@@ -156,6 +156,7 @@ class MovieDAODB
                     }
                 }
             }
+            return $genreArray;
         } catch (Exception $ex) {
             throw $ex;
         }
