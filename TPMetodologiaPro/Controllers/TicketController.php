@@ -16,5 +16,17 @@ class TicketController{
         require_once(VIEWS_PATH."FunctionSelect.php");
     }
 
+    public function ShowSelectVoucher($funct)
+    {
+        $_SESSION['funct'] = $funct;
+        require_once(VIEWS_PATH."GenerateVoucher.php");
+    }
+    public function ShowPayTicket()
+    {
+        require_once(VIEWS_PATH."BuyTicket.php");
+    }
+    public function BuyTicket()
+    {}
+
 }
 ?>

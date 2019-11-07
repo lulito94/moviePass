@@ -1,9 +1,6 @@
 <?php
 namespace Models;
-// Al dao ya le llega todo el objeto asociado
- //3 inserts 
- //en el controlador vamos a traer el
- // id de la rooom de la pelucla y un neww function con el horario y le asignams las dos cosas
+
 class MovieFunction{
     private $id_function;
     private $id_room;

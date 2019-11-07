@@ -20,15 +20,8 @@ $cinemas = $repo->GetCinemaById($_SESSION['cinemaElect']);
 $repoMovie = new MovieDAODB();
 $function = $repo->GetMovieFunctions($_SESSION['cinemaElect']);
 $movie = $repoMovie->getMoviebyID($_SESSION['MovieElect']);
-foreach($function as $funct)
-{
-    $dato=$funct->getFunction_time();
-    $fecha = date('Y-m-d',strtotime($dato));
-    $hora = date('H:i:s',strtotime($dato)); 
-    echo "Fecha: ".$fecha;
-    echo " Hora: ".$hora;
-    echo "<br>"."--------------------"."<br>";
-}
+
+
 
 ?>
 
@@ -64,24 +57,40 @@ foreach($function as $funct)
             <br>
             <p>Pelicula Seleccionada "<?php echo $movie->getTitle();?>"</p>
 
-              <!-- here start the dropdown list -->
-              <select name="dowpdown">
-               
-                  <option value=""></option>
-               
-
-              </select>
-              <button type="submit" name="show_dowpdown_value" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Cinema/ShowUserMenu'" value="" >Elegir Cine</button>
-
-              <br>
-              <br>
-              <select name="dowpdown2">
-                
-                  <option value=""></option>
-
-              </select>
-              <!--<input type="submit" name="show_dowpdown_value" value="show" />-->
-            <button type="submit" name="show_dowpdown_value2" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Ticket/ShowSelectFunction'" value="" >Elegir Pelicula</button>
+            <h2 class="mb-4"> Funciones Disponibles </h2>
+               <table class="table bg-light-alpha">
+                    <thead>
+                          <th>Dia</th>
+                         <th>Horarios</th>
+                         
+                    </thead>
+                    <tbody>  
+                    <form action="" method="POST" >                
+                         <?php
+                                   foreach($function as $funct)
+                                   {
+                                       $dato=$funct->getFunction_time();
+                                       $fecha = date('Y-m-l',strtotime($dato));
+                                       $hora = date('H:i:s',strtotime($dato));
+                         ?>
+                                        <tr> 
+                                             <div>
+                                             <td><?php echo $fecha; ?></td>
+                                             <td><?php echo $hora; ?></td>
+                                             <td> 
+                                              <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Ticket/ShowPayTicket'" value="<?php echo $funct ;?>"> Comprar </button>
+                                              </td>   
+                                              </div>
+                                        </tr>
+                                        <?php
+                                        
+                                   }
+                                        ?>
+                         </form>
+                    </tbody>
+               </table>
+             
+             
 
             </form>
           </body>
