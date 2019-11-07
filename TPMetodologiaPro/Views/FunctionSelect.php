@@ -9,12 +9,6 @@ use Models\MovieFunction as MovieFunction;
 use Models\Cinema as Cinema;
 use Models\Movie as Movie;
 
-// here starts the php
-if (isset($_POST['show_dowpdown_value'])) {
-  
-  $dateElect = $_POST['dowpdown']; // this will print the value if downbox out
-}
-
 $repo = new CinemaDAODB();
 $cinemas = $repo->GetCinemaById($_SESSION['cinemaElect']);
 $repoMovie = new MovieDAODB();
@@ -65,26 +59,28 @@ $movie = $repoMovie->getMoviebyID($_SESSION['MovieElect']);
                          
                     </thead>
                     <tbody>  
-                    <form action="" method="POST" >                
+                    <form action="" method="" >                
                          <?php
                                    foreach($function as $funct)
                                    {
+                                     if($movie->getId() == $funct->getId_movie())
+                                     {
                                        $dato=$funct->getFunction_time();
                                        $fecha = date('Y-m-l',strtotime($dato));
                                        $hora = date('H:i:s',strtotime($dato));
+                                     
                          ?>
                                         <tr> 
                                              <div>
                                              <td><?php echo $fecha; ?></td>
                                              <td><?php echo $hora; ?></td>
                                              <td> 
-                                              <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Ticket/ShowPayTicket'" value="<?php echo $funct ;?>"> Comprar </button>
+                                              <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Ticket/ShowSelectVoucher'" value="<?php echo $funct->getId_function();?>"> Comprar </button>
                                               </td>   
                                               </div>
                                         </tr>
                                         <?php
-                                        
-                                   }
+                                   }}
                                         ?>
                          </form>
                     </tbody>
