@@ -6,17 +6,12 @@
 <!-- ################################################################################################ -->
 
 
-
-
 <div style="float: right; display: flex; justify-content: center;">
 <a href="<?php echo FRONT_ROOT?>User/ShowLogin" rel="nofollow" class="button" ><img src="https://www.cinemarkhoyts.com.ar/images/res/user-outline.png"> </img></a>';
 
 <a href="#" rel="nofollow" class="fblogin-button" onClick="javascript:CallAfterLogin();return false;"><img src="https://www.cinemacenter.com.ar/images/icon-facebook-likebox.png"> </img></a>';
 
 </div>
-
-
-
 
 
 <?php
