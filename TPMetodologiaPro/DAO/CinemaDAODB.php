@@ -446,5 +446,23 @@ class CinemaDAODB
             throw $ex;
         }
     }
+
+
+    public function GetCinemaByName($cinemaName){
+
+    $this->GetAll();
+    $cinemaFound = null;
+
+    if(!empty($this->cinemasList)){
+        foreach($this->cinemasList as $cinema){
+            if($cinema->getCinemaName() == $cinemaName){
+                return $cinema;
+            }
+        }
+    }
+    return $cinemaFound;
+
+}
+
 }
 ?>
