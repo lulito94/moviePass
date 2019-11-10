@@ -447,22 +447,34 @@ class CinemaDAODB
         }
     }
 
-
     public function GetCinemaByName($cinemaName){
+        try {
 
-    $this->GetAll();
-    $cinemaFound = null;
+            $query = "SELECT * FROM " . $this->tableName . " WHERE " . $this->tableName . ".cinemaName = '$cinemaName'";
 
-    if(!empty($this->cinemasList)){
-        foreach($this->cinemasList as $cinema){
-            if($cinema->getCinemaName() == $cinemaName){
-                return $cinema;
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            foreach ($resultSet as $row) {
+                $cinema = new Cinema;
+                $cinema->setIdCinema($row["idCinema"]);
+                $cinema->setCinemaName($row["cinemaName"]);
+                $cinema->setAddress($row["id_room"]);
+                $cinema->setCapacity($row["capacity"]);
+                $cinema->setTicketValue($row["ticketValue"]);
+                
+                $RoomsList = $this->GetRoomById($cinema->getIdCinema());
+                foreach ($RoomsList as $room) {
+                    $cinema->setRooms($room);
+                }
             }
+            return $cinema;
+        } catch (Exception $ex) {
+            throw $ex;
         }
     }
-    return $cinemaFound;
-
-}
+ 
 
 }
 ?>
