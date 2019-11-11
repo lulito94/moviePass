@@ -74,8 +74,24 @@ class CinemaController
         $cinema->setRooms(null);
         
 
+        $repo = $this->CinemaDAODB;
+        $newCinema = $repo->GetCinemaByName($cinemaName);
+        if(!empty($newCinema)){
+            echo "<script>alert('El nombre del cinema ya fue registrado previamente');</script>";
+            $this->ShowCinemaListView();
+        }else
+        {
+            $repo->Add($cinema);
+            echo "<script>alert('Cinema agregado exitosamente!');</script>";
+            $this->ShowCinemaListView();
+
+        }
+
+
+/*
         try{
           $repo = $this->CinemaDAODB;
+
            $repo->Add($cinema);
            echo "<script>alert('Cinema agregado exitosamente!');</script>";
            $this->ShowCinemaListView();
@@ -85,6 +101,7 @@ class CinemaController
             echo "<script>alert('$e->getmessage()');</script>";
             $this->ShowCinemaView();
         }
+*/
     }
 
     public function showModify()

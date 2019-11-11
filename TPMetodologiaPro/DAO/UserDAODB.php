@@ -33,7 +33,7 @@ class UserDAODB implements IUserDAO {
         }
         catch(Exception $ex)
         {
-            throw $ex;
+           throw $ex;
         }
     }
 
