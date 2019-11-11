@@ -18,7 +18,6 @@ foreach($roomList as $roomSearch)
         $room = $roomSearch;
     }
 }
-var_dump($function);
 ?>
 <div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
   <div class="overlay">
@@ -69,9 +68,10 @@ var_dump($function);
                 </tbody>
            </table>
            <div>
+           <form action="">
            <button>Generar Ticket</button>
-           <button>Generar Codigo Qr</button>
-
+           <button type="submit" name="qr" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Ticket/Qr'" value=""> Generar Codigo Qr </button>
+           </form>
            </div>
       </div>
  </section>

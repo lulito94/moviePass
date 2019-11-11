@@ -31,6 +31,16 @@ class TicketController{
     {
         require_once(VIEWS_PATH."TicketView.php");
     }
+    
+    public function Qr()
+    {
+        require_once(VIEWS_PATH."Qr-view.php");
+    }
+
+    public function Ajax()
+    {
+        require_once(VIEWS_PATH."ajax_generate_code.js");
+    }
 
 }
 ?>
