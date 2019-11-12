@@ -463,7 +463,7 @@ class CinemaDAODB
                 $function->setId_function($row["id_function"]);
                 $function->setCinema($row["idCinema"]);
                 $function->setRoom($row["id_room"]);
-                $function->setMovie($row["id"]);
+                $function->setMovie($row["id_movie"]);
                 $function->setFunction_time($row["function_time"]);
 
                 array_push($functionList, $function);

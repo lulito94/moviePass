@@ -1,13 +1,16 @@
 <?php
 namespace Controllers;
+use DAO\CinemaDAODB as CinemaDAODB;
 
 class TicketController{
-
+    private $CinemaDAODB;
 
 
     public function ShowSelectFunction($id_cinema,$id_movie)
     {
         $_SESSION['MovieElect'] = $id_movie;
+        $CinemaDAODB = new CinemaDAODB();
+        $function = $this->CinemaDAODB->GetMovieFunctionsByCinema($_SESSION['cinemaElect']);
         require_once(VIEWS_PATH."FunctionSelect.php");
     }
 

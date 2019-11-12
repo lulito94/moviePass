@@ -12,8 +12,8 @@ use Models\Movie as Movie;
 $repo = new CinemaDAODB();
 $cinemas = $repo->GetCinemaById($_SESSION['cinemaElect']);
 $repoMovie = new MovieDAODB();
-$function = $repo->GetMovieFunctions($_SESSION['cinemaElect']);
 $movie = $repoMovie->getMoviebyID($_SESSION['MovieElect']);
+
 
 
 
