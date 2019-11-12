@@ -5,10 +5,7 @@
     require_once ('validate-session-admin.php');
 
 
-   // $repo = new CinemaDAO(); js
-    $repo = new CinemaDAODB();
-
-
+    $repoMovieFunctions = $this->FunctionList;
 ?>
 <!-- ################################################################################################ -->
 <div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
@@ -37,55 +34,32 @@
                     </thead>
                     <tbody>  
                     <form action="" method="POST" >      
-          
+                  
+
                          <?php
-                         $CinemaList = $repo->getAll();
-                         foreach($CinemaList as $cinema)
+                         foreach($repoMovieFunctions as $MovieFunction)
                          {
-                             $FunctionList = $repo->GetMovieFunctions($cinema->getIdCinema());
-                                   if(isset($FunctionList) && !empty($FunctionList)){
-                                   foreach($FunctionList as $function){
+                                   if(isset($MovieFunction) && !empty($MovieFunction)){
+                                        $cinema = $MovieFunction->getCinema();
+                                        $room = $MovieFunction->getRoom();
+                                        $movie = $MovieFunction->getMovie();
                          ?>
                                         <tr> 
                                              <div>
                                              <td><?php echo $cinema->getCinemaname() ?></td>
-                                             <?php $room1 = $function->getId_room(); 
-                                                       $repoRoom= $repo->GetAllRooms();
-                                                       foreach($repoRoom as $room)
-                                                       {
-                                                            if($room->getId_room() == $room1)
-                                                            {
-                                                            ?><td><?php echo $room->getRoom_name(); ?></td><?php
-
-                                                            }
-                                                       }
-
-                                             ?>
-                                             <?php
-                                             $repoMovies = new MovieDAODB();
-                                             $repoList = $repoMovies->getAll();
-                                             
-                                             foreach($repoList as $movie)
-                                             {
-                                                  if($movie->getId() == $function->getId_movie())
-                                                  {
-                                                       ?><td><?php echo $movie->getTitle(); ?></td> <?php
-
-                                                  }
-                                             }
-                                             ?>
-                                             <td><?php echo $function->getFunction_time(); ?></td>
+                                             <td><?php echo $room->getRoom_name(); ?></td>
+                                             <td><?php echo $movie->getTitle(); ?></td>
+                                             <td><?php echo $MovieFunction->getFunction_time(); ?></td>
 
                                              <td>
-                                             <button type="submit" name="modify" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Cinema/ShowModifyFunction'" value="<?php echo $function->getId_Function(); ?>" > Modificar </button>
-                                              <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/DeleteFunction'" value="<?php echo $function->getId_function(); ?>"> Eliminar </button>
+                                             <button type="submit" name="modify" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Cinema/ShowModifyFunction'" value="<?php echo $MovieFunction->getId_Function(); ?>" > Modificar </button>
+                                              <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Cinema/DeleteFunction'" value="<?php echo $MovieFunction->getId_function(); ?>"> Eliminar </button>
                                               </td>   
                                               </div>
                                         </tr>
                                         <?php
                                         
                                    }}
-                              }
                                         ?>
                          </form>
                     </tbody>

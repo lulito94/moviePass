@@ -202,6 +202,7 @@ class MovieDAODB
 
     public function GetMovieById($id)
     {
+        $movie = null;
         try {
             
             $query = "SELECT * FROM Movies WHERE Movies.id = '$id'";
