@@ -7,7 +7,7 @@
 
    // $repo = new CinemaDAO(); js
     $repo = new CinemaDAODB();
-
+     var_dump($repo);
 
 ?>
 <!-- ################################################################################################ -->
@@ -40,6 +40,7 @@
           
                          <?php
                          $CinemaList = $repo->getAll();
+                         var_dump($CinemaList);
                          foreach($CinemaList as $cinema)
                          {
                              $FunctionList = $repo->GetMovieFunctions($cinema->getIdCinema());

@@ -1,66 +1,91 @@
-<?php
-require_once('validate-session.php');
-?>
+<?php    
+/*
+ * PHP QR Code encoder
+ *
+ * Exemplatory usage
+ *
+ * PHP QR Code is distributed under LGPL 3
+ * Copyright (C) 2010 Dominik Dzienia <deltalab at poczta dot fm>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 3 of the License, or any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+ */
+    
+    echo "<h1>PHP QR Code</h1><hr/>";
+    
+    //set it to writable location, a place for temp generated PNG files
+    $PNG_TEMP_DIR = dirname(__FILE__).DIRECTORY_SEPARATOR.'temp'.DIRECTORY_SEPARATOR;
+    
+    //html PNG location prefix
+    $PNG_WEB_DIR = 'temp/';
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    include "phpqrcode.php";
+    
+    //ofcourse we need rights to create temp dir
+    if (!file_exists($PNG_TEMP_DIR))
+        mkdir($PNG_TEMP_DIR);
+    
+    
+    $filename = $PNG_TEMP_DIR.'test.png';
+    
+    //processing form input
+    //remember to sanitize user input in real-life solution !!!
+    $errorCorrectionLevel = 'L';
+    if (isset($_REQUEST['level']) && in_array($_REQUEST['level'], array('L','M','Q','H')))
+        $errorCorrectionLevel = $_REQUEST['level'];    
 
-    <title>Generar códigos QR con PHP</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="script/ajax_generate_code.js"></script>
-</head>
-<?php
-include('nav-bar.php');
-?>
-
-<div class="container" style="min-height:500px;">
-    <div class="container">
-        <div class="row">
-            <h2>Generar códigos QR con PHP</h2>
-        </div>
-
-        <div class="col-md-3">
-            <?php //action="<?php echo FRONT_ROOT;RUTA"?>
-            <form class="form-horizontal" method="post" id="codeForm" onsubmit="return false">
-                <div class="form-group">
-                    <label class="control-label">Información : </label>
-                    <input class="form-control col-xs-1" id="content" type="text" required="required">
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Nivel del código (ECC) : </label>
-                    <select class="form-control col-xs-10" id="ecc">
-                        <option value="H">H - Mejor</option>
-                        <option value="M">M</option>
-                        <option value="Q">Q</option>
-                        <option value="L">L - Peor</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Tamaño : </label>
-                    <input type="number" min="1" max="10" step="1" class="form-control col-xs-10" id="size" value="5">
-                </div>
-                <div class="form-group">
-                    <label class="control-label"></label>
-                    <input type="submit" name="submit" id="submit" class="btn btn-success" value="Generar código QR">
-                </div>
-            </form>
-        </div>
-
-        <div class="col-md-6">
-            <div class="showQRCode"></div>
-        </div>
-    </div>
-</div>
-
-<div class="insert-post-ads1" style="margin-top:20px;">
-
-</div>
+    $matrixPointSize = 4;
+    if (isset($_REQUEST['size']))
+        $matrixPointSize = min(max((int)$_REQUEST['size'], 1), 10);
 
 
-<?php
-include('footer.php');
-?>
+    if (isset($_REQUEST['data'])) { 
+    
+        //it's very important!
+        if (trim($_REQUEST['data']) == '')
+            die('data cannot be empty! <a href="?">back</a>');
+            
+        // user data
+        $filename = $PNG_TEMP_DIR.'test'.md5($_REQUEST['data'].'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
+        QRcode::png($_REQUEST['data'], $filename, $errorCorrectionLevel, $matrixPointSize, 2);    
+        
+    } else {    
+    
+        //default data
+        echo 'You can provide data in GET parameter: <a href="?data=like_that">like that</a><hr/>';    
+        QRcode::png('PHP QR Code :)', $filename, $errorCorrectionLevel, $matrixPointSize, 2);    
+        
+    }    
+        
+    //display generated file
+    echo '<img src="'.$PNG_WEB_DIR.basename($filename).'" /><hr/>';  
+    
+    //config form
+    echo '<form action="index.php" method="post">
+        Data:&nbsp;<input name="data" value="'.(isset($_REQUEST['data'])?htmlspecialchars($_REQUEST['data']):'PHP QR Code :)').'" />&nbsp;
+        ECC:&nbsp;<select name="level">
+            <option value="L"'.(($errorCorrectionLevel=='L')?' selected':'').'>L - smallest</option>
+            <option value="M"'.(($errorCorrectionLevel=='M')?' selected':'').'>M</option>
+            <option value="Q"'.(($errorCorrectionLevel=='Q')?' selected':'').'>Q</option>
+            <option value="H"'.(($errorCorrectionLevel=='H')?' selected':'').'>H - best</option>
+        </select>&nbsp;
+        Size:&nbsp;<select name="size">';
+        
+    for($i=1;$i<=10;$i++)
+        echo '<option value="'.$i.'"'.(($matrixPointSize==$i)?' selected':'').'>'.$i.'</option>';
+        
+    echo '</select>&nbsp;
+        <input type="submit" value="GENERATE"></form><hr/>';
+        
+    // benchmark

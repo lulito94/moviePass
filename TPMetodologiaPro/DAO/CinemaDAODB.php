@@ -46,7 +46,7 @@ class CinemaDAODB
                 $cinema = new Cinema;
                 $cinema->setIdCinema($row["idCinema"]);
                 $cinema->setCinemaName($row["cinemaName"]);
-                $cinema->setAddress($row["id_room"]);
+                $cinema->setAddress($row["address"]);
                 $cinema->setCapacity($row["capacity"]);
                 $cinema->setTicketValue($row["ticketValue"]);
                 
@@ -85,7 +85,7 @@ class CinemaDAODB
     
     public function GetCinemaByName($cinemaName){
         try {
-
+            $cinema = null;
             $query = "SELECT * FROM " . $this->tableName . " WHERE " . $this->tableName . ".cinemaName = '$cinemaName'";
 
             $this->connection = Connection::GetInstance();
@@ -96,7 +96,7 @@ class CinemaDAODB
                 $cinema = new Cinema;
                 $cinema->setIdCinema($row["idCinema"]);
                 $cinema->setCinemaName($row["cinemaName"]);
-                $cinema->setAddress($row["id_room"]);
+                $cinema->setAddress($row["address"]);
                 $cinema->setCapacity($row["capacity"]);
                 $cinema->setTicketValue($row["ticketValue"]);
                 
@@ -354,11 +354,11 @@ class CinemaDAODB
     public function AddMovieFunction(MovieFunction $function)
     {
         try {
-            $query = "INSERT INTO MovieFunctions (idCinema,id_room, id, function_time) VALUES (:idCinema, :id_room, :id, :function_time);";
+            $query = "INSERT INTO MovieFunctions (idCinema,id_room, id_movie, function_time) VALUES (:idCinema, :id_room, :id_movie, :function_time);";
 
             $parameters["idCinema"] = $_SESSION['idCinema'];
             $parameters["id_room"] = $function->getId_room();
-            $parameters["id"] = $function->getId_movie();
+            $parameters["id_movie"] = $function->getId_movie();
             $parameters["function_time"] = $function->getFunction_time();
 
             $this->connection = Connection::GetInstance();
@@ -384,7 +384,7 @@ class CinemaDAODB
                 $function = new MovieFunction();
                 $function->setId_function($row["id_function"]);
                 $function->setId_room($row["id_room"]);
-                $function->setId_movie($row["id"]);
+                $function->setId_movie($row["id_movie"]);
                 $function->setFunction_time($row["function_time"]);
 
                 array_push($functionList, $function);
@@ -402,7 +402,7 @@ class CinemaDAODB
             $functionList = array();
             $query = "SELECT MovieFunctions.id_function,MovieFunctions.id_room,MovieFunctions.id,MovieFunctions.function_time  FROM " .
                 $this->tableName . " JOIN Rooms ON " . $this->tableName . ".idCinema = Rooms.idCinema JOIN MovieFunctions ON " .
-                "MovieFunctions.id_room = Rooms.id_room Join Movies ON MovieFunctions.id = Movies.id WHERE MovieFunctions.idCinema ='$id_cinema'";
+                "MovieFunctions.id_room = Rooms.id_room Join Movies ON MovieFunctions.id_movie = Movies.id_movie WHERE MovieFunctions.idCinema ='$id_cinema'";
 
 
             $this->connection = Connection::GetInstance();
@@ -413,7 +413,7 @@ class CinemaDAODB
                 $function = new MovieFunction();
                 $function->setId_function($row["id_function"]);
                 $function->setId_room($row["id_room"]);
-                $function->setId_movie($row["id"]);
+                $function->setId_movie($row["id_movie"]);
                 $function->setFunction_time($row["function_time"]);
 
 
@@ -475,7 +475,7 @@ class CinemaDAODB
                 $function = new MovieFunction();
                 $function->setId_function($row["id_function"]);
                 $function->setId_room($row["id_room"]);
-                $function->setId_movie($row["id"]);
+                $function->setId_movie($row["id_movie"]);
                 $function->setFunction_time($row["function_time"]);
             }
             return $function;
