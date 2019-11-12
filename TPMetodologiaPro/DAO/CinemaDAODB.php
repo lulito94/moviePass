@@ -41,8 +41,9 @@ class CinemaDAODB
     //---------------------------------------------------------------------------------------------------------
     public function GetCinemaById($idCinema)
     {
-            $cinema =null;
+           
         try {
+            $cinema = null;
 
             $query = "SELECT * FROM " . $this->tableName . " WHERE " . $this->tableName . ".idCinema = '$idCinema'";
 
@@ -58,9 +59,14 @@ class CinemaDAODB
                 $cinema->setCapacity($row["capacity"]);
                 $cinema->setTicketValue($row["ticketValue"]);
                 
-                $RoomsList = $this->GetRoomByIdRoom($cinema->getIdCinema());
+                $RoomsList = $this->GetRoomById($cinema->getIdCinema());
+                if(isset($RoomList) &&)
+                {
                 foreach ($RoomsList as $room) {
                     $cinema->setRooms($room);
+                }
+                }else{
+                    $cinema->setRooms(null);
                 }
             }
             return $cinema;
@@ -209,29 +215,17 @@ class CinemaDAODB
     //---------------------------------------------------------------------------------------------------------
     public function DeleteCinema($cinemaName)
     {
-        try {
-            //hacer Delete Cascada
-            $cinemaList = $this->GetAll();
-            foreach ($cinemaList as $cinemaToRemove) {
-
-                if ($cinemaToRemove->getCinemaName() == $cinemaName) {
-                    $RoomList = $this->GetRoomById($cinemaToRemove->getIdCinema());
-                    if (isset($RoomList)) {
-                        foreach ($RoomList as $room) {
-                            $this->DeleteRoom($room->getId_room());
-                        }
+        try{
                         $query = "DELETE FROM " . $this->tableName . " WHERE " . $this->tableName . ".cinemaName ='$cinemaName'";
                         $this->connection = Connection::GetInstance();
                         $this->connection->ExecuteNonQuery($query);
-                    }
-                }
-            }
-        } catch (Exception $ex) {
+                    
+        }   
+         catch (Exception $ex) {
             throw $ex;
         }
     }
     //---------------------------------------------------------------------------------------------------------
-
 
     //Room Functions
     public function AddRoom($idCinema, Room $room)
@@ -275,6 +269,7 @@ class CinemaDAODB
             throw $ex;
         }
     }
+
     //---------------------------------------------------------------------------------------------------------
     public function GetRoomsByCinema($idCinema)
     {
