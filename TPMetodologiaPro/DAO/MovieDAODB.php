@@ -17,10 +17,10 @@ class MovieDAODB
 
         try {
 
-            $query = "INSERT INTO " . $this->tableName . " (id, popularity, title, release_date, original_language, vote_count,poster_path, vote_average, isAdult, overview)
-                                             VALUES (:id, :popularity, :title, :release_date, :original_language, :vote_count, :poster_path, :vote_average, :isAdult, :overview);";
+            $query = "INSERT INTO " . $this->tableName . " (id_movie, popularity, title, release_date, original_language, vote_count,poster_path, vote_average, isAdult, overview)
+                                             VALUES (:id_movie, :popularity, :title, :release_date, :original_language, :vote_count, :poster_path, :vote_average, :isAdult, :overview);";
 
-            $parameters["id"] = $movie->getId();
+            $parameters["id_movie"] = $movie->getId();
             $parameters["popularity"] = $movie->getPopularity();
             $parameters["title"] = $movie->getTitle();
             $parameters['release_date'] = $movie->getRelease_date();
@@ -38,9 +38,9 @@ class MovieDAODB
 
             foreach ($array as $values) {
 
-                $query_Genre = "INSERT INTO " . "MoviesxGenres" . " (id,id_genre)
-                                                    VALUES (:id, :id_genre)";
-                $parameters2["id"] = $movie->getId();
+                $query_Genre = "INSERT INTO " . "MoviesxGenres" . " (id_movie,id_genre)
+                                                    VALUES (:id_movie, :id_genre)";
+                $parameters2["id_movie"] = $movie->getId();
                 $parameters2["id_genre"] = $values;
                 $this->connection->ExecuteNonQuery($query_Genre, $parameters2);
             }
@@ -51,15 +51,33 @@ class MovieDAODB
 
     public function GetToMovieName($MovieName)
     {
-        $repo = $this->GetAll();
-        foreach($repo as $valuesArray)
-        {
-                if($valuesArray->getTitle() == $MovieName)
-                {
-                    return $valuesArray;
-                }
+        try {
+            $movie = null;
+            
+            $query = "SELECT * FROM Movies WHERE Movies.id_movie = '$MovieName'";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            foreach ($resultSet as $row) {
+                $movie = new Movie();
+                $movie->setId($row["id_movie"]);
+                $movie->setPopularity($row["popularity"]);
+                $movie->setTitle($row["title"]);
+                $movie->setRelease_date($row["release_date"]);
+                $movie->setOriginal_language($row["original_language"]);
+                $movie->setIsAdult($row["isAdult"]);
+                $movie->setVote_count($row["vote_count"]);
+                $movie->setPoster_path($row["poster_path"]);
+                $movie->setVote_average($row["vote_average"]);
+                $movie->setOverview($row["overview"]);
+                $movie->setGenre_ids($row["id_genre"]);
+            }
+            return $movie;
+        } catch (Exception $ex) {
+            throw $ex;
         }
-        return null;
     }
 
     public function AddGenres()
@@ -69,7 +87,7 @@ class MovieDAODB
 
             foreach ($array as $fatherArray) {
                 foreach ($fatherArray as $sunArray) {
-
+                    var_dump($sunArray);
 
                     $query = "INSERT INTO " . "Genres" . " (id_genre,name)
             VALUES (:id_genre, :name)";
@@ -101,7 +119,7 @@ class MovieDAODB
 
             foreach ($resultSet as $row) {
                 $movie = new movie();
-                $movie->setId($row["id"]);
+                $movie->setId($row["id_movie"]);
                 $movie->setPopularity($row["popularity"]);
                 $movie->setTitle($row["title"]);
                 $movie->setRelease_date($row["release_date"]);
@@ -144,8 +162,8 @@ class MovieDAODB
                             JOIN Genres 
                             ON MoviesxGenres.id_genre = Genres.id_genre 
                             JOIN Movies 
-                            ON MoviesxGenres.id = Movies.id
-                            WHERE Movies.id =" .$values->getId();
+                            ON MoviesxGenres.id_movie = Movies.id_movie
+                            WHERE Movies.id_movie =" .$values->getId();
                     //var_dump($query);
                     $this->connection = Connection::GetInstance();
                     $resultSet = $this->connection->Execute($query);
@@ -184,13 +202,13 @@ class MovieDAODB
     {
         $MovieList = array();
         try {
-            $query = "SELECT  Movies.title, Movies.id FROM Cinemas JOIN Rooms ON Cinemas.idCinema = Rooms.idCinema JOIN MovieFunctions ON Rooms.id_room = MovieFunctions.id_room JOIN Movies ON MovieFunctions.id = Movies.id WHERE Cinemas.idCinema = '$idCinema'"; 
+            $query = "SELECT  Movies.title, Movies.id_movie FROM Cinemas JOIN Rooms ON Cinemas.idCinema = Rooms.idCinema JOIN MovieFunctions ON Rooms.id_room = MovieFunctions.id_room JOIN Movies ON MovieFunctions.id_movie = Movies.id_movie WHERE Cinemas.idCinema = '$idCinema'"; 
             $this->connection = Connection::GetInstance();
             $result = $this->connection->Execute($query);
 
             foreach($result as $value){
                 $movie = new Movie();
-                $movie->setId($value["id"]);
+                $movie->setId($value["id_movie"]);
                 $movie->setTitle($value["title"]);
                 array_push($MovieList,$movie);
             }
@@ -200,12 +218,14 @@ class MovieDAODB
         }
     }
 
-    public function GetMovieById($id)
+    public function GetMovieById($id_movie)
     {
         $movie = null;
         try {
+            $movie = null;
+
             
-            $query = "SELECT * FROM Movies WHERE Movies.id = '$id'";
+            $query = "SELECT * FROM Movies WHERE Movies.id_movie = '$id_movie'";
 
             $this->connection = Connection::GetInstance();
 
@@ -213,7 +233,7 @@ class MovieDAODB
 
             foreach ($resultSet as $row) {
                 $movie = new Movie();
-                $movie->setId($row["id"]);
+                $movie->setId($row["id_movie"]);
                 $movie->setPopularity($row["popularity"]);
                 $movie->setTitle($row["title"]);
                 $movie->setRelease_date($row["release_date"]);

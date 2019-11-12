@@ -2,7 +2,7 @@
 namespace Models;
 
 class Movie{
-    private $id;
+    private $id_movie;
     private $popularity;
     private $title;
     private $release_date;
@@ -21,7 +21,7 @@ class Movie{
      */ 
     public function getId()
     {
-        return $this->id;
+        return $this->id_movie;
     }
 
     /**
@@ -29,9 +29,9 @@ class Movie{
      *
      * @return  self
      */ 
-    public function setId($id)
+    public function setId($id_movie)
     {
-        $this->id = $id;
+        $this->id_movie = $id_movie;
 
         return $this;
     }

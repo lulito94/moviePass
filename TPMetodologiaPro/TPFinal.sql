@@ -1,47 +1,46 @@
-drop database TPFinal;
-
-create database TPFinal;
-
+create database if not exists TPFinal;
+#drop database tpfinal;
 use TPFinal;
 
-create table Cinemas
+create table if not exists Cinemas
 (
- idCinema integer auto_increment,
- cinemaName varchar(50),
- address varchar(50),
- capacity int,
+ idCinema int not null auto_increment,
+ cinemaName varchar(50) not null,
+ address varchar(50) not null,
+ capacity int not null,
  ticketValue float,
- id_room integer,
-
+ 
  constraint pk_cinemas primary key(idCinema),
- constraint unq_cinemaName unique (cinemaName),
- constraint fk_cinemas_room foreign key (id_room) references Rooms(id_room)
+ constraint unq_cinemaName unique (cinemaName)
 );
 
 
-create table Users(
-    idUser integer auto_increment,
-    sex varchar(9),
-    name varchar(30),
-    surname varchar(30),
-    dni integer,
-    email varchar(30),
-    userName varchar(20),
-    password varchar(10),
+create table if not exists Users(
+    idUser int not null auto_increment,
+    sex varchar(9) not null,
+    name varchar(30) not null,
+    surname varchar(30)not null,
+    dni int not null,
+    email varchar(30) not null,
+    userName varchar(20) not null,
+    password varchar(10) not null,
+    
     constraint pk_idUser primary key(idUser),
     constraint unq_userName unique(userName),
     constraint unq_dni unique(dni),
     constraint unq_email unique(email)
 );
 
-create table Genres(
-	id_genre integer not null,
-    name varchar(30),
+create table if not exists Genres(
+	id_genre int not null,
+    name varchar(30) not null,
     constraint pk_genre primary key (id_genre)
 );
 
-create table Movies(
-	id integer not null,
+#drop table Movies;
+
+create table if not exists Movies(
+	id_movie int not null,
     popularity int, 
     title varchar(500) ,
     release_date date,
@@ -53,54 +52,48 @@ create table Movies(
     overview varchar(5000),
     id_genre integer,
     
-    constraint pk_idMovies primary key (id),
+    constraint pk_idMovies primary key (id_movie),
     constraint unq_movieTitle unique (title),
     constraint fk_movies_genre foreign key (id_genre) references Genres (id_genre)
 );
 
-create table MoviesxGenres(
-	id integer,
-    id_genre integer,
+#drop table MoviesxGenres;
+
+create table if not exists MoviesxGenres(
+	id_movie int,
+    id_genre int,
     
-    constraint pk_idMoviexGenre primary key (id,id_genre),
-    constraint fk_MoviesxGenre_movie foreign key (id) references Movies(id),
+    constraint pk_idMoviexGenre primary key (id_movie,id_genre),
+    constraint fk_MoviesxGenre_movie foreign key (id_movie) references Movies(id_movie),
 	constraint fk_MoviesxGenre_genre foreign key (id_genre) references Genres(id_genre)
 );
 
-create table Rooms(
-	id_room integer auto_increment,
-    seating integer not null,
-    room_name varchar(30),
-    idCinema integer,
-    id_function integer,
+
+#drop table Rooms;
+
+create table if not exists Rooms(
+	id_room int not null auto_increment,
+    seating int not null,
+    room_name varchar(30) not null,
+    idCinema int,
+    id_function int,
     
     constraint pk_rooms primary key (id_room),
     constraint unq_nameRoom unique (room_name),
-    constraint fk_room_cinema foreign key (idCinema) references Cinemas(idCinema),
+    constraint fk_room_cinema foreign key (idCinema) references Cinemas(idCinema) on delete cascade,
     constraint fk_room_function foreign key (id_function) references MovieFunctions(id_function)
 );
 
-create table MovieFunctions(
+create table if not exists MovieFunctions(
 	
-	id_function integer auto_increment,
-    idCinema integer,
-    id_room integer,
-    id integer, #Movie
+	id_function int not null auto_increment,
+    idCinema int,
+    id_room int,
+    id_movie int,
     function_time Datetime,
     
     constraint pk_movieFunction primary key (id_function),
-    constraint fk_movieFunction_cinema foreign key (idCinema)references Cinemas(idCinema),
-    constraint fk_movieFunction_room foreign key (id_room) references Room (id_room),
-    constraint fk_movieFunction_movie foreign key (id) references Movies (id)
-);
-
-create table MoviesXCinema(
-	id integer,
-    idCinema integer,
-    ticket_price float not null,
-    tickets_sold integer,
-    
-    constraint pk_moviesXcinema primary key (id , idCinema),
-    constraint fk_moviesXcinema_movies foreign key (id) references Movies(id),
-    constraint fk_moviesXcinema_cinema foreign key (idCinema) references Cinemas(idCinema)
+    constraint fk_movieFunction_cinema foreign key (idCinema)references Cinemas(idCinema) on delete cascade, #se borra la func si se borra el cine
+    constraint fk_movieFunction_room foreign key (id_room) references Room (id_room) on delete cascade, #se borra la func si se borra la sala
+    constraint fk_movieFunction_movie foreign key (id_movie) references Movies (id_movie)
 );
