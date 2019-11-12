@@ -93,7 +93,7 @@ $MovieList = $repoMovies->getMoviesxCinema($cinemaElect);
 
               </select>
               <!--<input type="submit" name="show_dowpdown_value" value="show" />-->
-            <button type="submit" name="show_dowpdown_value2" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Ticket/ShowSelectFunction'" value="<?php echo $movie->GetId(); ?>" >Elegir Pelicula</button>
+            <button type="submit" name="show_dowpdown_value2" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Ticket/ShowSelectFunction'" value="<?php echo $movie->getId(); ?>" >Elegir Pelicula</button>
 
             </form>
           </body>

@@ -2,7 +2,7 @@
 namespace Models;
 
 class Movie{
-    private $id;
+    private $id_movie;
     private $popularity;
     private $title;
     private $release_date;
@@ -15,26 +15,6 @@ class Movie{
     private $overview;
     private $genre_ids;
     
-
-    /**
-     * Get the value of id
-     */ 
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 
     /**
      * Get the value of popularity
@@ -252,6 +232,26 @@ class Movie{
     public function setGenre_ids($genre_ids)
     {
         $this->genre_ids = $genre_ids;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id_movie
+     */ 
+    public function getId_movie()
+    {
+        return $this->id_movie;
+    }
+
+    /**
+     * Set the value of id_movie
+     *
+     * @return  self
+     */ 
+    public function setId_movie($id_movie)
+    {
+        $this->id_movie = $id_movie;
 
         return $this;
     }
