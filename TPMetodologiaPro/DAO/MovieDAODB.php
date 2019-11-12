@@ -51,15 +51,33 @@ class MovieDAODB
 
     public function GetToMovieName($MovieName)
     {
-        $repo = $this->GetAll();
-        foreach($repo as $valuesArray)
-        {
-                if($valuesArray->getTitle() == $MovieName)
-                {
-                    return $valuesArray;
-                }
+        try {
+            $movie = null;
+            
+            $query = "SELECT * FROM Movies WHERE Movies.id_movie = '$MovieName'";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            foreach ($resultSet as $row) {
+                $movie = new Movie();
+                $movie->setId($row["id_movie"]);
+                $movie->setPopularity($row["popularity"]);
+                $movie->setTitle($row["title"]);
+                $movie->setRelease_date($row["release_date"]);
+                $movie->setOriginal_language($row["original_language"]);
+                $movie->setIsAdult($row["isAdult"]);
+                $movie->setVote_count($row["vote_count"]);
+                $movie->setPoster_path($row["poster_path"]);
+                $movie->setVote_average($row["vote_average"]);
+                $movie->setOverview($row["overview"]);
+                $movie->setGenre_ids($row["id_genre"]);
+            }
+            return $movie;
+        } catch (Exception $ex) {
+            throw $ex;
         }
-        return null;
     }
 
     public function AddGenres()
@@ -203,6 +221,8 @@ class MovieDAODB
     public function GetMovieById($id_movie)
     {
         try {
+            $movie = null;
+
             
             $query = "SELECT * FROM Movies WHERE Movies.id_movie = '$id_movie'";
 
