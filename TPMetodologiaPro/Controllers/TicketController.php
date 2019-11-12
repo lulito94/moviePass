@@ -4,11 +4,6 @@ namespace Controllers;
 class TicketController{
 
 
-    function __construct()
-    {
-        
-    }
-
 
     public function ShowSelectFunction($id_cinema,$id_movie)
     {

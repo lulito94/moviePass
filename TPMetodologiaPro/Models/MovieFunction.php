@@ -3,11 +3,11 @@ namespace Models;
 
 class MovieFunction{
     private $id_function;
-    private $id_room;
-    private $id_movie;
+    private $cinema;
+    private $room;
+    private $movie;
     private $function_time;
-
-  
+    
 
     /**
      * Get the value of id_function
@@ -30,45 +30,64 @@ class MovieFunction{
     }
 
     /**
-     * Get the value of id_room
+     * Get the value of cinema
      */ 
-    public function getId_room()
+    public function getCinema()
     {
-        return $this->id_room;
+        return $this->cinema;
     }
 
     /**
-     * Set the value of id_room
+     * Set the value of cinema
      *
      * @return  self
      */ 
-    public function setId_room($id_room)
+    public function setCinema($cinema)
     {
-        $this->id_room = $id_room;
+        $this->cinema = $cinema;
 
         return $this;
     }
 
     /**
-     * Get the value of id_movie
+     * Get the value of room
      */ 
-    public function getId_movie()
+    public function getRoom()
     {
-        return $this->id_movie;
+        return $this->room;
     }
 
     /**
-     * Set the value of id_movie
+     * Set the value of room
      *
      * @return  self
      */ 
-    public function setId_movie($id_movie)
+    public function setRoom($room)
     {
-        $this->id_movie = $id_movie;
+        $this->room = $room;
 
         return $this;
     }
 
+    /**
+     * Get the value of movie
+     */ 
+    public function getMovie()
+    {
+        return $this->movie;
+    }
+
+    /**
+     * Set the value of movie
+     *
+     * @return  self
+     */ 
+    public function setMovie($movie)
+    {
+        $this->movie = $movie;
+
+        return $this;
+    }
 
     /**
      * Get the value of function_time
@@ -90,5 +109,4 @@ class MovieFunction{
         return $this;
     }
 }
- 
 ?>

@@ -6,14 +6,20 @@ use Models\Cinema as Cinema;
 use DAO\Connection as Connection;
 use Models\Room as Room;
 use Models\MovieFunction as MovieFunction;
+use DAO\MovieDAODB as MovieDAODB;
 use Exception;
 
+$MovieDAODB = new MovieDAODB();
 class CinemaDAODB
 {
 
     private $cinemasList = array();
     private $connection;
     private $tableName = "Cinemas";
+
+
+    // Cinema functions
+
     public function Add(Cinema $cinema)
     {
 
@@ -32,6 +38,7 @@ class CinemaDAODB
             throw $ex;
         }
     }
+    //---------------------------------------------------------------------------------------------------------
     public function GetCinemaById($idCinema)
     {
         try {
@@ -60,8 +67,7 @@ class CinemaDAODB
             throw $ex;
         }
     }
-
-    
+    //---------------------------------------------------------------------------------------------------------
     public function GetCinemaIdByRoomId($id_room)
     {
 
@@ -82,8 +88,9 @@ class CinemaDAODB
             throw $ex;
         }
     }
-    
+    //---------------------------------------------------------------------------------------------------------
     public function GetCinemaByName($cinemaName){
+        $cinema = null;
         try {
 
             $query = "SELECT * FROM " . $this->tableName . " WHERE " . $this->tableName . ".cinemaName = '$cinemaName'";
@@ -100,10 +107,14 @@ class CinemaDAODB
                 $cinema->setCapacity($row["capacity"]);
                 $cinema->setTicketValue($row["ticketValue"]);
                 
+                
                 $RoomsList = $this->GetRoomById($cinema->getIdCinema());
+                if(isset($RoomList))
+                {
                 foreach ($RoomsList as $room) {
                     $cinema->setRooms($room);
                 }
+                }else{$cinema->setRooms(null);}
             }
             return $cinema;
         } catch (Exception $ex) {
@@ -143,7 +154,7 @@ class CinemaDAODB
             throw $ex;
         }
     }
-    
+    //---------------------------------------------------------------------------------------------------------
     public function ModifyCinema(Cinema $newCinema)
     {
         try {
@@ -190,16 +201,17 @@ class CinemaDAODB
             throw $ex;
         }
     }
-
+    //---------------------------------------------------------------------------------------------------------
     public function DeleteCinema($cinemaName)
     {
         try {
+            //hacer Delete Cascada
             $cinemaList = $this->GetAll();
             foreach ($cinemaList as $cinemaToRemove) {
 
                 if ($cinemaToRemove->getCinemaName() == $cinemaName) {
                     $RoomList = $this->GetRoomById($cinemaToRemove->getIdCinema());
-                    if ($RoomList) {
+                    if (isset($RoomList)) {
                         foreach ($RoomList as $room) {
                             $this->DeleteRoom($room->getId_room());
                         }
@@ -213,7 +225,10 @@ class CinemaDAODB
             throw $ex;
         }
     }
+    //---------------------------------------------------------------------------------------------------------
 
+
+    //Room Functions
     public function AddRoom($idCinema, Room $room)
     {
         try {
@@ -232,7 +247,7 @@ class CinemaDAODB
             throw $e;
         }
     }
-
+    //---------------------------------------------------------------------------------------------------------
     public function GetRoomById($idCinema)
     {
         try {
@@ -258,8 +273,54 @@ class CinemaDAODB
             throw $ex;
         }
     }
+    //---------------------------------------------------------------------------------------------------------
+    public function GetRoomsByCinema($idCinema)
+    {
+        try {
+            $roomList = array();
+            $query = "SELECT Rooms.id_room,Rooms.seating,Rooms.room_name FROM Rooms JOIN " . $this->tableName . " ON " . $this->tableName . ".idCinema = Rooms.idCinema WHERE " . $this->tableName . ".idCinema = '$idCinema'";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            foreach ($resultSet as $row) {
+                $room = new Room();
+                $room->setSeating($row["seating"]);
+                $room->setRoom_name($row["room_name"]);
+                $room->setId_room($row["id_room"]);
 
 
+                array_push($roomList, $room);
+            }
+
+            return $roomList;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+    //---------------------------------------------------------------------------------------------------------
+    public function GetRoomByIdRoom($id_room)
+    {
+        try {
+            $query = "SELECT * FROM Rooms WHERE Rooms.id_room = '$id_room'";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+            foreach ($resultSet as $row) {
+                $room = new Room();
+                $room->setSeating($row["seating"]);
+                $room->setRoom_name($row["room_name"]);
+                $room->setId_room($row["id_room"]);
+            }
+
+            return $room;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+    //---------------------------------------------------------------------------------------------------------
     public function GetAllRooms()
     {
         try {
@@ -285,8 +346,7 @@ class CinemaDAODB
             throw $ex;
         }
     }
-
-    
+    //---------------------------------------------------------------------------------------------------------
     public function ModifyRoom($idRoom, Room $room)
     {
         try {
@@ -325,7 +385,7 @@ class CinemaDAODB
             throw $ex;
         }
     }
-
+    //---------------------------------------------------------------------------------------------------------
     public function DeleteRoom($idRoom)
     {
 
@@ -343,23 +403,19 @@ class CinemaDAODB
             throw $ex;
         }
     }
+    //---------------------------------------------------------------------------------------------------------
 
-   
-
-
-   
-
-
-
-    public function AddMovieFunction(MovieFunction $function)
+    //Function Functions
+    public function AddMovieFunction($function_date)
     {
+        
         try {
             $query = "INSERT INTO MovieFunctions (idCinema,id_room, id, function_time) VALUES (:idCinema, :id_room, :id, :function_time);";
 
             $parameters["idCinema"] = $_SESSION['idCinema'];
-            $parameters["id_room"] = $function->getId_room();
-            $parameters["id"] = $function->getId_movie();
-            $parameters["function_time"] = $function->getFunction_time();
+            $parameters["id_room"] = $_SESSION['idRoom'];
+            $parameters["id"] = $_SESSION['idMovie'];
+            $parameters["function_time"] = $function_date;
 
             $this->connection = Connection::GetInstance();
 
@@ -368,7 +424,7 @@ class CinemaDAODB
             throw $ex;
         }
     }
-
+    //---------------------------------------------------------------------------------------------------------
     public function GetAllMovieFunctions()
     {
 
@@ -383,8 +439,9 @@ class CinemaDAODB
             foreach ($resultSet as $row) {
                 $function = new MovieFunction();
                 $function->setId_function($row["id_function"]);
-                $function->setId_room($row["id_room"]);
-                $function->setId_movie($row["id"]);
+                $function->setCinema($row["idCinema"]);
+                $function->setRoom($row["id_room"]);
+                $function->setMovie($row["id"]);
                 $function->setFunction_time($row["function_time"]);
 
                 array_push($functionList, $function);
@@ -394,13 +451,12 @@ class CinemaDAODB
             throw $ex;
         }
     }
-
-
-    public function GetMovieFunctions($id_cinema)
+    //---------------------------------------------------------------------------------------------------------
+    public function GetMovieFunctionsByCinema($id_cinema)
     {
         try {
             $functionList = array();
-            $query = "SELECT MovieFunctions.id_function,MovieFunctions.id_room,MovieFunctions.id,MovieFunctions.function_time  FROM " .
+            $query = "SELECT MovieFunctions.id_function,MovieFunctions.idCinema,MovieFunctions.id_room,MovieFunctions.id,MovieFunctions.function_time  FROM " .
                 $this->tableName . " JOIN Rooms ON " . $this->tableName . ".idCinema = Rooms.idCinema JOIN MovieFunctions ON " .
                 "MovieFunctions.id_room = Rooms.id_room Join Movies ON MovieFunctions.id = Movies.id WHERE MovieFunctions.idCinema ='$id_cinema'";
 
@@ -412,20 +468,20 @@ class CinemaDAODB
             foreach ($resultSet as $row) {
                 $function = new MovieFunction();
                 $function->setId_function($row["id_function"]);
-                $function->setId_room($row["id_room"]);
-                $function->setId_movie($row["id"]);
+                $function->setCinema($row["idCinema"]);
+                $function->setRoom($row["id_room"]);
+                $function->setMovie($row["id"]);
                 $function->setFunction_time($row["function_time"]);
-
 
                 array_push($functionList, $function);
             }
-
+            
             return $functionList;
         } catch (Exception $ex) {
             throw $ex;
         }
     }
-
+    //---------------------------------------------------------------------------------------------------------
     public function DeleteMovieFunction($id_function)
     {
 
@@ -443,8 +499,7 @@ class CinemaDAODB
             throw $ex;
         }
     }
-
-
+    //---------------------------------------------------------------------------------------------------------
     public function ModifyMovieFunction($id_function, $newFunction_time)
     {
 
@@ -460,7 +515,7 @@ class CinemaDAODB
             throw $ex;
         }
     }
-
+    //---------------------------------------------------------------------------------------------------------
     public function GetMovieFunctionById($id_function)
     {
         try {
@@ -474,8 +529,9 @@ class CinemaDAODB
             foreach ($resultSet as $row) {
                 $function = new MovieFunction();
                 $function->setId_function($row["id_function"]);
-                $function->setId_room($row["id_room"]);
-                $function->setId_movie($row["id"]);
+                $function->setCinema($row["idCinema"]);
+                $function->setRoom($row["id_room"]);
+                $function->setMovie($row["id"]);
                 $function->setFunction_time($row["function_time"]);
             }
             return $function;
@@ -483,8 +539,7 @@ class CinemaDAODB
             throw $ex;
         }
     }
-
- 
+    //---------------------------------------------------------------------------------------------------------
 
 }
 ?>
