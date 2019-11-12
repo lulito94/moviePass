@@ -255,6 +255,7 @@ class CinemaDAODB
     //---------------------------------------------------------------------------------------------------------
     public function GetRoomById($idCinema)
     {
+        $room = null;
         try {
             $roomList = array();
             $query = "SELECT Rooms.id_room,Rooms.seating,Rooms.room_name FROM Rooms JOIN " . $this->tableName . " ON " . $this->tableName . ".idCinema = Rooms.idCinema WHERE " . $this->tableName . ".idCinema = '$idCinema'";
