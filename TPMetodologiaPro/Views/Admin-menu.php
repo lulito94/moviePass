@@ -54,7 +54,10 @@
                                  </ul>
                             </td>  
                            <td>
-                                  <a class="smooth-link"  href="<?php echo FRONT_ROOT ?>user/AdminOptions">Opciones de la API</a>
+                                 <ul class="home-sidelinks">
+                                    <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Movie/Add">Refresh Database  Movies To Api</a></li>
+                                    <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Movie/GetToApiGenres">Refresh Database Genres To Api</a></li>
+                                </ul>
                            </td> 
                          </div>
                        </tr>
