@@ -19,23 +19,50 @@
 <main class="container clear"> 
     <div class="content"> 
       <div id="comments" >
-        <h2>Cinema</h2>
-        <form action="" method="post"  style="background-color: #EAEDED;padding: 2rem !important;">
-        <ul class="home-sidelinks">
-            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaView">Agregar Cinemas</a></li>
-            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaModify">Modificar Cinemas</a></li>
-            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaListView">Listar Cinemas</a></li>
-            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowFunctions">Listar Funciones</a></li>
-            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowRoomFunctions">Opciones de Salas</a></li>
-            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>user/AdminOptions">Opciones de la API</a></li>
-            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>user/AdminProfile">Mi Perfil</a></li>
-            <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>user/UsersProfiles">Perfiles de Usuarios</a></li>
-
-                       <!--<li><a  class="smoothscroll" href="#contact">Contact<span>get in touch</span></a></li> -->
-        </ul> <!-- end home-sidelinks -->
-
+        <h2 class="mb-4">Cinema</h2>
+  
+               <table class="table bg-light-alpha">
+                    <thead>
+                          <th> Opciones de Cine </th>
+                          <th> Opciones de Sala y Funciones</th>
+                          <th> Perfiles </th>
+                          <th> Actualizacion de Peliculas </th>
+                         
+                    </thead>
+                    <tbody>  
+                    <form action="" method="post"  style="background-color: #EAEDED;padding: 2rem !important;">              
+                         
+                       <tr> 
+                        <div>
+                             <td>
+                                 <ul class="home-sidelinks">
+                                    <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaView">Agregar Cinemas</a></li>
+                                    <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaModify">Modificar Cinemas</a></li>
+                                    <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaListView">Listar Cinemas</a></li>
+                                 </ul>  
+                             </td>                             
+                             <td>
+                                 <ul class="home-sidelinks">
+                                    <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowFunctions">Listar Funciones</a></li>
+                                    <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowRoomFunctions">Opciones de Salas</a></li>
+                                </ul>     
+                            </td>                            
+                             <td>
+                                 <ul class="home-sidelinks">
+                                     <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>user/AdminProfile">Mi Perfil</a></li>
+                                     <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>user/UsersProfiles">Perfiles de Usuarios</a></li>
+                                 </ul>
+                            </td>  
+                           <td>
+                                  <a class="smooth-link"  href="<?php echo FRONT_ROOT ?>user/AdminOptions">Opciones de la API</a>
+                           </td> 
+                         </div>
+                       </tr>
+                                  
+                    </form>
+                   </tbody>
+             </table>
         
-        </form>
       </div>
     </div>
   </main>
