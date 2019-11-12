@@ -41,10 +41,9 @@ class CinemaDAODB
     //---------------------------------------------------------------------------------------------------------
     public function GetCinemaById($idCinema)
     {
-            $cinema =null;
+           
         try {
             $cinema = null;
-            $RoomList = null;
 
             $query = "SELECT * FROM " . $this->tableName . " WHERE " . $this->tableName . ".idCinema = '$idCinema'";
 
@@ -60,17 +59,15 @@ class CinemaDAODB
                 $cinema->setCapacity($row["capacity"]);
                 $cinema->setTicketValue($row["ticketValue"]);
                 
-<<<<<<< HEAD
                 $RoomsList = $this->GetRoomById($cinema->getIdCinema());
-                if(isset($RoomList))
+                if(isset($RoomList) &&)
                 {
-=======
-                $RoomsList = $this->GetRoomByIdRoom($cinema->getIdCinema());
->>>>>>> 3912fd1994eea38329fa8fa149986a85bb2eb43b
                 foreach ($RoomsList as $room) {
                     $cinema->setRooms($room);
                 }
-                }else{$cinema->setRooms(null);}
+                }else{
+                    $cinema->setRooms(null);
+                }
             }
             return $cinema;
         } catch (Exception $ex) {
@@ -218,38 +215,18 @@ class CinemaDAODB
     //---------------------------------------------------------------------------------------------------------
     public function DeleteCinema($cinemaName)
     {
-        try {
-<<<<<<< HEAD
-=======
-            //hacer Delete Cascada
-            $cinemaList = $this->GetAll();
-            foreach ($cinemaList as $cinemaToRemove) {
-
-                if ($cinemaToRemove->getCinemaName() == $cinemaName) {
-                    $RoomList = $this->GetRoomById($cinemaToRemove->getIdCinema());
-                    if (isset($RoomList)) {
-                        foreach ($RoomList as $room) {
-                            $this->DeleteRoom($room->getId_room());
-                        }
->>>>>>> 3912fd1994eea38329fa8fa149986a85bb2eb43b
+        try{
                         $query = "DELETE FROM " . $this->tableName . " WHERE " . $this->tableName . ".cinemaName ='$cinemaName'";
                         $this->connection = Connection::GetInstance();
                         $this->connection->ExecuteNonQuery($query);
                     
-                
-            }
+        }   
          catch (Exception $ex) {
             throw $ex;
         }
     }
     //---------------------------------------------------------------------------------------------------------
-<<<<<<< HEAD
 
-
-=======
-
-
->>>>>>> 3912fd1994eea38329fa8fa149986a85bb2eb43b
     //Room Functions
     public function AddRoom($idCinema, Room $room)
     {
@@ -291,6 +268,7 @@ class CinemaDAODB
             throw $ex;
         }
     }
+
     //---------------------------------------------------------------------------------------------------------
     public function GetRoomsByCinema($idCinema)
     {
@@ -318,35 +296,6 @@ class CinemaDAODB
         }
     }
     //---------------------------------------------------------------------------------------------------------
-<<<<<<< HEAD
-    public function GetRoomsByCinema($idCinema)
-    {
-        try {
-            $roomList = array();
-            $query = "SELECT Rooms.id_room,Rooms.seating,Rooms.room_name FROM Rooms JOIN " . $this->tableName . " ON " . $this->tableName . ".idCinema = Rooms.idCinema WHERE " . $this->tableName . ".idCinema = '$idCinema'";
-
-            $this->connection = Connection::GetInstance();
-
-            $resultSet = $this->connection->Execute($query);
-
-            foreach ($resultSet as $row) {
-                $room = new Room();
-                $room->setSeating($row["seating"]);
-                $room->setRoom_name($row["room_name"]);
-                $room->setId_room($row["id_room"]);
-
-
-                array_push($roomList, $room);
-            }
-
-            return $roomList;
-        } catch (Exception $ex) {
-            throw $ex;
-        }
-    }
-    //---------------------------------------------------------------------------------------------------------
-=======
->>>>>>> 3912fd1994eea38329fa8fa149986a85bb2eb43b
     public function GetRoomByIdRoom($id_room)
     {
         try {
