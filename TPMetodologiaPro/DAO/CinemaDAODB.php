@@ -59,8 +59,8 @@ class CinemaDAODB
                 $cinema->setCapacity($row["capacity"]);
                 $cinema->setTicketValue($row["ticketValue"]);
                 
-                $RoomsList = $this->GetRoomById($cinema->getIdCinema());
-                if(isset($RoomList) &&)
+                $RoomsList = $this->GetRoomsByCinema($cinema->getIdCinema());
+                if(isset($RoomList))
                 {
                 foreach ($RoomsList as $room) {
                     $cinema->setRooms($room);
@@ -246,30 +246,6 @@ class CinemaDAODB
             throw $e;
         }
     }
-    //---------------------------------------------------------------------------------------------------------
-    public function GetRoomById($idCinema)
-    {
-        $room = null;
-        try {
-            $roomList = array();
-            $query = "SELECT Rooms.id_room,Rooms.seating,Rooms.room_name FROM Rooms JOIN " . $this->tableName . " ON " . $this->tableName . ".idCinema = Rooms.idCinema WHERE " . $this->tableName . ".idCinema = '$idCinema'";
-
-            $this->connection = Connection::GetInstance();
-
-            $resultSet = $this->connection->Execute($query);
-            foreach ($resultSet as $row) {
-                $room = new Room();
-                $room->setSeating($row["seating"]);
-                $room->setRoom_name($row["room_name"]);
-                $room->setId_room($row["id_room"]);
-            }
-
-            return $room;
-        } catch (Exception $ex) {
-            throw $ex;
-        }
-    }
-
     //---------------------------------------------------------------------------------------------------------
     public function GetRoomsByCinema($idCinema)
     {
