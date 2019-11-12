@@ -400,7 +400,7 @@ class CinemaDAODB
     {
         try {
             $functionList = array();
-            $query = "SELECT MovieFunctions.id_function,MovieFunctions.id_room,MovieFunctions.id,MovieFunctions.function_time  FROM " .
+            $query = "SELECT MovieFunctions.id_function,MovieFunctions.id_room,MovieFunctions.id_movie,MovieFunctions.function_time  FROM " .
                 $this->tableName . " JOIN Rooms ON " . $this->tableName . ".idCinema = Rooms.idCinema JOIN MovieFunctions ON " .
                 "MovieFunctions.id_room = Rooms.id_room Join Movies ON MovieFunctions.id_movie = Movies.id_movie WHERE MovieFunctions.idCinema ='$id_cinema'";
 
