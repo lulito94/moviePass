@@ -5,7 +5,7 @@ include('nav-bar.php');
 require_once ('validate-session-admin.php');
 use DAO\CinemaDAODB as CinemaDAODB;
 $cinema = new CinemaDAODB();
-$RoomList = $cinema->GetRoomById($_SESSION['idCinema']);
+$RoomList = $cinema->GetRoomsByCinema($_SESSION['idCinema']);
 
 ?>
 <!-- ################################################################################################ -->
@@ -25,7 +25,7 @@ $RoomList = $cinema->GetRoomById($_SESSION['idCinema']);
 <main class="d-flex align-items-center justify-content-center height-100" >
           <div class="content">
                <header class="text-center">
-                    <h2>Seleccionar cinema</h2>
+                    <h2>Seleccionar Sala</h2>
                </header>
 			   <form action="" method="post">
                <table class="table bg-light-alpha">

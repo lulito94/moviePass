@@ -26,7 +26,7 @@ if(!isset($cinemaElect))
 {
   $MovieList = array();
   $movie = new Movie();
-  $movie->setId(0);
+  $movie->setId_movie(0);
   $movie->setTitle("Seleccionar cinema antes");
   array_push($MovieList,$movie);
 }else
@@ -54,14 +54,7 @@ $MovieList = $repoMovies->getMoviesxCinema($cinemaElect);
       <div id="comments">
         <h2>Cinema</h2>
         <form action="" method="post" style="background-color: #EAEDED;padding: 2rem !important;">
-          <ul class="home-sidelinks">
-            <li><a class="smooth-link" href="<?php echo FRONT_ROOT ?>User/UserShowCinemas">List-Cinemas</a></li>
-            <li><a class="smooth-link" href="<?php echo FRONT_ROOT ?>User/User_Info">View Info Account</a></li>
-
-            <!--<li><a  class="smoothscroll" href="#contact">Contact<span>get in touch</span></a></li> -->
-          </ul> <!-- end home-sidelinks -->
-
-
+         
           <head>
             <title>Sitename</title>
           </head>
@@ -88,7 +81,7 @@ $MovieList = $repoMovies->getMoviesxCinema($cinemaElect);
                   
                 foreach ($MovieList as $movie){
                   ?>
-                  <option value="<?php echo $movie->getId(); ?>"> <?php echo $movie->getTitle(); ?></option>
+                  <option value="<?php echo $movie->getId_movie(); ?>"> <?php echo $movie->getTitle(); ?></option>
                 <?php }?>
 
               </select>

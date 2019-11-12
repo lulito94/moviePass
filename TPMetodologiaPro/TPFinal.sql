@@ -2,6 +2,7 @@ create database if not exists TPFinal;
 #drop database tpfinal;
 use TPFinal;
 
+
 create table if not exists Cinemas
 (
  idCinema int not null auto_increment,
@@ -90,10 +91,12 @@ create table if not exists MovieFunctions(
     idCinema int,
     id_room int,
     id_movie int,
-    function_time Datetime,
+    function_time Datetime ,
     
     constraint pk_movieFunction primary key (id_function),
     constraint fk_movieFunction_cinema foreign key (idCinema)references Cinemas(idCinema) on delete cascade, #se borra la func si se borra el cine
-    constraint fk_movieFunction_room foreign key (id_room) references Room (id_room) on delete cascade, #se borra la func si se borra la sala
+    constraint fk_movieFunction_room foreign key (id_room) references Rooms (id_room) on delete cascade, #se borra la func si se borra la sala
     constraint fk_movieFunction_movie foreign key (id_movie) references Movies (id_movie)
 );
+select *
+from MovieFunctions;

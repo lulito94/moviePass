@@ -148,10 +148,9 @@ class CinemaDAODB
                 $cinema->setCapacity($row["capacity"]);
                 $cinema->setTicketValue($row["ticketValue"]);
 
-                $RoomsList = $this->GetRoomsByCinema($cinema->getIdCinema()); 
-
+                $RoomList = $this->GetRoomsByCinema($cinema->getIdCinema()); 
                 if((isset($RoomList)) && ($RoomList != null) ){
-                    foreach ($RoomsList as $room) {
+                    foreach ($RoomList as $room) {
                         $cinema->setRooms($room);
                     }
                 }
@@ -263,10 +262,8 @@ class CinemaDAODB
                 $room->setRoom_name($row["room_name"]);
                 $room->setId_room($row["id_room"]);
 
-
                 array_push($roomList, $room);
             }
-
             return $roomList;
         } catch (Exception $ex) {
             throw $ex;
@@ -275,6 +272,7 @@ class CinemaDAODB
     //---------------------------------------------------------------------------------------------------------
     public function GetRoomByIdRoom($id_room)
     {
+        $room = null;
         try {
             $query = "SELECT * FROM Rooms WHERE Rooms.id_room = '$id_room'";
 
@@ -288,6 +286,28 @@ class CinemaDAODB
                 $room->setId_room($row["id_room"]);
             }
 
+            return $room;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+    //---------------------------------------------------------------------------------------------------------
+    public function GetRoomByName($room_name){
+        $room = null;
+        try {
+            
+            $query = "SELECT * FROM Rooms WHERE Rooms.room_name = '$room_name'";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            foreach ($resultSet as $row) {
+                $room = new Room;
+                $room->setId_room($row["id_room"]);
+                $room->setRoom_name($row["room_name"]);
+                $room->setSeating($row["seating"]);
+            }
             return $room;
         } catch (Exception $ex) {
             throw $ex;
@@ -387,7 +407,7 @@ class CinemaDAODB
 
             $parameters["idCinema"] = $_SESSION['idCinema'];
             $parameters["id_room"] = $_SESSION['idRoom'];
-            $parameters["id"] = $_SESSION['idMovie'];
+            $parameters["id_movie"] = $_SESSION['idMovie'];
             $parameters["function_time"] = $function_date;
 
             $this->connection = Connection::GetInstance();
@@ -414,7 +434,7 @@ class CinemaDAODB
                 $function->setId_function($row["id_function"]);
                 $function->setCinema($row["idCinema"]);
                 $function->setRoom($row["id_room"]);
-                $function->setMovie($row["id"]);
+                $function->setMovie($row["id_movie"]);
                 $function->setFunction_time($row["function_time"]);
 
                 array_push($functionList, $function);
@@ -504,7 +524,7 @@ class CinemaDAODB
                 $function->setId_function($row["id_function"]);
                 $function->setCinema($row["idCinema"]);
                 $function->setRoom($row["id_room"]);
-                $function->setMovie($row["id"]);
+                $function->setMovie($row["id_movie"]);
                 $function->setFunction_time($row["function_time"]);
             }
             return $function;

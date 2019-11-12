@@ -48,7 +48,7 @@ $movieList = $movierepo->GetAll();
                                              <div>
 
                                                   <td><img class="" src="https://image.tmdb.org/t/p/w300<?php echo $movie->getPoster_path() ?>" alt="<?php echo $movie->getTitle(); ?>" width="100" height="100"> <br>
-                                                       <button type="submit" name="remove" class="btn btn-danger" onclick="this.form.action = '<?php echo FRONT_ROOT; ?>Cinema/AddMovie'" value="<?php echo $movie->getId(); ?>"> Seleccionar </button></td>
+                                                       <button type="submit" name="remove" class="btn btn-danger" onclick="this.form.action = '<?php echo FRONT_ROOT; ?>Cinema/AddMovie'" value="<?php echo $movie->getId_movie(); ?>"> Seleccionar </button></td>
                                                   <td>
                                                        <ul>
 

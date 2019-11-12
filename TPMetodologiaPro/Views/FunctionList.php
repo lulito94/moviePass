@@ -46,7 +46,7 @@
                          ?>
                                         <tr> 
                                              <div>
-                                             <td><?php echo $cinema->getCinemaname() ?></td>
+                                             <td><?php echo $cinema->getCinemaName() ?></td>
                                              <td><?php echo $room->getRoom_name(); ?></td>
                                              <td><?php echo $movie->getTitle(); ?></td>
                                              <td><?php echo $MovieFunction->getFunction_time(); ?></td>

@@ -205,13 +205,19 @@ class CinemaController
 
     public function AddRoom($roomName,$seatings)
     {
-        $room = new Room();
-        $room->setRoom_name($roomName);
-        $room->setSeating($seatings);
-        $repo = $this->CinemaDAODB;
-        $repo->AddRoom($_SESSION['idCinema'],$room);
-        unset($_SESSION['idCinema']);
-        $this->ShowCinemaListView();
+        $check = $this->CinemaDAODB->getRoomByName($roomName);
+        if(!isset($check) && empty($check))
+        {
+            $room = new Room();
+            $room->setRoom_name($roomName);
+            $room->setSeating($seatings);
+            $this->CinemaDAODB->AddRoom($_SESSION['idCinema'],$room);
+            unset($_SESSION['idCinema']);
+            $this->ShowCinemaListView();
+        }else{
+            echo "<script>alert('El nombre de la sala ya fue registrado previamente');</script>";
+            $this->ShowCinemaListView();
+        }
     }
     //--------------------------------------------------------------------------------------
     public function ModifyRoom($roomName,$seatings)
@@ -239,8 +245,7 @@ class CinemaController
 
     public function AddMovieFunction($function_date)
     {
-        $repo = $this->CinemaDAODB;
-        $repo->AddMovieFunction($function_date);
+        $this->CinemaDAODB->AddMovieFunction($function_date);
         // Unset's
         unset($_SESSION['idRoom']);
         unset($_SESSION['idCinema']);
