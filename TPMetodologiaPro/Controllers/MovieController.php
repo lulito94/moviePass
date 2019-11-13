@@ -18,12 +18,11 @@ class MovieController
 
     public function Add()
     {
-        $repo = $this->MovieDAODB;
         $moviesJS = new MovieDAO();
-        $movie = new Movie();
-        $movieList = $moviesJS->GetAll();
+         $movieList = $moviesJS->GetAll();
         foreach ($movieList as $valuesArray) {
-            $movie->setId($valuesArray->getId());
+            $movie = new Movie();
+            $movie->setId_movie($valuesArray->getId_movie());
             $movie->setPopularity($valuesArray->getPopularity());
             $movie->setTitle($valuesArray->getTitle());
             $movie->setRelease_date($valuesArray->getRelease_date());
@@ -33,7 +32,7 @@ class MovieController
             $movie->setVote_average($valuesArray->getVote_average());
             $movie->setOverview($valuesArray->getOverview());
             $movie->setGenre_ids($valuesArray->getGenre_ids());
-            $repo->Add($movie);
+            $this->MovieDAODB->Add($movie);
         }
         echo "<script>alert('Peliculas Cargadas en BD');</script>";
         $this->ShowAdminMenu();

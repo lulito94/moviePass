@@ -29,7 +29,7 @@ $cinema = $repo->GetCinemaById($_SESSION['cinemaElect']);
             <h2>Seleccionar tus Entradas</h2>
         </header>
 
-<form action="<?php echo FRONT_ROOT;?>Ticket/ShowPayTicket" method="post">
+<form action="<?php echo FRONT_ROOT;?>Ticket/GenerateTicket" method="post">
         <table class="table bg-light-alpha">
                     <thead>
                          <th>Cantidad de Entradas</th>
@@ -47,7 +47,7 @@ $cinema = $repo->GetCinemaById($_SESSION['cinemaElect']);
                     </select>
                     </td>
                             <td><?php echo $cinema->getTicketValue(); ?></td>
-                            <td><button type="submit" name="buy" class="btn btn-danger"> Comprar </button></td>
+                            <td><button type="submit" name="buy" class="btn btn-danger"> Generar ticket </button></td>
 
                     </tr>
                                         

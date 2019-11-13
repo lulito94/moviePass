@@ -137,7 +137,6 @@ class CinemaController
     //--------------------------------------------------------------------------------------
     public function ShowFunctions()
     {
-        $this->FunctionList = $this->GetAllMoviesFunctions();
         require_once(VIEWS_PATH."FunctionList.php");
     }
     //--------------------------------------------------------------------------------------
@@ -264,72 +263,6 @@ class CinemaController
     }
     //--------------------------------------------------------------------------------------
 
-    public function GetAllMoviesFunctions()
-    {
-         $MFList = array();
-         $MovieFunctionList = $this->CinemaDAODB->GetAllMovieFunctions();
-         foreach($MovieFunctionList as $MovieFunction)
-         {
-         $function = new MovieFunction();
-         $function->setId_Function($MovieFunction->getId_Function());
-         //To object
-         $cinema = $this->CinemaDAODB->GetCinemaById($MovieFunction->getCinema());
-         $room = $this->CinemaDAODB->GetRoomByIdRoom($MovieFunction->getRoom());
-         $movie = $this->MovieDAODB->GetMovieById($MovieFunction->getMovie());
-         //----
-         $function->setCinema($cinema);
-         $function->setRoom($room);
-         $function->setMovie($movie);
-         $function->setFunction_time($MovieFunction->getFunction_time());
-         array_push($MFList, $function);
-         }
-         return $MFList;
-    }
-    //--------------------------------------------------------------------------------------
-    public function GetMovieFunctionsByCinema($idCinema)
-    {
-        $MFList = array();
-         $MovieFunctionList = $this->CinemaDAODB->GetMovieFunctionsByCinema($idCinema);
-
-         foreach($MovieFunctionList as $MovieFunction)
-         {
-         $function = new MovieFunction();
-         $function->setId_Function($MovieFunction->getId_Function());
-         //To object
-         $cinema = $this->CinemaDAODB->GetCinemaById($MovieFunction->getCinema());
-         $room = $this->CinemaDAODB->GetRoomByIdRoom($MovieFunction->getRoom());
-         $movie = $this->$MovieDAODB->GetMovieById($MovieFunction->getMovie());
-         //----
-         $function->setCinema($cinema);
-         $function->setRoom($room);
-         $function->setMovie($movie);
-         $function->setFunction_time($MovieFunction->getFunction_time());
-         array_push($MFList, $function);
-         }
-         return $MFList;
-    }
-    //--------------------------------------------------------------------------------------
-    public function GetMovieFunctionById($id_function)
-    {
-         $MovieFunction = $this->CinemaDAODB->GetMovieFunctionById($id_function);
-
-         foreach($MovieFunction as $MF)
-         {
-         $function = new MovieFunction();
-         $function->setId_Function($MF->getId_Function());
-         //To object
-         $cinema = $this->CinemaDAODB->GetCinemaById($MF->getCinema());
-         $room = $this->CinemaDAODB->GetRoomByIdRoom($MF->getRoom());
-         $movie = $this->$MovieDAODB->GetMovieById($MF->getMovie());
-         //----
-         $function->setCinema($cinema);
-         $function->setRoom($room);
-         $function->setMovie($movie);
-         $function->setFunction_time($MF->getFunction_time());
-         }
-         return $function;
-    }
-    //--------------------------------------------------------------------------------------
     public function DeleteFunction($id_function)
     {
         $repo = $this->CinemaDAODB;

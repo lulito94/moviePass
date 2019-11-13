@@ -105,7 +105,7 @@ class MovieDAO implements IMovieDAO{
             {
                 $movie = new Movie();
                 
-                $movie->setId($valuesArray["id"]);
+                $movie->setId_movie($valuesArray["id"]);
                 $movie->setPopularity($valuesArray["popularity"]);
                 $movie->setTitle($valuesArray["title"]);
                 $movie->setRelease_date($valuesArray["release_date"]);

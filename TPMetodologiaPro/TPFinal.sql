@@ -38,7 +38,6 @@ create table if not exists Genres(
     constraint pk_genre primary key (id_genre)
 );
 
-#drop table Movies;
 
 create table if not exists Movies(
 	id_movie int not null,
@@ -84,7 +83,6 @@ create table if not exists Rooms(
     constraint fk_room_cinema foreign key (idCinema) references Cinemas(idCinema) on delete cascade,
     constraint fk_room_function foreign key (id_function) references MovieFunctions(id_function)
 );
-
 create table if not exists MovieFunctions(
 	
 	id_function int not null auto_increment,
@@ -96,7 +94,8 @@ create table if not exists MovieFunctions(
     constraint pk_movieFunction primary key (id_function),
     constraint fk_movieFunction_cinema foreign key (idCinema)references Cinemas(idCinema) on delete cascade, #se borra la func si se borra el cine
     constraint fk_movieFunction_room foreign key (id_room) references Rooms (id_room) on delete cascade, #se borra la func si se borra la sala
-    constraint fk_movieFunction_movie foreign key (id_movie) references Movies (id_movie)
+    constraint fk_movieFunction_movie foreign key (id_movie) references Movies (id_movie) 
 );
+truncate table Movies;
 select *
-from MovieFunctions;
+from Movies;

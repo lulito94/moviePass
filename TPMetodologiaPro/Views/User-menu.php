@@ -78,16 +78,22 @@ $MovieList = $repoMovies->getMoviesxCinema($cinemaElect);
               <select name="dowpdown2">
                 <?php
                 
-                  
+                if(isset($MovieList) && !empty($MovieList))
+                {  
                 foreach ($MovieList as $movie){
                   ?>
                   <option value="<?php echo $movie->getId_movie(); ?>"> <?php echo $movie->getTitle(); ?></option>
-                <?php }?>
+                <?php }}else{
+                  ?>
+                  <option value=""> No hay funciones disponibles</option>
+                <?php } ?>
 
               </select>
               <!--<input type="submit" name="show_dowpdown_value" value="show" />-->
+              <?php if(isset($movie))
+              { ?>
             <button type="submit" name="show_dowpdown_value2" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Ticket/ShowSelectFunction'" value="<?php echo $movie->getId_movie(); ?>" >Elegir Pelicula</button>
-
+<?php } ?>
             </form>
           </body>
 

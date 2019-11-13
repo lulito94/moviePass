@@ -1,16 +1,20 @@
 <?php
 namespace Controllers;
-use DAO\CinemaDAODB as CinemaDAODB;
+use Models\Ticket as Ticket;
+use DAO\TicketDAO as TicketDAO;
+
 
 class TicketController{
-    private $CinemaDAODB;
+    private $TicketDAO;
 
+    function __construct()
+    {
+        $this->TicketDAO = new TicketDAO();
+    }
 
     public function ShowSelectFunction($id_cinema,$id_movie)
     {
         $_SESSION['MovieElect'] = $id_movie;
-        $CinemaDAODB = new CinemaDAODB();
-        $function = $this->CinemaDAODB->GetMovieFunctionsByCinema($_SESSION['cinemaElect']);
         require_once(VIEWS_PATH."FunctionSelect.php");
     }
 
@@ -19,9 +23,8 @@ class TicketController{
         $_SESSION['functId'] = $functId;
         require_once(VIEWS_PATH."GenerateVoucher.php");
     }
-    public function ShowPayTicket($cant)
+    public function ShowPayTicket()
     {
-        $_SESSION['cant'] = $cant;
         require_once(VIEWS_PATH."BuyTicket.php");
     }
     
@@ -39,6 +42,14 @@ class TicketController{
     {
         require_once(VIEWS_PATH."ajax_generate_code.js");
     }
+
+    public function GenerateTicket($cant)
+    {
+        $this->TicketDAO->AddTicket($cant);
+        echo "<script>alert('Ticket Generado con exito!');</script>";
+        $this->ShowPayTicket();
+    }
+    
 
 }
 ?>

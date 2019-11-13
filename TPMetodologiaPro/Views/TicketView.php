@@ -13,7 +13,8 @@ $movie = $repoMovie->GetMovieById($_SESSION['MovieElect']);
 $roomList = $repoCinema->GetAllRooms();
 foreach($roomList as $roomSearch)
 {
-    if($roomSearch->getId_room() ==  $function->getId_room())
+     $roomCheck = $function->getRoom();
+    if($roomSearch->getId_room() ==  $roomCheck->getId_room())
     {
         $room = $roomSearch;
     }

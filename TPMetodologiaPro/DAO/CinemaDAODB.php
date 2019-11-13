@@ -9,14 +9,12 @@ use Models\MovieFunction as MovieFunction;
 use DAO\MovieDAODB as MovieDAODB;
 use Exception;
 
-$MovieDAODB = new MovieDAODB();
-class CinemaDAODB
+class CinemaDAODB extends HelperDAO
 {
 
     private $cinemasList = array();
     private $connection;
     private $tableName = "Cinemas";
-
 
     // Cinema functions
 
@@ -418,38 +416,11 @@ class CinemaDAODB
         }
     }
     //---------------------------------------------------------------------------------------------------------
-    public function GetAllMovieFunctions()
-    {
-
-        try {
-            $functionList = array();
-            $query = "SELECT * FROM MovieFunctions";
-
-            $this->connection = Connection::GetInstance();
-
-            $resultSet = $this->connection->Execute($query);
-
-            foreach ($resultSet as $row) {
-                $function = new MovieFunction();
-                $function->setId_function($row["id_function"]);
-                $function->setCinema($row["idCinema"]);
-                $function->setRoom($row["id_room"]);
-                $function->setMovie($row["id_movie"]);
-                $function->setFunction_time($row["function_time"]);
-
-                array_push($functionList, $function);
-            }
-            return $functionList;
-        } catch (Exception $ex) {
-            throw $ex;
-        }
-    }
-    //---------------------------------------------------------------------------------------------------------
     public function GetMovieFunctionsByCinema($id_cinema)
     {
         try {
             $functionList = array();
-            $query = "SELECT MovieFunctions.id_function,MovieFunctions.idCinema,MovieFunctions.id_room,MovieFunctions.id,MovieFunctions.function_time  FROM " .
+            $query = "SELECT MovieFunctions.id_function,MovieFunctions.idCinema,MovieFunctions.id_room,MovieFunctions.id_movie,MovieFunctions.function_time  FROM " .
                 $this->tableName . " JOIN Rooms ON " . $this->tableName . ".idCinema = Rooms.idCinema JOIN MovieFunctions ON " .
                 "MovieFunctions.id_room = Rooms.id_room Join Movies ON MovieFunctions.id_movie = Movies.id_movie WHERE MovieFunctions.idCinema ='$id_cinema'";
 
@@ -457,13 +428,17 @@ class CinemaDAODB
             $this->connection = Connection::GetInstance();
 
             $resultSet = $this->connection->Execute($query);
-
             foreach ($resultSet as $row) {
                 $function = new MovieFunction();
                 $function->setId_function($row["id_function"]);
-                $function->setCinema($row["idCinema"]);
-                $function->setRoom($row["id_room"]);
-                $function->setMovie($row["id_movie"]);
+                // To object
+                $cinema = $this->GetCinemaById($row['idCinema']);
+                $room = $this->GetRoomByIdRoom($row['id_room']);
+                $movie = $this->GetMovieById($row['id_movie']);
+                //-----------------
+                $function->setCinema($cinema);
+                $function->setRoom($room);
+                $function->setMovie($movie);
                 $function->setFunction_time($row["function_time"]);
 
                 array_push($functionList, $function);
@@ -479,15 +454,14 @@ class CinemaDAODB
     {
 
         try {
-            $functionList = $this->GetAllMovieFunctions();
-            foreach ($functionList as $function) {
+            $function = $this->GetMovieFunctionById($id_function);
 
-                if ($function->getId_function() == $id_function) {
+                if (isset($function) && !empty($function)){
                     $query = "DELETE FROM MovieFunctions  WHERE MovieFunctions.id_function ='$id_function'";
                     $this->connection = Connection::GetInstance();
                     $this->connection->ExecuteNonQuery($query);
                 }
-            }
+            
         } catch (Exception $ex) {
             throw $ex;
         }
@@ -509,30 +483,7 @@ class CinemaDAODB
         }
     }
     //---------------------------------------------------------------------------------------------------------
-    public function GetMovieFunctionById($id_function)
-    {
-        try {
-
-            $query = "SELECT * FROM MovieFunctions WHERE MovieFunctions.id_function = '$id_function'";
-
-            $this->connection = Connection::GetInstance();
-
-            $resultSet = $this->connection->Execute($query);
-
-            foreach ($resultSet as $row) {
-                $function = new MovieFunction();
-                $function->setId_function($row["id_function"]);
-                $function->setCinema($row["idCinema"]);
-                $function->setRoom($row["id_room"]);
-                $function->setMovie($row["id_movie"]);
-                $function->setFunction_time($row["function_time"]);
-            }
-            return $function;
-        } catch (Exception $ex) {
-            throw $ex;
-        }
-    }
-    //---------------------------------------------------------------------------------------------------------
+  
 
 }
 ?>

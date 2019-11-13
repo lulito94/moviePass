@@ -6,7 +6,7 @@ use Models\Movie as Movie;
 use DAO\Connection as Connection;
 
 
-class MovieDAODB
+class MovieDAODB extends HelperDAO
 {
 
     private $moviesList = array();
@@ -16,7 +16,6 @@ class MovieDAODB
     {
 
         try {
-
             $query = "INSERT INTO " . $this->tableName . " (id_movie, popularity, title, release_date, original_language, vote_count,poster_path, vote_average, isAdult, overview)
                                              VALUES (:id_movie, :popularity, :title, :release_date, :original_language, :vote_count, :poster_path, :vote_average, :isAdult, :overview);";
 
@@ -40,12 +39,26 @@ class MovieDAODB
 
                 $query_Genre = "INSERT INTO " . "MoviesxGenres" . " (id_movie,id_genre)
                                                     VALUES (:id_movie, :id_genre)";
-                $parameters2["id_movie"] = $movie->getId();
+                $parameters2["id_movie"] = $movie->getId_movie();
                 $parameters2["id_genre"] = $values;
                 $this->connection->ExecuteNonQuery($query_Genre, $parameters2);
             }
         } catch (Exception $ex) {
             throw $ex;
+        }
+    }
+
+    public function DeleteAll()
+    {
+        try{
+            $query = "TRUNCATE TABLE Movies";
+
+            $this->connection = Connection::GetInstance();
+
+            $this->connection->Execute($query);
+        }catch(Exception $e)
+        {
+            throw $e;
         }
     }
 

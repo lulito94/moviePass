@@ -13,6 +13,7 @@ $repo = new CinemaDAODB();
 $cinemas = $repo->GetCinemaById($_SESSION['cinemaElect']);
 $repoMovie = new MovieDAODB();
 $movie = $repoMovie->getMoviebyID($_SESSION['MovieElect']);
+$function = $repo->GetMovieFunctionsByCinema($_SESSION['cinemaElect']);
 
 
 
@@ -63,7 +64,8 @@ $movie = $repoMovie->getMoviebyID($_SESSION['MovieElect']);
                          <?php
                                    foreach($function as $funct)
                                    {
-                                     if($movie->getId() == $funct->getId_movie())
+                                     $moviecheck = $funct->getMovie();
+                                     if($movie->getId_movie() == $moviecheck->getId_movie())
                                      {
                                        $dato=$funct->getFunction_time();
                                        $fecha = date('Y-m-l',strtotime($dato));
@@ -75,7 +77,7 @@ $movie = $repoMovie->getMoviebyID($_SESSION['MovieElect']);
                                              <td><?php echo $fecha; ?></td>
                                              <td><?php echo $hora; ?></td>
                                              <td> 
-                                              <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Ticket/ShowSelectVoucher'" value="<?php echo $funct->getId_function();?>"> Comprar </button>
+                                              <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Ticket/ShowSelectVoucher'" value="<?php echo $funct->getId_function();?>"> Continuar </button>
                                               </td>   
                                               </div>
                                         </tr>
