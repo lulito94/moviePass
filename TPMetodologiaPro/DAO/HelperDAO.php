@@ -1,17 +1,26 @@
 <?php
 namespace DAO;
-use DAO\CinemaDAODB as CinemaDAODB;
-use Models\Cinema as Cinema;
-use DAO\Connection as Connection;
+
+//Use's
+
 use Models\Room as Room;
 use Models\Movie as Movie;
 use Models\MovieFunction as MovieFunction;
+use Models\Cinema as Cinema;
+//---------------------------------
+use DAO\CinemaDAODB as CinemaDAODB;
 use DAO\MovieDAODB as MovieDAODB;
+use DAO\Connection as Connection;
+//---------------------------------
 use Exception;
+//---------------------------------
 
 class HelperDAO{
     private $connection;
-        //MovieFunction
+
+
+
+    //MovieFunction Functions
     public function GetAllMovieFunctions()
     {
 
@@ -42,8 +51,6 @@ class HelperDAO{
         } catch (Exception $ex) {
             throw $ex;
         }
-        
-        
     }
     //---------------------------------------------------------------------------------------------------------
     public function GetMovieById($id_movie)

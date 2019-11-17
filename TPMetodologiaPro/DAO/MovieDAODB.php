@@ -1,17 +1,20 @@
 <?php
-
 namespace DAO;
 
+//Use's 
 use Models\Movie as Movie;
+//-------------------------------
 use DAO\Connection as Connection;
+//-------------------------------
 
-
-class MovieDAODB extends HelperDAO
+class MovieDAODB extends HelperDAO implements IMovieDAODB
 {
-
     private $moviesList = array();
     private $connection;
     private $tableName = "Movies";
+
+
+    //Movie Functions
     public function Add(Movie $movie)
     {
 
@@ -47,7 +50,7 @@ class MovieDAODB extends HelperDAO
             throw $ex;
         }
     }
-
+    //--------------------------------------------------------------------
     public function DeleteAll()
     {
         try{
@@ -61,7 +64,7 @@ class MovieDAODB extends HelperDAO
             throw $e;
         }
     }
-
+    //--------------------------------------------------------------------
     public function GetToMovieName($MovieName)
     {
         try {
@@ -92,7 +95,7 @@ class MovieDAODB extends HelperDAO
             throw $ex;
         }
     }
-
+    //--------------------------------------------------------------------
     public function AddGenres()
     {
         try {
@@ -114,10 +117,7 @@ class MovieDAODB extends HelperDAO
             throw $ex;
         }
     }
-
-
-
-
+    //--------------------------------------------------------------------
     public function GetAll()
     {
         try {
@@ -152,7 +152,7 @@ class MovieDAODB extends HelperDAO
             throw $ex;
         }
     }
-
+    //--------------------------------------------------------------------
     public function getToApiGeners()
     {
         $repo = new MovieDAODB();
@@ -161,7 +161,7 @@ class MovieDAODB extends HelperDAO
 
         return $result;
     }
-    
+    //--------------------------------------------------------------------
     public function GetMovieGenres(Movie $movie)
     {
         try {
@@ -192,8 +192,7 @@ class MovieDAODB extends HelperDAO
             throw $ex;
         }
     }
-
-
+    //--------------------------------------------------------------------
     public function DeleteMovie(Movie $movie)
     {
         try {
@@ -210,7 +209,7 @@ class MovieDAODB extends HelperDAO
             throw $ex;
         }
     }
-
+    //--------------------------------------------------------------------
     public function getMoviesxCinema($idCinema)
     {
         $MovieList = array();
@@ -230,7 +229,7 @@ class MovieDAODB extends HelperDAO
             throw $ex;
         }
     }
-
+    //--------------------------------------------------------------------
     public function GetMovieById($id_movie)
     {
         $movie = null;
@@ -263,4 +262,5 @@ class MovieDAODB extends HelperDAO
             throw $ex;
         }
     }
+    //--------------------------------------------------------------------
 }

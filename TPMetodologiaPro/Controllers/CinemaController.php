@@ -1,14 +1,14 @@
 <?php
-
 namespace Controllers;
-
-// Meter las peliculas en los cines
+//Use's
 use Models\Cinema as Cinema;
+use Models\Room as Room;
+use Models\MovieFunction as MovieFunction;
+//-----------------
 use DAO\CinemaDAO as CinemaDAO;
 use DAO\CinemaDAODB as CinemaDAODB;
 use DAO\MovieDAODB as MovieDAODB;
-use Models\Room as Room;
-use Models\MovieFunction as MovieFunction;
+//-----------------
 
 class CinemaController
 {
@@ -16,6 +16,7 @@ class CinemaController
     private $CinemaDAODB;
     private $FunctionList;
     private $MovieDAODB;
+
     //Constructor
     function __construct()
     {

@@ -57,6 +57,7 @@ $function = $repo->GetMovieFunctionsByCinema($_SESSION['cinemaElect']);
                     <thead>
                           <th>Dia</th>
                          <th>Horarios</th>
+                         <th></th>
                          
                     </thead>
                     <tbody>  

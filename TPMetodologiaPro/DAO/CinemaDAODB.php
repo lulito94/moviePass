@@ -1,15 +1,19 @@
 <?php
-
 namespace DAO;
 
+//Use's
+
 use Models\Cinema as Cinema;
-use DAO\Connection as Connection;
 use Models\Room as Room;
 use Models\MovieFunction as MovieFunction;
+//----------------------------------
+use DAO\Connection as Connection;
 use DAO\MovieDAODB as MovieDAODB;
+//----------------------------------
 use Exception;
+//----------------------------------
 
-class CinemaDAODB extends HelperDAO
+class CinemaDAODB extends HelperDAO implements ICinemaDAODB
 {
 
     private $cinemasList = array();
@@ -17,7 +21,6 @@ class CinemaDAODB extends HelperDAO
     private $tableName = "Cinemas";
 
     // Cinema functions
-
     public function Add(Cinema $cinema)
     {
 
@@ -126,7 +129,7 @@ class CinemaDAODB extends HelperDAO
             throw $ex;
         }
     }
-
+    //---------------------------------------------------------------------------
     public function GetAll()
     {
         try {
@@ -483,7 +486,5 @@ class CinemaDAODB extends HelperDAO
         }
     }
     //---------------------------------------------------------------------------------------------------------
-  
-
 }
 ?>

@@ -1,14 +1,17 @@
 <?php
 namespace DAO;
-use DAO\Connection as Connection;
+//Use's
 use Models\Ticket as Ticket;
 use Models\Purchase as Purchase;
+//--------------------------------
+use DAO\Connection as Connection;
+//--------------------------------
 
-class TicketDAO extends HelperDAO
+class TicketDAO extends HelperDAO implements ITicketDAODB
 {
     private $connection;
 
-
+    //Ticket Functions
     public function AddTicket($cant)
     {
        
@@ -25,6 +28,7 @@ class TicketDAO extends HelperDAO
             throw $ex;
         }
     }
+    //--------------------------------------------------------------------
     
 }
 ?>

@@ -96,6 +96,24 @@ create table if not exists MovieFunctions(
     constraint fk_movieFunction_room foreign key (id_room) references Rooms (id_room) on delete cascade, #se borra la func si se borra la sala
     constraint fk_movieFunction_movie foreign key (id_movie) references Movies (id_movie) 
 );
-truncate table Movies;
-select *
-from Movies;
+
+create table Tickets (
+	id_ticket integer auto_increment not null,
+    id_function int,
+    cant_locations int not null,
+    
+    constraint pk_ticket primary key (id_ticket),
+    constraint fk_ticket_function foreign key (id_function) references MovieFunctions(id_function)
+);
+
+create table Purchases (
+	id_purchase int not null auto_increment,
+    idUser int,
+    id_ticket int,
+    amount float,
+    purchase_time Datetime,
+    
+    constraint pk_purchase primary key (id_purchase),
+    constraint fk_purchase_user foreign key (idUser) references Users(idUser),
+    constraint fk_purchase_ticket foreign key (id_ticket) references Tickets(id_ticket)
+);

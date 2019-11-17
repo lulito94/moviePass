@@ -6,6 +6,5 @@ interface IUserDAO
     function Add(User $newUser);
     function Delete($username);
     function GetAll();
-
 }
 ?>

@@ -36,7 +36,7 @@ require_once ('validate-session-admin.php');
                    <div class="form-group">
                         <?php // Si sobra tiempo mejorar tipo de dato de los horarios ?>
                        <label for=""> Capacidad </label>
-                            <input type="number" name="capacity" class="form-control form-control-lg" placeholder="Capacidad"required>
+                            <input type="number" name="capacity" class="form-control form-control-lg"  max=1000 placeholder="Capacidad"required>
                        </div>
                    <div class="form-group">
                         <label for="">Valor de ticket</label>
