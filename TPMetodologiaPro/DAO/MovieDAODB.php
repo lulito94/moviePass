@@ -51,20 +51,7 @@ class MovieDAODB extends HelperDAO implements IMovieDAODB
         }
     }
     //--------------------------------------------------------------------
-    public function DeleteAll()
-    {
-        try{
-            $query = "TRUNCATE TABLE Movies";
-
-            $this->connection = Connection::GetInstance();
-
-            $this->connection->Execute($query);
-        }catch(Exception $e)
-        {
-            throw $e;
-        }
-    }
-    //--------------------------------------------------------------------
+   
     public function GetToMovieName($MovieName)
     {
         try {
@@ -96,6 +83,22 @@ class MovieDAODB extends HelperDAO implements IMovieDAODB
         }
     }
     //--------------------------------------------------------------------
+    public function getGenrexId($id_genre)
+    {
+        try {
+
+            $query = "SELECT * FROM Genres WHERE Genres.id_genre = '$id_genre'";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            return $resultSet;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+    //--------------------------------------------------------------------
     public function AddGenres()
     {
         try {
@@ -103,7 +106,9 @@ class MovieDAODB extends HelperDAO implements IMovieDAODB
 
             foreach ($array as $fatherArray) {
                 foreach ($fatherArray as $sunArray) {
-
+                    $genreCheck = $this->getGenrexId($sunArray['id']);
+                    if(!isset($genreCheck) && empty($genreCheck))
+                    {
                     $query = "INSERT INTO " . "Genres" . " (id_genre,name)
             VALUES (:id_genre, :name)";
 
@@ -111,6 +116,7 @@ class MovieDAODB extends HelperDAO implements IMovieDAODB
                     $parameters["name"] = $sunArray['name'];
                     $this->connection = Connection::GetInstance();
                     $this->connection->ExecuteNonQuery($query, $parameters);
+                    }
                 }
             }
         } catch (Exception $ex) {

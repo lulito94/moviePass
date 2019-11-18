@@ -35,7 +35,7 @@ class MovieController
     {
         $moviesJS = new MovieDAO();
         $movieList = $moviesJS->GetAll();
-
+        
         foreach ($movieList as $valuesArray) {
             //set new movie
 
@@ -51,11 +51,16 @@ class MovieController
             $movie->setOverview($valuesArray->getOverview());
             $movie->setGenre_ids($valuesArray->getGenre_ids());
 
+            $moviecheck = $this->MovieDAODB->GetMovieById($movie->getId_movie());
+            if(!isset($moviecheck) && empty($moviecheck))
+            {
             $this->MovieDAODB->Add($movie);
+            }
         }
         echo "<script>alert('Peliculas Cargadas en BD');</script>";
         
         $this->ShowAdminMenu();
+        
     }
     //-----------------------------------------------------
     public function GetToApiGenres()
