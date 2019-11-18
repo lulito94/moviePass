@@ -7,7 +7,7 @@
     use DAO\UserDAODB as UserDAODB;
     use DAO\CinemaDAODB as CinemaDAODB;
     //------------------------
-    
+
     class UserController
     {
         //private $userDAO; js

@@ -116,7 +116,7 @@ class CinemaDAODB extends HelperDAO implements ICinemaDAODB
                 $cinema->setTicketValue($row["ticketValue"]);
                 
                 
-                $RoomsList = $this->GetRoomById($cinema->getIdCinema());
+                $RoomsList = $this->GetRoomsByCinema($cinema->getIdCinema());
                 if(isset($RoomList))
                 {
                 foreach ($RoomsList as $room) {

@@ -7,6 +7,9 @@ use DAO\MovieDAO as MovieDAO;
 use DAO\MovieDAODB as MovieDAODB;
 //-----------
 
+    //Protect Controller
+require_once(VIEWS_PATH."ValidateControllers.php");
+
 class MovieController
 {
     //private $CinemaDAO; js
@@ -63,5 +66,9 @@ class MovieController
         $this->ShowAdminMenu();
     }
     //-----------------------------------------------------
+    public function showMovies()
+    {
+        require_once(VIEWS_PATH."ListMovies.php");
+    }
 
 }

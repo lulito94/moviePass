@@ -10,6 +10,9 @@ use DAO\CinemaDAODB as CinemaDAODB;
 use DAO\MovieDAODB as MovieDAODB;
 //-----------------
 
+    //Protect Controller
+require_once(VIEWS_PATH."ValidateControllers.php");
+
 class CinemaController
 {
     //private $CinemaDAO; js

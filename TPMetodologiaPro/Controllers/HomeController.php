@@ -22,6 +22,17 @@
             require_once(VIEWS_PATH."Admin-menu.php");
         }
         //------------------------------
+        public function LogoutAdmin()
+        {
+            unset($_SESSION['loggedadmin']);
+            $this->Index();
+        }
+        //------------------------------
+        public function LogoutUser()
+        {
+            unset($_SESSION['loggeduser']);
+            $this->Index();
+        }
 
         //Borrar-----
         public function showLobby()

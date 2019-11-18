@@ -7,7 +7,8 @@ use Models\Ticket as Ticket;
 use DAO\TicketDAO as TicketDAO;
 //-------------------------------
 
-
+    //Protect Controller
+require_once(VIEWS_PATH."ValidateControllers.php");
 
 class TicketController{
     private $TicketDAO;

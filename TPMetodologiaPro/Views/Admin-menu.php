@@ -10,6 +10,7 @@
       <ul>
         <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Pagina inicial</a></li>
         <li><a href="<?php echo FRONT_ROOT ?>Home/ShowAdminLobby">Menu del Administrador</a></li>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/LogoutAdmin">Logout</a></li>
       </ul>
     </div>
   </div>
@@ -44,6 +45,7 @@
                              <td>
                                  <ul class="home-sidelinks">
                                     <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowFunctions">Listar Funciones</a></li>
+                                    <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Movie/ShowMovies">Listar Peliculas</a></li>
                                     <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowRoomFunctions">Opciones de Salas</a></li>
                                 </ul>     
                             </td>                            
