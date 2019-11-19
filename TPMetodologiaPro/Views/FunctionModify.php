@@ -8,7 +8,7 @@ require_once ('validate-session-admin.php');
 
 
 ?><!-- ################################################################################################ -->
-<div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
+<div class="wrapper row2 bgded" >
     <div class="overlay">
         <div id="breadcrumb" class="clear">
             <ul class="pagination">
@@ -21,7 +21,7 @@ require_once ('validate-session-admin.php');
 <!-- ################################################################################################ -->
 <main class="d-flex align-items-center justify-content-center height-100" >
     <div class="content">
-        <header class="text-center">
+        <header class="text-center text-white">
             <h2>Modificar Horario funcion</h2>
         </header>
 

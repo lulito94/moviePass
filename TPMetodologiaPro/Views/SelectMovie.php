@@ -12,7 +12,7 @@ $movieList = $movierepo->GetAll();
 ?>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
+<div class="wrapper row2 bgded" >
      <div class="overlay">
           <div id="breadcrumb" class="clear">
                <ul class="pagination">
@@ -24,16 +24,17 @@ $movieList = $movierepo->GetAll();
 </div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<main class="d-flex align-items-center justify-content-center height-100">
-     <div class="content">
-          <header class="text-center">
-               <h2>Seleccionar Pelicula</h2>
-          </header>
+<main class="py-5">
+<section id="listado" class="mb-5">
+<div class="container">
+<header class="text-left text-white">
+                    <h2>Seleccionar Pelicula</h2>
+               </header>
           <form action="" method="post">
                <table class="table bg-light-alpha">
                     <thead>
-                         <th>Afiche</th>
-                         <th>Descripcion</th>
+                    <th style="width:20%">Afiche</th>
+                              <th style="width:80%">Descripcion</th>
 
 
 
@@ -47,9 +48,9 @@ $movieList = $movierepo->GetAll();
                                         <tr>
                                              <div>
 
-                                                  <td><img class="" src="https://image.tmdb.org/t/p/w300<?php echo $movie->getPoster_path() ?>" alt="<?php echo $movie->getTitle(); ?>" width="100" height="100"> <br>
+                                                  <td style="width:20%"><img class="" src="https://image.tmdb.org/t/p/w300<?php echo $movie->getPoster_path() ?>" alt="<?php echo $movie->getTitle(); ?>" width="100" height="100"> <br>
                                                        <button type="submit" name="remove" class="btn btn-danger" onclick="this.form.action = '<?php echo FRONT_ROOT; ?>Cinema/AddMovie'" value="<?php echo $movie->getId_movie(); ?>"> Seleccionar </button></td>
-                                                  <td>
+                                                  <td style="width:80%">
                                                        <ul>
 
                                                             <li><em> Titulo : </em> <?php echo $movie->getTitle(); ?></li>
@@ -86,4 +87,5 @@ $movieList = $movierepo->GetAll();
                </table>
           </form>
      </div>
+</section>
 </main>

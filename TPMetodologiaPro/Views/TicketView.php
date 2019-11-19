@@ -27,7 +27,7 @@ foreach($roomList as $roomSearch)
     }
 }
 ?>
-<div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
+<div class="wrapper row2 bgded">
   <div class="overlay">
     <div id="breadcrumb" class="clear"> 
       <ul class="pagination">
@@ -41,7 +41,7 @@ foreach($roomList as $roomSearch)
      
  <section id="listado" class="mb-5">
       <div class="container">
-           <h2 class="mb-4"style="color:#FF0000"> Ticket</h2>
+           <h2 class="mb-4 text-white"> Ticket</h2>
            <table class="table bg-light-alpha">
                 <thead>
                      <th>Datos Personales</th>
