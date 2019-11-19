@@ -40,7 +40,7 @@ class CinemaController
     //--------------------------------------------------------------------------------------
     public function ShowUserMenu($idCinema){
         $_SESSION['cinemaElect']=$idCinema;
-        require_once(VIEWS_PATH . "User-menu.php");
+        require_once(VIEWS_PATH . "User-ToPurchase.php");
         
     }
     //--------------------------------------------------------------------------------------
