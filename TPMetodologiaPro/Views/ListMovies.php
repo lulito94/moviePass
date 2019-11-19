@@ -24,16 +24,17 @@ $movieList = $movierepo->GetAll();
 </div>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<main class="d-flex align-items-center justify-content-center height-100">
-     <div class="content">
-          <header class="text-center">
+<main class="py-5"> 
+     <section id="listado" class="mb-5">
+          <div class="container">
+          <header class="text-left text-white">
                <h2>Lista de Peliculas</h2>
           </header>
           <form action="" method="post">
                <table class="table bg-light-alpha">
                     <thead>
-                         <th>Afiche</th>
-                         <th>Descripcion</th>
+                         <th style="width:20%">Afiche</th>
+                         <th style="width:80%">Descripcion</th>
 
 
 
@@ -47,8 +48,8 @@ $movieList = $movierepo->GetAll();
                                         <tr>
                                              <div>
 
-                                                  <td><img class="" src="https://image.tmdb.org/t/p/w300<?php echo $movie->getPoster_path() ?>" alt="<?php echo $movie->getTitle(); ?>" width="100" height="100"> <br>
-                                                  <td>
+                                                  <td style="width:20%"><img class="" src="https://image.tmdb.org/t/p/w300<?php echo $movie->getPoster_path() ?>" alt="<?php echo $movie->getTitle(); ?>" width="50" height="50"> <br>
+                                                  <td style="width:80%">
                                                        <ul>
                                                             <li><em> Titulo : </em> <?php echo $movie->getTitle(); ?></li>
                                                             <li><em> Idioma Original : </em> <?php echo $movie->getOriginal_language() ?></li>
@@ -87,4 +88,5 @@ $movieList = $movierepo->GetAll();
                </table>
           </form>
      </div>
+     </section>
 </main>

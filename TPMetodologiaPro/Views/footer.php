@@ -1,10 +1,12 @@
+<div class="wrapper row4">
 
+</div>
 
 <!-- JAVASCRIPTS -->
 <script src="../layout/scripts/jquery.min.js"></script> 
 <script src="../layout/scripts/jquery.mobilemenu.js"></script>
 </body>
-
+<div class="wrapper row">
     
         <footer id="footer" class="clear">
         <div id="copyright" class="clear" align="center">
@@ -12,6 +14,6 @@
 
         </div>
         </footer>
-    
+</div>
 
 </html>

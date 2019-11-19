@@ -118,6 +118,19 @@ File: Layout CSS
 #cta article .heading{margin-bottom:20px; padding:20px 10px 0 0; font-size:18px;}
 
 
+
+.bx-pager {
+	position: absolute;
+	bottom: 20px;
+	bottom:40px ;/* hack ie7 */
+	right: 220px;
+	top: 160px;
+	padding-top: 7px;
+	font-size:11px;
+	color:#666;
+	text-align:center;
+}
+
 /* Footer
 --------------------------------------------------------------------------------------------------------------- */
 #footer{padding:50px 0;}
@@ -250,7 +263,13 @@ td{border-width:0 1px;}
 
 /* Colours
 --------------------------------------------------------------------------------------------------------------- */
-body{color:#888888; background-color:#111111;}
+body {
+	background-image: url(fondo.jpg);
+		 background-position: center center;	  
+		 background-repeat: no-repeat;
+	   background-attachment: fixed;
+	   background-size: cover;
+   }
 
 a{color:#8ABA56;}
 
@@ -331,6 +350,22 @@ tr, #comments li, #comments input[type="submit"], #comments input[type="reset"]{
 tr:nth-child(even), #comments li:nth-child(even){color:inherit; background-color:#F7F7F7;}
 table a, #comments a{background-color:inherit;}
 
+.flex {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.flex-child {
+    -webkit-box-flex: 1 1 auto;
+    -moz-box-flex:  1 1 auto;
+    -webkit-flex:  1 1 auto;
+    -ms-flex:  1 1 auto;
+    flex:  1 1 auto;
+    margin-right:5px;
+}
 
 /* ------------------------------------------------------------------------------------------------------------ */
 /* ------------------------------------------------------------------------------------------------------------ */

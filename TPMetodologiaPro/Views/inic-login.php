@@ -5,11 +5,12 @@ include('nav-bar.php');
 ?>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
+
 <div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
   <div class="overlay">
     
       <ul class="pagination">
-        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome" rel="nofollow" class="button"> <em> << Home</em></a></li>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome" > <em> Home</em></a></li>
        
       </ul>
     
@@ -21,9 +22,9 @@ include('nav-bar.php');
 
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<main class="d-flex align-items-center justify-content-center height-100">
+<main class="d-flex align-items-left justify-content-left height-100">
   <div class="content">
-    <header class="text-center">
+    <header class="text-center text-white">
       <h2 >Login</h2>
     </header>
 

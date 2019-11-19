@@ -16,7 +16,7 @@ require_once('validate-session-admin.php');
   </div>
 </div>
 <!-- ################################################################################################ -->
-<div class="wrapper row4">
+<div class="wrapper row4" style="background-color:transparent">
   <main class="container clear">
     <div class="content">
       <div id="comments">
@@ -29,9 +29,12 @@ require_once('validate-session-admin.php');
             <th> Perfiles </th>
             <th> Actualizacion de Peliculas </th>
 
+
+
+
           </thead>
           <tbody>
-            <form action="" method="post" class="login-form bg-dark-alpha p-5 text-white">
+            <form action="" method="post" class="login-form bg-light-alpha p-5 text-white">
 
               <tr>
                 <div>

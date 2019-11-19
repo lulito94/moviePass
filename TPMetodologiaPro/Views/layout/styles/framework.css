@@ -54,6 +54,7 @@ label{margin-bottom:5px;}
 
 /* Generalise
 --------------------------------------------------------------------------------------------------------------- */
+h2{ color: whitesmoke;}
 h1, h2, h3, h4, h5, h6, .heading{margin:0 0 20px 0; font-size:22px; line-height:normal; text-transform:uppercase; font-weight:bold;}
 
 address{font-style:normal; font-weight:normal;}
