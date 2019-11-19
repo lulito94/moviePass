@@ -6,16 +6,12 @@
 <!-- ################################################################################################ -->
 
 
-
-
 <div style="float: right; display: flex; justify-content: center;">
 <a href="<?php echo FRONT_ROOT?>User/ShowLogin" rel="nofollow" class="button" ><img src="https://www.cinemarkhoyts.com.ar/images/res/user-outline.png"> </img></a>';
 
 <a href="#" rel="nofollow" class="fblogin-button" onClick="javascript:CallAfterLogin();return false;"><img src="https://www.cinemacenter.com.ar/images/icon-facebook-likebox.png"> </img></a>';
 
 </div>
-
-
 
 
 
@@ -57,7 +53,7 @@ foreach($list as $movieList)
         <div class="col-sm-8 col-sm-offset-2">
             <div class="carousel-inner">
                 <div class="item active">
-                    <img class="d-block w-100" src="https://image.tmdb.org/t/p/w300<?php echo $peli1[1]->getPoster_path() ?>" alt="<?php echo $peli1[1]->getTitle();?>" width="300" height="200">
+                    <img class="d-block w-100" src="https://image.tmdb.org/t/p/w300<?php echo $peli1[1]->getPoster_path() ?>" alt="<?php echo $peli1[1]->getTitle();?>" width="200" height="100">
 
                 </div>
                 <?php
@@ -66,7 +62,7 @@ foreach($list as $movieList)
                     ?>
                     <div class="item">
 
-                        <img class="d-block w-100" src="https://image.tmdb.org/t/p/w300<?php echo $movieList->getPoster_path() ?>" alt="<?php echo $movieList->getTitle();?>" width="300" height="350">
+                        <img class="d-block w-100" src="https://image.tmdb.org/t/p/w300<?php echo $movieList->getPoster_path() ?>" alt="<?php echo $movieList->getTitle();?>" width="200" height="100">
                     </div>
 
 
@@ -90,13 +86,6 @@ foreach($list as $movieList)
 </div>>
 
 
-</body>
-</html>
-
-
-<!-- ################################################################################################ -->
-
-<!-- ################################################################################################ -->
 
 <?php 
   include('footer.php');

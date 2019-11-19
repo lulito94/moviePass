@@ -1,6 +1,3 @@
-<div class="wrapper row4">
-
-</div>
 
 <!-- JAVASCRIPTS -->
 <script src="../layout/scripts/jquery.min.js"></script> 

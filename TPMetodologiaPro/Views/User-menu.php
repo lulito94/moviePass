@@ -36,8 +36,8 @@ $MovieList = $repoMovies->getMoviesxCinema($cinemaElect);
 ?>
 
 <!-- ################################################################################################ -->
-<div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
-  <div class="overlay">
+
+ 
     <div id="breadcrumb" class="clear">
       <ul>
         <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Pagina inicial</a></li>
@@ -45,11 +45,10 @@ $MovieList = $repoMovies->getMoviesxCinema($cinemaElect);
         <li><a href="<?php echo FRONT_ROOT ?>Home/LogoutUser">Logout</a></li>
       </ul>
     </div>
-  </div>
-</div>
+
 <!-- ################################################################################################ -->
 
-<div class="wrapper row4" style="">
+
   <main class="container clear">
     <div class="content">
       <div id="comments">
@@ -102,7 +101,7 @@ $MovieList = $repoMovies->getMoviesxCinema($cinemaElect);
       </div>
     </div>
   </main>
-</div>
+
 <!-- ################################################################################################ -->
 
 <?php

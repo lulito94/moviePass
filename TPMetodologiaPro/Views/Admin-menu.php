@@ -16,13 +16,13 @@
   </div>
 </div>
 <!-- ################################################################################################ -->
-<div class="wrapper row4" style="">
+
 <main class="container clear"> 
     <div class="content"> 
       <div id="comments" >
         <h2 class="mb-4">Cinema</h2>
   
-               <table class="table bg-light-alpha">
+               <table class="table bg-light-alpha" >
                     <thead>
                           <th> Opciones de Cine </th>
                           <th> Opciones de Sala y Funciones</th>
@@ -31,7 +31,7 @@
                          
                     </thead>
                     <tbody>  
-                    <form action="" method="post"  style="background-color: #EAEDED;padding: 2rem !important;">              
+                    <form action="" method="post"  class="login-form bg-dark-alpha p-5 text-white">              
                          
                        <tr> 
                         <div>
@@ -69,9 +69,9 @@
              </table>
         
       </div>
-    </div>
+      </div>
   </main>
-</div>
+
 <!-- ################################################################################################ -->
 
 <?php 
