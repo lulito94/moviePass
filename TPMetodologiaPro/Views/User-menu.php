@@ -16,7 +16,7 @@
     </div>
 
 <!-- ################################################################################################ -->
-<div class="wrapper row4" >
+
 <main class="container clear"> 
     <div class="content"> 
       <div id="comments" >
@@ -29,7 +29,7 @@
                          
                     </thead>
                     <tbody>  
-                    <form action="" method="post"  style="background-color: #EAEDED;padding: 2rem !important;">              
+                    <form action="" method="post"   class="login-form bg-dark-alpha p-5 text-white">              
                          
                        <tr> 
                         <div>

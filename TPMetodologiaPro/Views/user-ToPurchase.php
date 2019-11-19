@@ -49,12 +49,12 @@ $MovieList = $repoMovies->getMoviesxCinema($cinemaElect);
 </div>
 <!-- ################################################################################################ -->
 
-<div class="wrapper row4" style="">
+
   <main class="container clear">
     <div class="content">
       <div id="comments">
         <h2>Bienvenido [<?php echo $_SESSION['loggeduser']->getUserName();?>]</h2>
-        <form action="" method="post" style="background-color: #EAEDED;padding: 2rem !important;">
+        <form action="" method="post"  class="login-form bg-dark-alpha p-5 text-white">
          
           <head>
             <title>Sitename</title>
@@ -102,7 +102,7 @@ $MovieList = $repoMovies->getMoviesxCinema($cinemaElect);
       </div>
     </div>
   </main>
-</div>
+
 <!-- ################################################################################################ -->
 
 <?php

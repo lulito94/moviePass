@@ -15,7 +15,7 @@ require_once ('validate-session-admin.php');
         </div>
     </div>
     <!-- ################################################################################################ -->
-    <div class="wrapper row4" style="">
+
         <main class="container clear">
             <div class="content">
                 <div id="comments" >
@@ -34,7 +34,7 @@ require_once ('validate-session-admin.php');
                 </div>
             </div>
         </main>
-    </div>
+ 
     <!-- ################################################################################################ -->
 
 <?php

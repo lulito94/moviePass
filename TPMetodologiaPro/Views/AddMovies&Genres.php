@@ -16,7 +16,7 @@
 </div>
  <main class="py-5">
  
-<div class="wrapper row4" style="">
+
 <main class="container clear"> 
     <div class="content"> 
       <div id="comments" >
@@ -34,7 +34,7 @@
       </div>
     </div>
   </main>
-</div>
+
 <!-- ################################################################################################ -->
 
 <?php 
