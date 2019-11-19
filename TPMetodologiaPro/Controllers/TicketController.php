@@ -98,6 +98,15 @@ class TicketController{
         $this->ShowPayTicket();
     }
     //---------------------------------------------------
+    public function userViewGenre($id_genre)
+    {
+        $_SESSION['id_genre'] = $id_genre;
+        require_once(VIEWS_PATH."UserViewMoviesxGenres.php");
+    }
+    public function SendEmail()
+    {
+        mail("pepito@desarrolloweb.com,maria@guiartemultimedia.com","asuntillo","Este es el cuerpo del mensaje") 
+    }
     
 
 }
