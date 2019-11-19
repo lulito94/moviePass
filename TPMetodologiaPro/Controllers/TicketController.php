@@ -3,9 +3,11 @@ namespace Controllers;
 
 //Use's
 use Models\Ticket as Ticket;
+use Models\User as User;
 //-------------------------------
 use DAO\TicketDAO as TicketDAO;
 //-------------------------------
+use DAO\CinemaDAODB as CinemaDAODB;
 
     //Protect Controller
 require_once(VIEWS_PATH."ValidateControllers.php");
@@ -40,6 +42,18 @@ class TicketController{
     //---------------------------------------------------
     public function BuyTicket()
     {
+        $repo = new CinemaDAODB();
+       $cinema = $repo->GetCinemaById($_SESSION['cinemaElect']);
+        $amount = ($_SESSION['cant'] * $cinema->getTicketValue());
+        $ticketList = $this->TicketDAO->getAllTickets();
+        foreach($ticketList as $ticket)
+        {
+            $id_last = $ticket->getId_ticket();
+        }
+        $user = new User();
+        $user = $_SESSION['loggeduser'];
+        $this->TicketDAO->AddPurchase($user->getId_user(),$id_last,$amount);
+        echo "<script>alert('Compra realizada con exito!');</script>";
         require_once(VIEWS_PATH."TicketView.php");
     }
     //---------------------------------------------------

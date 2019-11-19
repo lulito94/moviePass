@@ -60,6 +60,7 @@ class UserDAODB implements IUserDAODB {
                 $user->setSurname($row["surname"]);
                 $user->setDni($row["dni"]);
                 $user->setEmail($row["email"]);
+                $user->setId_user($row['idUser']);
                 $user->setUserName($row["userName"]);
                 $user->setPassword($row["password"]);
                 
