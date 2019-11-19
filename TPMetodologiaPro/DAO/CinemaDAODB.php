@@ -444,7 +444,21 @@ class CinemaDAODB extends HelperDAO implements ICinemaDAODB
                 $function->setMovie($movie);
                 $function->setFunction_time($row["function_time"]);
 
-                array_push($functionList, $function);
+                $dato = $function->getFunction_time();
+                $fecha = date('m',strtotime($dato));
+                $now = date('m');
+
+
+                if($fecha < $now){
+                    $this->DeleteMovieFunction($function->getId_function());
+
+                }else {
+                    array_push($functionList, $function);
+
+                }
+
+
+
             }
             
             return $functionList;
