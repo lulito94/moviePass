@@ -8,7 +8,7 @@ include('nav-bar.php');
 <div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
   <div class="overlay">
     <div id="breadcrumb" class="clear"> 
-      <ul>
+      <ul class="pagination">
         <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Home</a></li>
       </ul>
     </div>

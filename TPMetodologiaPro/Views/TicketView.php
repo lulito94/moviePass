@@ -4,13 +4,20 @@
  require_once ('validate-session.php');
  use DAO\CinemaDAODB as CinemaDAODB;
  use DAO\MovieDAODB as MovieDAODB;
+ use DAO\TicketDAO as TicketDAO;
  $user = $_SESSION['loggeduser'];
  $repoCinema = new CinemaDAODB();
  $repoMovie = new MovieDAODB();
+ $repoTicket = new TicketDAO();
 $cinema = $repoCinema->GetCinemaById($_SESSION['cinemaElect']);
 $function = $repoCinema->GetMovieFunctionById($_SESSION['functId']);
 $movie = $repoMovie->GetMovieById($_SESSION['MovieElect']);
 $roomList = $repoCinema->GetAllRooms();
+$ticketList = $repoTicket->GetAllTickets();
+foreach ($ticketList as $ticket)
+{
+     $imprimir = $ticket;
+}
 foreach($roomList as $roomSearch)
 {
      $roomCheck = $function->getRoom();
@@ -23,7 +30,7 @@ foreach($roomList as $roomSearch)
 <div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
   <div class="overlay">
     <div id="breadcrumb" class="clear"> 
-      <ul>
+      <ul class="pagination">
         <li><a href="<?php echo FRONT_ROOT ;?>Home/ShowHome">Pagina inicial</a></li>
         <li><a href="<?php echo FRONT_ROOT ;?>Home/ShowUserLobby">Menu del Usuario</a></li>
       </ul>
@@ -62,7 +69,13 @@ foreach($roomList as $roomSearch)
                                          <td> <?php echo $function->getFunction_time() ;?></td>
                                          <td> <?php echo $movie->getTitle();?></td>
                                          <td> <?php echo $_SESSION['cant'];?></td>
-                                         <td> <?php echo "$".($_SESSION['cant'] * $cinema->getTicketValue());?></td>
+                                         <?php 
+                                         if(!isset($_SESSION['newPrice']))
+                                         {
+                                         ?><td> <?php echo "$".($_SESSION['cant'] * $cinema->getTicketValue());?></td><?php
+                                         }else{
+                                             ?><td> <?php echo "$".$_SESSION['newPrice'];?></td><?php
+                                         } ?>
                                          <td></td>
                                     </tr>
                                    
@@ -70,8 +83,8 @@ foreach($roomList as $roomSearch)
            </table>
            <div>
            <form action="">
-           <button>Generar Ticket</button>
-           <button type="submit" name="qr" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Ticket/Qr'" value=""> Generar Codigo Qr </button>
+           <button>Enviar por email el comprobante e imprimir</button>
+           <a href="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?php echo $imprimir->getId_Ticket(); ?>"> Generar Codigo Qr </a>
            </form>
            </div>
       </div>

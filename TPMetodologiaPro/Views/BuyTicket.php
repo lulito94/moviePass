@@ -13,7 +13,7 @@ $cinema = $repo->GetCinemaById($_SESSION['cinemaElect']);
 <div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
   <div class="overlay">
     <div id="breadcrumb" class="clear">
-      <ul>
+      <ul class="pagination">
         <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Pagina inicial</a></li>
         <li><a href="<?php echo FRONT_ROOT ?>Home/ShowUserLobby">Menu del Usuario</a></li>
       </ul>
@@ -27,7 +27,18 @@ $cinema = $repo->GetCinemaById($_SESSION['cinemaElect']);
                <header class="text-center">
                     <h2>FINALIZA TU OPERACIÓN</h2>
                </header>
+               <?php 
+               $now = date('l');
+               if(($_SESSION['cant'] > 2)  && ($now = 'Tuesday') || ($now == 'Wednesday '))
+               {
+                    $newPrice= ($_SESSION['cant'] * $cinema->getTicketValue()) * 0.75;
+                    $_SESSION['newPrice'] = $newPrice;
+                    ?><p>El costo Total c/descuento del 25% es de: $<?php echo $newPrice;?></p><?php
+               }else
+               {
+               ?>
                <p>El costo Total es de: $<?php echo ($_SESSION['cant']*$cinema->getTicketValue());?></p>
+               <?php  } ?>
               <form action="<?php echo FRONT_ROOT;?>Ticket/BuyTicket" method="post" class="login-form bg-dark-alpha p-5 text-white">
                    <div class="form-group">
                    <select name="card" id="">

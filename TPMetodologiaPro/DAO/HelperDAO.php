@@ -45,7 +45,11 @@ class HelperDAO{
                 $function->setMovie($movie);
                 $function->setFunction_time($row["function_time"]);
 
-                array_push($functionList, $function);
+
+
+                    array_push($functionList, $function);
+
+
             }
             return $functionList;
         } catch (Exception $ex) {
@@ -111,7 +115,22 @@ class HelperDAO{
                 $function->setMovie($movie);
                 $function->setFunction_time($row["function_time"]);
 
-                array_push($functionList, $function);
+                //Delete old Functions
+                $dato = $function->getFunction_time();
+                $fecha = date('m',strtotime($dato));
+                $dia = date('d',strtotime($dato));
+                $now = date('m');
+
+
+                if($fecha < $now && $dia < 15){
+
+                    $this->DeleteMovieFunction($function->getId_function());
+
+
+                }else {
+                    array_push($functionList, $function);
+
+                }
             }
             
             return $functionList;
@@ -123,7 +142,7 @@ class HelperDAO{
     public function GetMovieFunctionById($id_function)
     {
         try {
-
+            $function = null;
             $query = "SELECT * FROM MovieFunctions WHERE MovieFunctions.id_function = '$id_function'";
 
             $this->connection = Connection::GetInstance();
@@ -252,6 +271,25 @@ class HelperDAO{
         }
     }
     //--------------------------------------------------------------------------------------------------------
+
+    public function DeleteMovieFunction($id_function)
+    {
+
+        try {
+            $function = $this->GetMovieFunctionById($id_function);
+
+            if (isset($function) && !empty($function)){
+                $query = "DELETE FROM MovieFunctions  WHERE MovieFunctions.id_function ='$id_function'";
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($query);
+            }
+
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+
+
 
 }
 

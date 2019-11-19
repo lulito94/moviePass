@@ -6,6 +6,7 @@ define("FRONT_ROOT","/tpFinal/moviePass/TPMetodologiaPro/");
 define("VIEWS_PATH", "Views/");
 define("API_KEY", "c65889a54974a405a970caef706f7005");
 define("CSS_PATH", FRONT_ROOT.VIEWS_PATH . "layout/styles/");
+define("BOOS_PATH", FRONT_ROOT.VIEWS_PATH . "layout/css/");
 define("JS_PATH", FRONT_ROOT.VIEWS_PATH . "js/");
 define("IMG_PATH", VIEWS_PATH . "img/");
 

@@ -3,8 +3,12 @@
  include('nav-bar.php');
  require_once ('validate-session.php');
 
+ //use's
+use DAO\TicketDAO as TicketDAO;
 
-
+$repo = new TicketDAO();
+$list = $repo->GetTicketsByUser($_SESSION['loggeduser']->getId_user());
+$ticket
 ?>
 <div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
   <div class="overlay">
@@ -20,35 +24,32 @@
      
  <section id="listado" class="mb-5">
       <div class="container">
-           <h2 class="mb-4"style="color:#FF0000"> User Info</h2>
+           <h2 class="mb-4"style="color:#FF0000">Entradas adquiridas por <?php echo $_SESSION['loggeduser']->getUserName();?> </h2>
            <table class="table bg-light-alpha">
                 <thead>
-                     <th>Nombre</th>
-                     <th>Apellido</th>
-                     <th>Username</th>
-                     <th>password</th>
-                     <th>email</th>
-                     <th>dni</th>
-                     <th>sex</th>
+                     <th>Id Ticket</th>
+                     <th>Id Compra</th>
+                     <th>Locaciones</th>
+                     <th>Monto</th>
+                     
                 </thead>
                 <tbody>  
                      <?php
-                     $user = $_SESSION['loggeduser'];
-                               if(isset($user))
+                               if(isset($list))
                                {
+                                foreach ($list as $row) {
 
                      ?>
                                     <tr> 
-                                         <td><p><?php echo $user->getName(); ?></p></td>
-                                         <td><p><?php echo $user->getSurname(); ?></p></td>
-                                         <td><p><?php echo $user->getUserName(); ?></p></td>
-                                         <td><p><?php echo $user->getPassword(); ?></p></td>
-                                         <td><p><?php echo $user->getEmail(); ?></p></td>
-                                         <td><p><?php echo $user->getDni(); ?></p></td>
-                                         <td><p><?php echo $user->getSex(); ?></p></td>
+                                         <td><p><?php echo $row["id_ticket"] ?></p></td>
+                                         <td><p><?php echo $row["id_purchase"] ?></p></td>
+                                         <td><p><?php echo $row["cant_locations"] ?></p></td>
+                                         <td><p><?php echo $row["amount"] ?></p></td>
+
                                     </tr>
                                     <?php
                                }
+                            }
                                     ?>
                 </tbody>
            </table>

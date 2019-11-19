@@ -29,6 +29,66 @@ class TicketDAO extends HelperDAO implements ITicketDAODB
         }
     }
     //--------------------------------------------------------------------
+    public function AddPurchase($idUser,$idTicket,$amount)
+    {
+        try {
+            $query = "INSERT INTO Purchases (idUser, id_ticket, amount) VALUES (:idUser, :id_ticket, :amount);";
+
+            $parameters["idUser"] = $idUser;
+            $parameters["id_ticket"] = $idTicket;
+            $parameters["amount"] = $amount;
+
+            $this->connection = Connection::GetInstance();
+
+            $this->connection->ExecuteNonQuery($query, $parameters);
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+    //--------------------------------------------------------------------
+    public function GetAllTickets()
+    {
+        try {
+            $TicketList = array();
+            $query = "SELECT * FROM Tickets";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            foreach ($resultSet as $row) {
+                $ticket = new Ticket();
+                $ticket->setId_ticket($row["id_ticket"]);
+                $ticket->setCant_locations($row["cant_locations"]);
+                $function = $this->GetMovieFunctionById($row["id_function"]);
+                $ticket->setFunction($function);
+               
+                array_push($TicketList, $ticket);
+            }
+
+
+            return $TicketList;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+    //---------------------------------------------------------------------------------------------------------
+    public function GetTicketsByUser($id_user)
+    {
+        try {
+            $roomList = array();
+            $query = "SELECT * FROM Tickets JOIN Purchases ON Tickets.id_ticket = Purchases.id_ticket WHERE Purchases.idUser = '$id_user'";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            return $resultSet;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+    //---------------------------------------------------------------------------------------------------------
     
 }
 ?>
