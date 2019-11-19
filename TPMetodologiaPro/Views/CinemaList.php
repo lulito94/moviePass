@@ -1,6 +1,8 @@
 <?php
     //use DAO\CinemaDAO as CinemaDAO; js
     use DAO\CinemaDAODB as CinemaDAODB;
+    include('header.php');
+include('nav-bar.php');
     require_once ('validate-session-admin.php');
 
 
@@ -25,7 +27,7 @@
      
      <section id="listado" class="mb-5">
           <div class="container">
-               <h2 class="mb-4"> Cines Habilitados </h2>
+               <h2 class="mb-4 text-white"> Cines Habilitados </h2>
                <table class="table bg-light-alpha">
                     <thead>
                           <th>ID</th>

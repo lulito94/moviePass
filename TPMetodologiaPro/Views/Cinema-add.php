@@ -33,6 +33,10 @@ require_once ('validate-session-admin.php');
                    <label for=""> Direccion </label>
                         <input type="text" name="address" class="form-control form-control-lg" placeholder="Direccion"required>
                    </div>
+                   <div class="form-group">
+                   <label for=""> Capacidad </label>
+                        <input type="number" name="capacity" class="form-control form-control-lg" placeholder="Capacidad"required>
+                   </div>
                  
                    <div class="form-group">
                         <label for="">Valor de ticket</label>

@@ -44,7 +44,7 @@ require_once ('validate-session.php');
      
      <section id="listado" class="mb-5">
           <div class="container">
-               <h2 class="mb-4"> Cines Habilitados </h2>
+               <h2 class="mb-4 text-white"> Cines Habilitados </h2>
                <table class="table bg-light-alpha">
                     <thead>
                          <th>Nombre</th>

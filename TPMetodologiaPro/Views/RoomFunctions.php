@@ -19,7 +19,7 @@ require_once ('validate-session-admin.php');
         <main class="container clear">
             <div class="content">
                 <div id="comments" >
-                    <h2>Cinema Room Options</h2>
+                    <h2>Opciones de Salas</h2>
                     <form action="" method="post"  >
                         <ul class="home-sidelinks">
                             <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Cinema/ShowRoomList">Listas Salas</a></li>

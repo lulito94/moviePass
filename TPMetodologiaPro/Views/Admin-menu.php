@@ -20,7 +20,7 @@ require_once('validate-session-admin.php');
   <main class="container clear">
     <div class="content">
       <div id="comments">
-        <h2 class="mb-4">Cinema</h2>
+        <h2 class="mb-4 text-white">Cinema</h2>
 
         <table class="table bg-light-alpha">
           <thead>
