@@ -1,11 +1,18 @@
 <?php
 namespace DAO;
+//Use's
 use Models\Cinema as Cinema;
+//----------------------------------
 use DAO\ICinemaDAO as ICinemaDAO;
+//----------------------------------
 
-class CinemaDAO implements ICinemaDAO {
+
+//Json DAO---
+
+class CinemaDAO implements ICinemaDAO{
 
     private $cinemasList = array();
+
 
     public function GetAll(){
         $this->RetrieveData();

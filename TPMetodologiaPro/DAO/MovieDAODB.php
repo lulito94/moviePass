@@ -1,17 +1,20 @@
 <?php
-
 namespace DAO;
 
+//Use's 
 use Models\Movie as Movie;
+//-------------------------------
 use DAO\Connection as Connection;
+//-------------------------------
 
-
-class MovieDAODB extends HelperDAO
+class MovieDAODB extends HelperDAO implements IMovieDAODB
 {
-
     private $moviesList = array();
     private $connection;
     private $tableName = "Movies";
+
+
+    //Movie Functions
     public function Add(Movie $movie)
     {
 
@@ -47,21 +50,8 @@ class MovieDAODB extends HelperDAO
             throw $ex;
         }
     }
-
-    public function DeleteAll()
-    {
-        try{
-            $query = "TRUNCATE TABLE Movies";
-
-            $this->connection = Connection::GetInstance();
-
-            $this->connection->Execute($query);
-        }catch(Exception $e)
-        {
-            throw $e;
-        }
-    }
-
+    //--------------------------------------------------------------------
+   
     public function GetToMovieName($MovieName)
     {
         try {
@@ -92,7 +82,23 @@ class MovieDAODB extends HelperDAO
             throw $ex;
         }
     }
+    //--------------------------------------------------------------------
+    public function getGenrexId($id_genre)
+    {
+        try {
 
+            $query = "SELECT * FROM Genres WHERE Genres.id_genre = '$id_genre'";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            return $resultSet;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+    //--------------------------------------------------------------------
     public function AddGenres()
     {
         try {
@@ -100,7 +106,9 @@ class MovieDAODB extends HelperDAO
 
             foreach ($array as $fatherArray) {
                 foreach ($fatherArray as $sunArray) {
-
+                    $genreCheck = $this->getGenrexId($sunArray['id']);
+                    if(!isset($genreCheck) && empty($genreCheck))
+                    {
                     $query = "INSERT INTO " . "Genres" . " (id_genre,name)
             VALUES (:id_genre, :name)";
 
@@ -108,16 +116,14 @@ class MovieDAODB extends HelperDAO
                     $parameters["name"] = $sunArray['name'];
                     $this->connection = Connection::GetInstance();
                     $this->connection->ExecuteNonQuery($query, $parameters);
+                    }
                 }
             }
         } catch (Exception $ex) {
             throw $ex;
         }
     }
-
-
-
-
+    //--------------------------------------------------------------------
     public function GetAll()
     {
         try {
@@ -152,7 +158,7 @@ class MovieDAODB extends HelperDAO
             throw $ex;
         }
     }
-
+    //--------------------------------------------------------------------
     public function getToApiGeners()
     {
         $repo = new MovieDAODB();
@@ -161,7 +167,7 @@ class MovieDAODB extends HelperDAO
 
         return $result;
     }
-    
+    //--------------------------------------------------------------------
     public function GetMovieGenres(Movie $movie)
     {
         try {
@@ -192,8 +198,7 @@ class MovieDAODB extends HelperDAO
             throw $ex;
         }
     }
-
-
+    //--------------------------------------------------------------------
     public function DeleteMovie(Movie $movie)
     {
         try {
@@ -210,7 +215,7 @@ class MovieDAODB extends HelperDAO
             throw $ex;
         }
     }
-
+    //--------------------------------------------------------------------
     public function getMoviesxCinema($idCinema)
     {
         $MovieList = array();
@@ -230,7 +235,7 @@ class MovieDAODB extends HelperDAO
             throw $ex;
         }
     }
-
+    //--------------------------------------------------------------------
     public function GetMovieById($id_movie)
     {
         $movie = null;
@@ -263,4 +268,5 @@ class MovieDAODB extends HelperDAO
             throw $ex;
         }
     }
+    //--------------------------------------------------------------------
 }

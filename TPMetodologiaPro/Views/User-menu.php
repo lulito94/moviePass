@@ -42,6 +42,7 @@ $MovieList = $repoMovies->getMoviesxCinema($cinemaElect);
       <ul>
         <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Pagina inicial</a></li>
         <li><a href="<?php echo FRONT_ROOT ?>Home/ShowUserLobby">Menu del Usuario</a></li>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/LogoutUser">Logout</a></li>
       </ul>
     </div>
   </div>

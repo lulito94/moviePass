@@ -1,16 +1,19 @@
 <?php
 namespace DAO;
+//Use's
 use Models\User as User;
+//------------------------------
 use DAO\Connection as Connection;
+//------------------------------
 
 
-class UserDAODB implements IUserDAO {
+class UserDAODB implements IUserDAODB {
 
     private $userList = array();
     private $connection;
     private $tableName = "Users";
 
-
+    //User Functions
     public function Add(User $user)
     {
        
@@ -36,7 +39,7 @@ class UserDAODB implements IUserDAO {
            throw $ex;
         }
     }
-
+    //-------------------------------------------------------
     public function GetAll()
     {
         try
@@ -57,6 +60,7 @@ class UserDAODB implements IUserDAO {
                 $user->setSurname($row["surname"]);
                 $user->setDni($row["dni"]);
                 $user->setEmail($row["email"]);
+                $user->setId_user($row['idUser']);
                 $user->setUserName($row["userName"]);
                 $user->setPassword($row["password"]);
                 
@@ -70,7 +74,7 @@ class UserDAODB implements IUserDAO {
             throw $ex;
         }
     }
-
+    //-------------------------------------------------------
     public function GetByUserName($userName)
     {
         $this->GetAll();
@@ -85,9 +89,7 @@ class UserDAODB implements IUserDAO {
         }
         return $userFounded;
     }
-
-
-
+    //-------------------------------------------------------
     function Delete($username)
     {
         try{
@@ -101,5 +103,6 @@ class UserDAODB implements IUserDAO {
             throw $ex;
         }
     }
+    //-------------------------------------------------------
 }
 ?>

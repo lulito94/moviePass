@@ -1,4 +1,5 @@
 <?php
+use Controllers\UserController as UserController;
 
 if(isset($_SESSION['loggedadmin']))
 {

@@ -1,26 +1,44 @@
 <?php
-
 namespace Controllers;
-
+//Use's
 use Models\Movie as Movie;
+//-----------
 use DAO\MovieDAO as MovieDAO;
 use DAO\MovieDAODB as MovieDAODB;
+//-----------
+
+    //Protect Controller
+require_once(VIEWS_PATH."ValidateControllers.php");
 
 class MovieController
 {
     //private $CinemaDAO; js
     private $MovieDAODB;
 
+    //Constructor
     function __construct()
     {
         $this->MovieDAODB = new MovieDAODB();
     }
+    //-----------------
 
+    //Show's
+    public function ShowAdminMenu()
+    {
+        //Return to Admin-Menu
+        require_once(VIEWS_PATH . "admin-menu.php");
+    }
+    //-----------------------------------------------------
+
+    //Movie Function's
     public function Add()
     {
         $moviesJS = new MovieDAO();
-         $movieList = $moviesJS->GetAll();
+        $movieList = $moviesJS->GetAll();
+        
         foreach ($movieList as $valuesArray) {
+            //set new movie
+
             $movie = new Movie();
             $movie->setId_movie($valuesArray->getId_movie());
             $movie->setPopularity($valuesArray->getPopularity());
@@ -32,17 +50,19 @@ class MovieController
             $movie->setVote_average($valuesArray->getVote_average());
             $movie->setOverview($valuesArray->getOverview());
             $movie->setGenre_ids($valuesArray->getGenre_ids());
+
+            $moviecheck = $this->MovieDAODB->GetMovieById($movie->getId_movie());
+            if(!isset($moviecheck) && empty($moviecheck))
+            {
             $this->MovieDAODB->Add($movie);
+            }
         }
         echo "<script>alert('Peliculas Cargadas en BD');</script>";
+        
         $this->ShowAdminMenu();
+        
     }
-    public function GetGenres()
-    {   
-        $repo = $this->MovieDAODB;
-        $movie = $repo->GetToMovieName("Joker");
-        $genres = $repo->GetMovieGenres($movie);    
-    }
+    //-----------------------------------------------------
     public function GetToApiGenres()
     {
         $repo = new MovieDAODB();
@@ -50,8 +70,10 @@ class MovieController
         echo "<script>alert('Generos cargados en BD');</script>";
         $this->ShowAdminMenu();
     }
-    public function ShowAdminMenu()
+    //-----------------------------------------------------
+    public function showMovies()
     {
-        require_once(VIEWS_PATH . "admin-menu.php");
+        require_once(VIEWS_PATH."ListMovies.php");
     }
+
 }

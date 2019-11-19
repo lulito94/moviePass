@@ -1,22 +1,105 @@
 <?php
     namespace Controllers;
     
-    use DAO\UserDAODB as UserDAODB;
-    use DAO\CinemaDAODB as CinemaDAODB; // Agregado 
-    //use DAO\UserDAO as UserDAO;
+    //Use's
     use Models\User as User;
+    //-------------------------
+    use DAO\UserDAODB as UserDAODB;
+    use DAO\CinemaDAODB as CinemaDAODB;
+    //------------------------
 
     class UserController
     {
         //private $userDAO; js
         private $userDAODB;
 
+        //Constructor
         public function __construct()
         {
             //$this->userDAO = new UserDAO(); js
             $this->userDAODB = new UserDAODB();
         }
+        //---------------------------------------------------
 
+        //Show's
+        public function ShowAdminView()
+        {
+            //Return to Admin-Menu
+            require_once(VIEWS_PATH."Admin-menu.php");
+        }
+        //---------------------------------------------------
+        public function AdminOptions()
+        {
+            //Return to Add Movies and Genres 
+            require_once(VIEWS_PATH."AddMovies&Genres.php");
+        }
+        //---------------------------------------------------
+        public function ShowCinemaView()
+        {
+            //User Returns To Cinema View
+            require_once(VIEWS_PATH."CinemaUserView.php");
+        }
+        //---------------------------------------------------
+        public function ShowLobby()
+        {
+            //Return to Lobby
+            require_once(VIEWS_PATH."menu.php");
+        }
+        //---------------------------------------------------
+        public function ShowLogin()
+        {
+            //Return to Login
+            require_once(VIEWS_PATH."inic-login.php");
+        }
+        //---------------------------------------------------
+        public function ShowSignIn()
+        {
+            //Return to Sign-in 
+            require_once(VIEWS_PATH."Sign-in.php");
+        }
+        //---------------------------------------------------
+        public function ShowUserHome()
+        {
+            //Return To User-Menu
+            require_once(VIEWS_PATH."User-menu.php");
+        }
+        //---------------------------------------------------
+        public function User_Info()
+        {
+            //Show User-Info
+            require_once(VIEWS_PATH."User_Info.php");
+        }
+        //---------------------------------------------------
+        public function AdminProfile()
+        {
+            //Show Admin-Info
+            require_once(VIEWS_PATH."Admin_info.php");
+        }
+        //---------------------------------------------------
+        public function UsersProfiles()
+        {
+            //Show Users-Profiles
+            require_once(VIEWS_PATH."UsersProfiles.php");
+        }
+        //---------------------------------------------------
+
+
+        //To Delete---
+        public function SignIn()
+        {
+            //
+            $this->ShowSignIn();
+        }
+        //---------------------------------------------------
+        public function UserShowCinemas()
+        {
+            //
+            require_once(VIEWS_PATH."CinemaUserView.php");
+        }
+        //---------------------------------------------------
+
+
+        //User's Functions
         public function Check($username,$password)
         {
            // $usercheck = $this->userDAO->getByUserName($username); js
@@ -46,61 +129,7 @@
             $this->ShowLogin();
             }
         }
-        public function ShowAdminView()
-        {
-            require_once(VIEWS_PATH."Admin-menu.php");
-        }
-
-        public function AdminOptions()
-        {
-            require_once(VIEWS_PATH."AddMovies&Genres.php");
-        }
-        public function ShowCinemaView()
-        {
-            require_once(VIEWS_PATH."CinemaUserView.php");
-        }
-        public function ShowLobby()
-        {
-            require_once(VIEWS_PATH."menu.php");
-        }
-
-        public function ShowLogin()
-        {
-            require_once(VIEWS_PATH."inic-login.php");
-        }
-        
-        public function ShowSignIn()
-        {
-            require_once(VIEWS_PATH."Sign-in.php");
-        }
-
-        public function SignIn()
-        {
-            $this->ShowSignIn();
-        }
-        
-        public function UserShowCinemas()
-        {
-            require_once(VIEWS_PATH."CinemaUserView.php");
-        }
-        public function ShowUserHome()
-        {
-            require_once(VIEWS_PATH."User-menu.php");
-        }
-        public function User_Info()
-        {
-            require_once(VIEWS_PATH."User_Info.php");
-        }
-        public function AdminProfile()
-        {
-            require_once(VIEWS_PATH."Admin_info.php");
-        }
-        public function UsersProfiles()
-        {
-            require_once(VIEWS_PATH."UsersProfiles.php");
-        }
-        
-
+        //-------------------------------------------------------
         public function SignInAdd($sex,$name,$surname,$dni,$email,$userName,$password)
         {
             $user = new User();
@@ -127,7 +156,7 @@
             }
 
         }
-
+        //---------------------------------------------------
         public function Delete($username){
             $repo = new UserDAODB();
 
@@ -136,8 +165,8 @@
 
             $this->UsersProfiles();
         }
-        
+        //---------------------------------------------------
 
-    }
+}
 
 ?>

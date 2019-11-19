@@ -3,13 +3,30 @@ namespace Models;
 
 class User extends Person{
 
+
     private $userName;
     private $password;
     private $email;
+    private $id_user;
 
     
 
+    public function getId_user()
+    {
+        return $this->id_user;
+    }
 
+    /**
+     * Set the value of userName
+     *
+     * @return  self
+     */ 
+    public function setId_user($id_user)
+    {
+        $this->id_user = $id_user;
+
+        return $this;
+    }
     /**
      * Get the value of userName
      */ 
@@ -69,6 +86,8 @@ class User extends Person{
 
         return $this;
     }
+
+
 }
 
 ?>

@@ -1,15 +1,19 @@
 <?php
-
 namespace DAO;
 
+//Use's
+
 use Models\Cinema as Cinema;
-use DAO\Connection as Connection;
 use Models\Room as Room;
 use Models\MovieFunction as MovieFunction;
+//----------------------------------
+use DAO\Connection as Connection;
 use DAO\MovieDAODB as MovieDAODB;
+//----------------------------------
 use Exception;
+//----------------------------------
 
-class CinemaDAODB extends HelperDAO
+class CinemaDAODB extends HelperDAO implements ICinemaDAODB
 {
 
     private $cinemasList = array();
@@ -17,7 +21,6 @@ class CinemaDAODB extends HelperDAO
     private $tableName = "Cinemas";
 
     // Cinema functions
-
     public function Add(Cinema $cinema)
     {
 
@@ -113,7 +116,7 @@ class CinemaDAODB extends HelperDAO
                 $cinema->setTicketValue($row["ticketValue"]);
                 
                 
-                $RoomsList = $this->GetRoomById($cinema->getIdCinema());
+                $RoomsList = $this->GetRoomsByCinema($cinema->getIdCinema());
                 if(isset($RoomList))
                 {
                 foreach ($RoomsList as $room) {
@@ -126,7 +129,7 @@ class CinemaDAODB extends HelperDAO
             throw $ex;
         }
     }
-
+    //---------------------------------------------------------------------------
     public function GetAll()
     {
         try {
@@ -441,7 +444,21 @@ class CinemaDAODB extends HelperDAO
                 $function->setMovie($movie);
                 $function->setFunction_time($row["function_time"]);
 
-                array_push($functionList, $function);
+                $dato = $function->getFunction_time();
+                $fecha = date('m',strtotime($dato));
+                $now = date('m');
+
+
+                if($fecha < $now){
+                    $this->DeleteMovieFunction($function->getId_function());
+
+                }else {
+                    array_push($functionList, $function);
+
+                }
+
+
+
             }
             
             return $functionList;
@@ -483,7 +500,5 @@ class CinemaDAODB extends HelperDAO
         }
     }
     //---------------------------------------------------------------------------------------------------------
-  
-
 }
 ?>

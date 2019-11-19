@@ -1,19 +1,22 @@
 <?php 
 namespace DAO;
 
+//Use's
 use Models\User as User;
+//--------------------------------
 use DAO\IUserDAO as IUserDAO;
-
+//--------------------------------
 class UserDAO implements IUserDAO{
 
     private $userList = array();
 
+    //User Functions
     public function GetAll(){
         $this->RetrieveData();
 
         return $this->userList;
     }
-
+    //-------------------------------------------------------
     public function GetByUserName($userName){
         $this->RetrieveData();
         $userFounded = null;
@@ -28,7 +31,7 @@ class UserDAO implements IUserDAO{
 
         return $userFounded;
     }
-
+    //-------------------------------------------------------
     public function Add(User $newUser){
         
         $this->RetrieveData();
@@ -37,7 +40,7 @@ class UserDAO implements IUserDAO{
 
         $this->SaveData();
     }
-
+    //-------------------------------------------------------
     //Json Persistence
     public function SaveData()
     {
@@ -60,7 +63,7 @@ class UserDAO implements IUserDAO{
         
         file_put_contents('Data/users.json', $jsonContent);
     }
-
+    //-------------------------------------------------------
     public function RetrieveData()
     {
         $this->userList = array();
@@ -86,11 +89,12 @@ class UserDAO implements IUserDAO{
             }
         }
     }
-
+    //-------------------------------------------------------
     function Delete($username)
     {
         // TODO: Implement Delete() method.
     }
+    //-------------------------------------------------------
 }
 
 ?>
