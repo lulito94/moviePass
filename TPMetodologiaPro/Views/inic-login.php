@@ -5,39 +5,51 @@ include('nav-bar.php');
 ?>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="container">
-    <div id="breadcrumb" class="clear">
+<div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
+  <div class="overlay">
+    
       <ul>
-        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome"> <em> <- Home</em></a></li>
+        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome" rel="nofollow" class="button"> <em> << Home</em></a></li>
+       
       </ul>
-    </div>
+    
+  </div>
+</div>
+
+
+<div class="container">
 
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<main class="d-flex align-items-center justify-content-center height-100" <!--style="background-image:url('https://i.pinimg.com/originals/02/a3/95/02a395a756b4756bfd985d8343538313.jpg')-->;">
+<main class="d-flex align-items-center justify-content-center height-100">
   <div class="content">
     <header class="text-center">
-      <h2 style="color: #0E76A8">Login</h2>
+      <h2 >Login</h2>
     </header>
 
-    <form action="<?php echo FRONT_ROOT; ?>User/Check" method="post" class="login-form bg-dark-alpha p-5 bg-light">
+    <form action="<?php echo FRONT_ROOT; ?>User/Check" method="post" class="login-form bg-dark-alpha p-5 text-white">
 
       <div class="form-group">
-        <label for="" style="color: #0E76A8">UserName</label>
+        <label for="" >UserName</label>
         <input type="text" name="username" class="form-control form-control-lg" placeholder="Ingresar usuario">
       </div>
       <div class="form-group">
-        <label for="" style="color: #0E76A8">Password</label>
+        <label for="" >Password</label>
         <input type="password" name="password" class="form-control form-control-lg" placeholder="Ingresar constraseña">
       </div>
-      <button class="btn btn-primary btn-block btn-lg" type="submit">Iniciar Sesión</button>
-      <button class="btn btn-primary btn-block btn-lg" name="register" type="submit" onclick="this.form.action ='<?php echo FRONT_ROOT ?>User/SignIn'">Registrarse</button>
+      <div >
+      <button class="btn btn-dark btn-block btn-lg" type="submit">Iniciar Sesión</button>
+      <button class="btn btn-dark btn-block btn-lg" name="register" type="submit" onclick="this.form.action ='<?php echo FRONT_ROOT ?>User/SignIn'">Registrarse</button>
+      </div>
     </form>
   </div>
 </main>
 </div>
 
+<?php
 
+include('footer.php');
+?>
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -64,4 +76,3 @@ include('nav-bar.php');
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 </script>
-
