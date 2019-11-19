@@ -10,7 +10,7 @@ $RoomList = $cinema->GetRoomsByCinema($_SESSION['idCinema']);
 ?>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
+<div class="wrapper row2 bgded">
   <div class="overlay">
     <div id="breadcrumb" class="clear"> 
       <ul class="pagination">
@@ -24,7 +24,7 @@ $RoomList = $cinema->GetRoomsByCinema($_SESSION['idCinema']);
 <!-- ################################################################################################ -->
 <main class="d-flex align-items-center justify-content-center height-100" >
           <div class="content">
-               <header class="text-center">
+               <header class="text-left text-white">
                     <h2>Seleccionar Sala</h2>
                </header>
 			   <form action="" method="post">
@@ -33,6 +33,7 @@ $RoomList = $cinema->GetRoomsByCinema($_SESSION['idCinema']);
                           <th>ID</th>
                          <th>Nombre</th>
                          <th>Asientos</th>
+                         <th></th>
 
 
                     </thead>

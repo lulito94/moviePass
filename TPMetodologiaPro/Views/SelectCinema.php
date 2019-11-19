@@ -10,7 +10,7 @@ $cinemaList = $cinema->GetAll();
 ?>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
+<div class="wrapper row2 bgded" >
   <div class="overlay">
     <div id="breadcrumb" class="clear"> 
       <ul class="pagination">
@@ -24,7 +24,7 @@ $cinemaList = $cinema->GetAll();
 <!-- ################################################################################################ -->
 <main class="d-flex align-items-center justify-content-center height-100" >
           <div class="content">
-               <header class="text-center">
+               <header class="text-left text-white">
                     <h2>Seleccionar cinema</h2>
                </header>
 			   <form action="" method="post">

@@ -4,8 +4,8 @@ include('nav-bar.php');
 require_once('validate-session-admin.php');
 ?>
 <!-- ################################################################################################ -->
-<div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
-  <div class="overlay">
+<div class="wrapper row2 bgded" >
+  
     <div id="breadcrumb" class="clear">
       <ul class="pagination">
         <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Pagina inicial</a></li>
@@ -13,7 +13,7 @@ require_once('validate-session-admin.php');
         <li><a href="<?php echo FRONT_ROOT ?>Home/LogoutAdmin">Logout</a></li>
       </ul>
     </div>
-  </div>
+  
 </div>
 <!-- ################################################################################################ -->
 <div class="wrapper row4" style="background-color:transparent">

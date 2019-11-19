@@ -6,7 +6,7 @@ require_once ('validate-session-admin.php');
 ?>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-<div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
+<div class="wrapper row2 bgded" >
   <div class="overlay">
     <div id="breadcrumb" class="clear"> 
       <ul class="pagination">
