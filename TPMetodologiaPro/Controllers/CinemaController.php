@@ -246,6 +246,22 @@ class CinemaController
 
     //Function's Function
 
+    public function checkAvailability($fullDate, $idCinema, $idRoom){
+        $resultSet = null;
+        try {
+            $query = "SELECT function_time FROM MovieFunctions WHERE idCinema = ". $idCinema ." AND id_room = ".$idRoom ." and  hour(function_time) between ". $fullDate ." and ".$fullDate;
+
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+
+        return $resultSet;
+    }
+
     public function AddMovieFunction($function_date)
     {
         $this->CinemaDAODB->AddMovieFunction($function_date);
