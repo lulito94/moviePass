@@ -12,7 +12,7 @@ $cinema = $repo->GetCinemaById($_SESSION['cinemaElect']);
 
 
 ?><!-- ################################################################################################ -->
-<div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
+<div class="wrapper row2 bgded" >
   <div class="overlay">
     <div id="breadcrumb" class="clear">
       <ul class="pagination">
@@ -25,7 +25,7 @@ $cinema = $repo->GetCinemaById($_SESSION['cinemaElect']);
 <!-- ################################################################################################ -->
 <main class="d-flex align-items-center justify-content-center height-100" >
     <div class="content">
-        <header class="text-center">
+        <header class="text-center text-white">
             <h2>Seleccionar tus Entradas</h2>
         </header>
 
@@ -34,6 +34,7 @@ $cinema = $repo->GetCinemaById($_SESSION['cinemaElect']);
                     <thead>
                          <th>Cantidad de Entradas</th>
                          <th>Costo</th>
+                         <th></th>
                     </thead>
                     <tbody> 
                     <tr>

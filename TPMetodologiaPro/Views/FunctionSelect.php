@@ -21,7 +21,7 @@ $function = $repo->GetMovieFunctionsByCinema($_SESSION['cinemaElect']);
 ?>
 
 <!-- ################################################################################################ -->
-<div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
+<div class="wrapper row2 bgded" >
   <div class="overlay">
     <div id="breadcrumb" class="clear">
       <ul class="pagination">
@@ -33,9 +33,9 @@ $function = $repo->GetMovieFunctionsByCinema($_SESSION['cinemaElect']);
 </div>
 <!-- ################################################################################################ -->
 
-<div class="wrapper row4" style="">
+<div class="wrapper row4" style="background-color:transparent">
   <main class="container clear">
-    <div class="content">
+    <div class="content text-white">
       <div id="comments">
        
             <!--<li><a  class="smoothscroll" href="#contact">Contact<span>get in touch</span></a></li> -->
@@ -47,13 +47,14 @@ $function = $repo->GetMovieFunctionsByCinema($_SESSION['cinemaElect']);
           </head>
 
           <body>
-            <form action="" method="post">
+            <form action="" method="post" >
             <p>Cine Seleccionado "<?php echo $cinemas->getCinemaName(); ?>"</p>
             <br>
             <p>Pelicula Seleccionada "<?php echo $movie->getTitle();?>"</p>
 
             <h2 class="mb-4"> Funciones Disponibles </h2>
-               <table class="table bg-light-alpha">
+        
+               <table class="table bg-light-alpha text-dark" >
                     <thead>
                           <th>Dia</th>
                          <th>Horarios</th>
@@ -61,7 +62,7 @@ $function = $repo->GetMovieFunctionsByCinema($_SESSION['cinemaElect']);
                          
                     </thead>
                     <tbody>  
-                    <form action="" method="" >                
+                    <form action="" method=""   >                
                          <?php
                                    foreach($function as $funct)
                                    {
@@ -74,7 +75,7 @@ $function = $repo->GetMovieFunctionsByCinema($_SESSION['cinemaElect']);
                                      
                          ?>
                                         <tr> 
-                                             <div>
+                                             <div >
                                              <td><?php echo $fecha; ?></td>
                                              <td><?php echo $hora; ?></td>
                                              <td> 
