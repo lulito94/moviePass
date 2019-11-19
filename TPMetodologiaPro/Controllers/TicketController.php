@@ -44,7 +44,12 @@ class TicketController{
     {
         $repo = new CinemaDAODB();
        $cinema = $repo->GetCinemaById($_SESSION['cinemaElect']);
+       if(!isset($_SESSION['newPrice']))
+       {
         $amount = ($_SESSION['cant'] * $cinema->getTicketValue());
+       }else{
+           $amount = $_SESSION['newPrice'];
+       }
         $ticketList = $this->TicketDAO->getAllTickets();
         foreach($ticketList as $ticket)
         {
@@ -60,6 +65,21 @@ class TicketController{
     public function Qr()
     {
         require_once(VIEWS_PATH."Qr-view.php");
+    }
+    //---------------------------------------------------
+    public function userToPurchase()
+    {
+        require_once(VIEWS_PATH."user-ToPurchase.php");
+    }
+    //---------------------------------------------------
+    public function userPurchases()
+    {
+        require_once(VIEWS_PATH."user_Purchases.php");
+    }
+    //---------------------------------------------------
+    public function userInfo()
+    {
+        require_once(VIEWS_PATH."user_Info.php");
     }
     //---------------------------------------------------
     public function Ajax()
