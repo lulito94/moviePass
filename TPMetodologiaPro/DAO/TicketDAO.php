@@ -73,6 +73,22 @@ class TicketDAO extends HelperDAO implements ITicketDAODB
         }
     }
     //---------------------------------------------------------------------------------------------------------
+    public function GetTicketsByUser($id_user)
+    {
+        try {
+            $roomList = array();
+            $query = "SELECT * FROM Tickets JOIN Purchases ON Tickets.id_ticket = Purchases.id_ticket WHERE Purchases.idUser = '$id_user'";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            return $resultSet;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+    //---------------------------------------------------------------------------------------------------------
     
 }
 ?>

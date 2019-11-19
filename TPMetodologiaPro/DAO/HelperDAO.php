@@ -115,7 +115,7 @@ class HelperDAO{
                 $function->setMovie($movie);
                 $function->setFunction_time($row["function_time"]);
 
-
+                //Delete old Functions
                 $dato = $function->getFunction_time();
                 $fecha = date('m',strtotime($dato));
                 $dia = date('d',strtotime($dato));
@@ -142,7 +142,7 @@ class HelperDAO{
     public function GetMovieFunctionById($id_function)
     {
         try {
-
+            $function = null;
             $query = "SELECT * FROM MovieFunctions WHERE MovieFunctions.id_function = '$id_function'";
 
             $this->connection = Connection::GetInstance();

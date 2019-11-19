@@ -69,7 +69,13 @@ foreach($roomList as $roomSearch)
                                          <td> <?php echo $function->getFunction_time() ;?></td>
                                          <td> <?php echo $movie->getTitle();?></td>
                                          <td> <?php echo $_SESSION['cant'];?></td>
-                                         <td> <?php echo "$".($_SESSION['cant'] * $cinema->getTicketValue());?></td>
+                                         <?php 
+                                         if(!isset($_SESSION['newPrice']))
+                                         {
+                                         ?><td> <?php echo "$".($_SESSION['cant'] * $cinema->getTicketValue());?></td><?php
+                                         }else{
+                                             ?><td> <?php echo "$".$_SESSION['newPrice'];?></td><?php
+                                         } ?>
                                          <td></td>
                                     </tr>
                                    
@@ -78,7 +84,7 @@ foreach($roomList as $roomSearch)
            <div>
            <form action="">
            <button>Enviar por email el comprobante e imprimir</button>
-           <a< href="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?php echo $imprimir->getId_Ticket(); ?>"> Generar Codigo Qr </a>
+           <a href="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?php echo $imprimir->getId_Ticket(); ?>"> Generar Codigo Qr </a>
            </form>
            </div>
       </div>
