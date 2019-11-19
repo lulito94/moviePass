@@ -7,6 +7,7 @@ use Models\Room as Room;
 use Models\Movie as Movie;
 use Models\MovieFunction as MovieFunction;
 use Models\Cinema as Cinema;
+use Models\Genre as Genre;
 //---------------------------------
 use DAO\CinemaDAODB as CinemaDAODB;
 use DAO\MovieDAODB as MovieDAODB;
@@ -288,10 +289,60 @@ class HelperDAO{
             throw $ex;
         }
     }
+    //---------------------------------------------------------------------------------------------------------
+    public function GetAllGenres()
+    {
+        try {
+            $GenreList = array();
+            $query = "SELECT * FROM Genres";
+
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+
+            foreach ($resultSet as $row) {
+                $Genre = new Genre();
+                $Genre->setId_Genre($row["id_genre"]);
+                $Genre->setName($row["name"]);
+               
+                array_push($GenreList, $Genre);
+            }
 
 
+            return $GenreList;
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+    //---------------------------------------------------------------------------------------------------------
+    public function GetMoviesxGenreByid($id_genre)
+    {
+        try{
+            $query ="SELECT * FROM Genres Join MoviesxGenres on Genres.id_genre = MoviesxGenres.id_genre WHERE Genres.id_genre = '$id_genre'";
+            
+            $this->connection = Connection::GetInstance();
+            $resultSet = $this->connection->Execute($query);
 
-}
+            return $resultSet;
+        } catch (Exception $ex) {
+            throw $ex;
+    }
+    }
+    //---------------------------------------------------------------------------------------------------------
+    public function GetGenreById($id_genre)
+    {
+        try{
+            $query ="SELECT * FROM Genres WHERE Genres.id_genre = '$id_genre'";
+            
+            $this->connection = Connection::GetInstance();
+            $resultSet = $this->connection->Execute($query);
+
+            return $resultSet;
+        } catch (Exception $ex) {
+            throw $ex;
+    }
+    }
+}   
 
 
 ?>

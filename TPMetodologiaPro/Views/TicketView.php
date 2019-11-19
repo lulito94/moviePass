@@ -83,7 +83,7 @@ foreach($roomList as $roomSearch)
            </table>
            <div>
            <form action="">
-           <button>Enviar por email el comprobante e imprimir</button>
+           <button type="submit" name="email" class="btn btn-danger" onclick="this.form.action = '<?php echo FRONT_ROOT; ?>Ticket/SendEmail'" value=""> Enviar por email el comprobante e imprimir </button></td>
            <a href="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?php echo $imprimir->getId_Ticket(); ?>"> Generar Codigo Qr </a>
            </form>
            </div>
