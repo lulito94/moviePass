@@ -8,6 +8,7 @@ use Models\MovieFunction as MovieFunction;
 use DAO\CinemaDAO as CinemaDAO;
 use DAO\CinemaDAODB as CinemaDAODB;
 use DAO\MovieDAODB as MovieDAODB;
+use DAO\Connection as Connection;
 //-----------------
 
     //Protect Controller
@@ -248,8 +249,10 @@ class CinemaController
 
     public function checkAvailability($fullDate, $idCinema, $idRoom){
         $resultSet = null;
+        $timeMinus2 = $fullDate("H") -2;
+        $timePlus2 = $fullDate("H") +2;
         try {
-            $query = "SELECT function_time FROM MovieFunctions WHERE idCinema = ". $idCinema ." AND id_room = ".$idRoom ." and  hour(function_time) between ". $fullDate ." and ".$fullDate;
+            $query = "SELECT ifnull(function_time,0) FROM MovieFunctions WHERE idCinema = ". $idCinema ." AND id_room = ".$idRoom ." and  (hour(function_time) between ". $timeMinus2 ." and ".$timePlus2.")";
 
 
             $this->connection = Connection::GetInstance();
@@ -258,20 +261,37 @@ class CinemaController
         } catch (Exception $ex) {
             throw $ex;
         }
+        var_dump($resultSet);
 
-        return $resultSet;
+        foreach ($resultSet as $result) {
+            if ($result['0']) {
+                echo $query;
+                return false;
+            }
+        }
+        return true;
     }
 
     public function AddMovieFunction($function_date)
     {
-        $this->CinemaDAODB->AddMovieFunction($function_date);
-        // Unset's
-        unset($_SESSION['idRoom']);
-        unset($_SESSION['idCinema']);
-        unset($_SESSION['idMovie']);
-        //------------------
-        echo "<script>alert ('Cines Actualizados');</script>";
-        $this->ShowFunctions();
+        if($this->checkAvailability($function_date, $_SESSION['idCinema'], $_SESSION['idRoom']) == true){
+            $this->CinemaDAODB->AddMovieFunction($function_date);
+            // Unset's
+            unset($_SESSION['idRoom']);
+            unset($_SESSION['idCinema']);
+            unset($_SESSION['idMovie']);
+            //------------------
+            echo "<script>alert ('Cines Actualizados');</script>";
+            $this->ShowFunctions();
+        }else {
+            unset($_SESSION['idRoom']);
+            unset($_SESSION['idCinema']);
+            unset($_SESSION['idMovie']);
+            echo "<script>alert ('Franja Horaria no disponible');</script>";
+            $this->ShowFunctions();
+        }
+
+
     }
     //--------------------------------------------------------------------------------------
     public function ModifyFunction($function_date)
