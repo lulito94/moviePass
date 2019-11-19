@@ -8,7 +8,7 @@ include('nav-bar.php');
 <div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
   <div class="overlay">
     
-      <ul>
+      <ul class="pagination">
         <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome" rel="nofollow" class="button"> <em> << Home</em></a></li>
        
       </ul>

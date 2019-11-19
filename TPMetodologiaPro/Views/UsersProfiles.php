@@ -11,7 +11,7 @@ $listUsers = $repo->GetAll();
 <div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
   <div class="overlay">
     <div id="breadcrumb" class="clear"> 
-      <ul>
+      <ul class="pagination">
         <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Pagina inicial</a></li>
         <li><a href="<?php echo FRONT_ROOT ?>Home/ShowAdminLobby">Menu del Administrador</a></li>
       </ul>

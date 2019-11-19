@@ -256,7 +256,7 @@ a{color:#8ABA56;}
 
 hr, .borderedbox{border-color:#D7D7D7;}
 label span{color:#FF0000; background-color:inherit;}
-.overlay{background-color:rgba(0,0,0,.6);}
+.overlay{background-color:transparent;}
 .btn{border-color:#8ABA56;}
 .btn:hover{color:#FFFFFF; background-color:#8ABA56;}
 
@@ -264,9 +264,9 @@ label span{color:#FF0000; background-color:inherit;}
 /* Rows */
 .row0, .row0 a{color:#888888; background-color:#232323;}
 .row1{color:#292929; background-color:#FFFFFF; border-color:#8ABA56;}
-.row2{color:#FFFFFF; background-color:#232323;}
+.row2{color:#FFFFFF; background-color:transparent;}
 .row3{color:#292929; background-color:#FFFFFF;}
-.row4, .row4 a{color:#292929; background-color:#F3F3F3;}
+.row4, .row4 a{color:#d81616; background-color:transparent;}
 .row5{color:#888888; background-color:#232323; border-color:#8ABA56;}
 .row6, .row6 a{color:#888888; background-color:#111111;}
 

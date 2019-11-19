@@ -5,18 +5,19 @@
  ?>
 
 <!-- ################################################################################################ -->
-
- 
+<div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
+  <div class="overlay">
     <div id="breadcrumb" class="clear">
-      <ul>
+      <ul class="pagination">
         <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Pagina inicial</a></li>
         <li><a href="<?php echo FRONT_ROOT ?>Home/ShowUserLobby">Menu del Usuario</a></li>
         <li><a href="<?php echo FRONT_ROOT ?>Home/LogoutUser">Logout</a></li>
       </ul>
     </div>
-
+    </div>
+    </div>
 <!-- ################################################################################################ -->
-
+<div class="wrapper row4" >
 <main class="container clear"> 
     <div class="content"> 
       <div id="comments" >
@@ -29,7 +30,7 @@
                          
                     </thead>
                     <tbody>  
-                    <form action="" method="post"   class="login-form bg-dark-alpha p-5 text-white">              
+                    <form action="" method="post"  style="background-color: #EAEDED;padding: 2rem !important;">              
                          
                        <tr> 
                         <div>
