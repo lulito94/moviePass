@@ -89,7 +89,13 @@ class CinemaController
     //--------------------------------------------------------------------------------------
     public function ShowAddRoom()
     {
-        require_once(VIEWS_PATH."RoomAdd.php");
+        if(isset($_SESSION['idCinema'])){
+            require_once(VIEWS_PATH."RoomAdd.php");
+        } else {
+            echo "<script>alert('Debes elegir un cinema primero');</script>";
+            require_once(VIEWS_PATH . "Cinema-Modify.php");
+        }
+
     }
     //--------------------------------------------------------------------------------------
     public function ShowAddFunction()
