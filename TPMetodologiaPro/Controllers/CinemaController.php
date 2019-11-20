@@ -9,6 +9,7 @@ use DAO\CinemaDAO as CinemaDAO;
 use DAO\CinemaDAODB as CinemaDAODB;
 use DAO\MovieDAODB as MovieDAODB;
 use DAO\Connection as Connection;
+use DAO\HelperDAO as HelperDAO;
 //-----------------
 
     //Protect Controller
@@ -20,6 +21,7 @@ class CinemaController
     private $CinemaDAODB;
     private $FunctionList;
     private $MovieDAODB;
+
 
     //Constructor
     function __construct()
@@ -87,13 +89,7 @@ class CinemaController
     //--------------------------------------------------------------------------------------
     public function ShowAddRoom()
     {
-        if(isset($_SESSION['idCinema'])) {
-            
-            require_once(VIEWS_PATH . "RoomAdd.php");
-        } else {
-            echo "<script>alert('Debes elegir un cinema primero');</script>";
-            require_once(VIEWS_PATH . "Cinema-Modify.php");
-        }
+        require_once(VIEWS_PATH."RoomAdd.php");
     }
     //--------------------------------------------------------------------------------------
     public function ShowAddFunction()
@@ -252,36 +248,53 @@ class CinemaController
     //--------------------------------------------------------------------------------------
 
     //Function's Function
+    
+    public function checkAvailability($fullDate, $idCinema, $idRoom)
+    {
+        $repo = new HelperDAO();
+        $MovieList = $repo->getAllMovieFunctions();
+        $year = date('Y',strtotime($fullDate));
+        $month =date('m',strtotime($fullDate));
+        $day = date('d',strtotime($fullDate));
+        $hour = date('H',strtotime($fullDate));
+        foreach($MovieList as $list)
+        {
+        if($year == date('Y',strtotime($list->getFunction_time())))
+        {
+            if($month == date('m',strtotime($list->getFunction_time())))
+            {
+                if($day == date('d',strtotime($list->getFunction_time())))
+                {
+                
+                    if( ((date('H',strtotime($list->getFunction_time()))) > ($hour - 2)) && ( (date('H',strtotime($list->getFunction_time())) < ($hour + 2)) ))
+                    {
+                        return false;
+                    }
 
-    public function checkAvailability($fullDate, $idCinema, $idRoom){
-        $resultSet = null;
-        $timeMinus2 = date("H") -2;
-        $timePlus2 = date("H") +2;
-        try {
-            $query = "SELECT ifnull(function_time,0) FROM MovieFunctions WHERE idCinema = ". $idCinema ." AND id_room = ".$idRoom ." and  (hour(function_time) between ". $timeMinus2 ." and ".$timePlus2.")";
-
-
-            $this->connection = Connection::GetInstance();
-
-            $resultSet = $this->connection->Execute($query);
-        } catch (Exception $ex) {
-            throw $ex;
+                }
+            }
         }
-
-        if($resultSet != 0){
-            return false;
-        }
-        return true;
     }
 
+        return true; // cambiar por true tratar de volverlo false..
+       
+    }
+    //--------------------------------------------------------------------------------------
     public function AddMovieFunction($function_date)
     {
-        if($this->checkAvailability($function_date, $_SESSION['idCinema'], $_SESSION['idRoom'])){
+        if($this->checkAvailability($function_date, $_SESSION['idCinema'], $_SESSION['idRoom']) == true){
+        
+            $room = $this->CinemaDAODB->GetRoomByIdRoom($_SESSION['idRoom']);
+            
+            $_SESSION['availableSeatings'] = $room->getSeating();
+
             $this->CinemaDAODB->AddMovieFunction($function_date);
             // Unset's
             unset($_SESSION['idRoom']);
             unset($_SESSION['idCinema']);
             unset($_SESSION['idMovie']);
+            unset($_SESSION['functId']);
+            unset($_SESSION['availableSeatings']);
             //------------------
             echo "<script>alert ('Cines Actualizados');</script>";
             $this->ShowFunctions();
@@ -289,6 +302,8 @@ class CinemaController
             unset($_SESSION['idRoom']);
             unset($_SESSION['idCinema']);
             unset($_SESSION['idMovie']);
+            unset($_SESSION['functId']);
+            unset($_SESSION['availableSeatings']);
             echo "<script>alert ('Franja Horaria no disponible');</script>";
             $this->ShowFunctions();
         }
@@ -312,6 +327,10 @@ class CinemaController
         echo "<script>alert ('Funciones Actualizadas');</script>";
         $this->ShowFunctions();
     }
-    //--------------------------------------------------------------------------------------   
+    //-------------------------------------------------------------------------------------- 
+    public function TotalBuys()
+    {
+        require_once(VIEWS_PATH."TotalBuys.php");
+    }  
 }
 ?>

@@ -90,6 +90,35 @@ class UserDAODB implements IUserDAODB {
         return $userFounded;
     }
     //-------------------------------------------------------
+    public function GetUserById($id_user)
+    {
+        try{
+            $query = "SELECT * FROM Users WHERE Users.idUser = '$id_user'";
+
+            
+            $this->connection = Connection::GetInstance();
+
+            $resultSet = $this->connection->Execute($query);
+            
+            foreach ($resultSet as $row)
+            {                
+                $user = new user();
+                $user->setSex($row["sex"]);
+                $user->setName($row["name"]);
+                $user->setSurname($row["surname"]);
+                $user->setDni($row["dni"]);
+                $user->setEmail($row["email"]);
+                $user->setId_user($row['idUser']);
+                $user->setUserName($row["userName"]);
+                $user->setPassword($row["password"]);  
+            }
+            return $user;
+        }
+        catch (Exception $ex){
+            throw $ex;
+        }
+    }
+    //-------------------------------------------------------
     function Delete($username)
     {
         try{

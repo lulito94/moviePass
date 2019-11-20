@@ -43,6 +43,7 @@ require_once('validate-session-admin.php');
                       <li><a class="smooth-link" href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaView">Agregar Cinemas</a></li>
                       <li><a class="smooth-link" href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaModify">Modificar Cinemas</a></li>
                       <li><a class="smooth-link" href="<?php echo FRONT_ROOT ?>Cinema/ShowCinemaListView">Listar Cinemas</a></li>
+                      <li><a class="smooth-link" href="<?php echo FRONT_ROOT ?>Cinema/TotalBuys">Consultar Totales Vendidos</a></li>
                     </ul>
                   </td>
                   <td>

@@ -404,16 +404,29 @@ class CinemaDAODB extends HelperDAO implements ICinemaDAODB
     {
         
         try {
-            $query = "INSERT INTO MovieFunctions (idCinema,id_room, id_movie, function_time) VALUES (:idCinema, :id_room, :id_movie, :function_time);";
+            $query = "INSERT INTO MovieFunctions (idCinema,id_room, id_movie, function_time, available_seatings) VALUES (:idCinema, :id_room, :id_movie, :function_time, :available_seatings);";
 
             $parameters["idCinema"] = $_SESSION['idCinema'];
             $parameters["id_room"] = $_SESSION['idRoom'];
             $parameters["id_movie"] = $_SESSION['idMovie'];
             $parameters["function_time"] = $function_date;
+            $parameters["available_seatings"] = $_SESSION['availableSeatings']; // Tendriamos que traerlo tambien
 
             $this->connection = Connection::GetInstance();
 
             $this->connection->ExecuteNonQuery($query, $parameters);
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
+    public function UpdateSeatings($id_function,$cantSeatings){
+        try {
+            $oldFunction = $this->GetMovieFunctionById($id_function);
+            if ($oldFunction != null) {
+                $query = "UPDATE MovieFunctions SET available_seatings = available_seatings - '$cantSeatings' WHERE MovieFunctions.id_function = '$id_function'";
+                $this->connection = Connection::GetInstance();
+                $this->connection->ExecuteNonQuery($query);
+            }
         } catch (Exception $ex) {
             throw $ex;
         }
@@ -423,7 +436,7 @@ class CinemaDAODB extends HelperDAO implements ICinemaDAODB
     {
         try {
             $functionList = array();
-            $query = "SELECT MovieFunctions.id_function,MovieFunctions.idCinema,MovieFunctions.id_room,MovieFunctions.id_movie,MovieFunctions.function_time  FROM " .
+            $query = "SELECT MovieFunctions.id_function,MovieFunctions.idCinema,MovieFunctions.id_room,MovieFunctions.id_movie,MovieFunctions.function_time,MovieFunctions.available_seatings  FROM " .
                 $this->tableName . " JOIN Rooms ON " . $this->tableName . ".idCinema = Rooms.idCinema JOIN MovieFunctions ON " .
                 "MovieFunctions.id_room = Rooms.id_room Join Movies ON MovieFunctions.id_movie = Movies.id_movie WHERE MovieFunctions.idCinema ='$id_cinema'";
 
@@ -443,6 +456,7 @@ class CinemaDAODB extends HelperDAO implements ICinemaDAODB
                 $function->setRoom($room);
                 $function->setMovie($movie);
                 $function->setFunction_time($row["function_time"]);
+                $function->setAvailableSeatings($row["available_seatings"]);
 
                 $dato = $function->getFunction_time();
                 $fecha = date('m',strtotime($dato));
