@@ -58,6 +58,11 @@ class TicketController{
         $user = new User();
         $user = $_SESSION['loggeduser'];
         $this->TicketDAO->AddPurchase($user->getId_user(),$id_last,$amount);
+
+        // Aca guardo el nuevo valor en base de datos para actualizar
+        $repo->UpdateSeatings($_SESSION['functId'],$_SESSION['cant']);
+
+        
         echo "<script>alert('Compra realizada con exito!');</script>";
         require_once(VIEWS_PATH."TicketView.php");
     }
@@ -91,10 +96,10 @@ class TicketController{
     //Ticket Function's
     public function GenerateTicket($cant)
     {
+        
         $_SESSION['cant'] = $cant;
-        $this->TicketDAO->AddTicket($cant);
-
-        echo "<script>alert('Ticket Generado con exito!');</script>";
+        require_once(VIEWS_PATH."CalculateSeatings.php");
+ 
         $this->ShowPayTicket();
     }
     //---------------------------------------------------

@@ -283,11 +283,18 @@ class CinemaController
     public function AddMovieFunction($function_date)
     {
         if($this->checkAvailability($function_date, $_SESSION['idCinema'], $_SESSION['idRoom']) == true){
+        
+            $room = $this->CinemaDAODB->GetRoomByIdRoom($_SESSION['idRoom']);
+            
+            $_SESSION['availableSeatings'] = $room->getSeating();
+
             $this->CinemaDAODB->AddMovieFunction($function_date);
             // Unset's
             unset($_SESSION['idRoom']);
             unset($_SESSION['idCinema']);
             unset($_SESSION['idMovie']);
+            unset($_SESSION['functId']);
+            unset($_SESSION['availableSeatings']);
             //------------------
             echo "<script>alert ('Cines Actualizados');</script>";
             $this->ShowFunctions();
@@ -295,6 +302,8 @@ class CinemaController
             unset($_SESSION['idRoom']);
             unset($_SESSION['idCinema']);
             unset($_SESSION['idMovie']);
+            unset($_SESSION['functId']);
+            unset($_SESSION['availableSeatings']);
             echo "<script>alert ('Franja Horaria no disponible');</script>";
             $this->ShowFunctions();
         }

@@ -7,6 +7,7 @@ class MovieFunction{
     private $room;
     private $movie;
     private $function_time;
+    private $availableSeatings;
     
 
     /**
@@ -108,5 +109,26 @@ class MovieFunction{
 
         return $this;
     }
-}
+    /**
+     * Get the value of availableSeatings
+     */ 
+    public function getAvailableSeatings()
+    {
+        return $this->availableSeatings;
+    }
+
+    /**
+     * Set the value of availableSeatings
+     *
+     * @return  self
+     */ 
+    public function setAvailableSeatings($seatings)
+    { 
+        $this->availableSeatings = $seatings;
+
+        return $this;
+    }
+    }
+
+
 ?>
