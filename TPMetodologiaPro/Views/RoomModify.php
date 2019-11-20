@@ -53,7 +53,8 @@ $cinemaList = $repo->GetAll();
 
 
 
-
+                <?php if(isset ($cinema))
+                { ?>
                 <label for=""> Nuevo Nombre </label>
                 <input type="text" name="roomName" class="form-control form-control-lg" placeholder="Nombre" >
             </div>
@@ -64,6 +65,9 @@ $cinemaList = $repo->GetAll();
             <div class="form-group">
 
             <button class="btn btn-dark btn-block btn-lg" type="submit"> Modificar Sala </button>
+                <?php } else {?>
+                <h2> No hay salas para modificar </h2>
+               <?php } ?>
 
         </form>
     </div>

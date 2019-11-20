@@ -54,8 +54,6 @@ $listUsers = $repo->GetAll();
 
                                         <td>
                                         <button type="submit" name="remove" class="btn btn-danger"  onclick = "this.form.action = '<?php echo FRONT_ROOT;?>User/Delete'" value="<?php echo $user->getUserName();?>"> Eliminar </button>
-                                        <button type="submit" name="modify" class="btn btn-danger"  onclick = "this.form.action = '<?php echo FRONT_ROOT;?>User/Modify'" value="<?php echo $user->getUserName();?>"> Modificar </button>
-
                                         </td>
                                     </tr>
                                     <?php

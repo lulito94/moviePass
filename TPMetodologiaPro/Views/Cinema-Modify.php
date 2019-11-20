@@ -49,7 +49,10 @@ $cinemaList = $repo->GetAll();
                 ?>
                 <br><br>
 
+<?php if(isset($cinema))
+{
 
+?>
                 <label for=""> Nuevo Nombre </label>
                 <input type="text" name="cinemaName" class="form-control form-control-lg" placeholder="Nombre">
             </div>
@@ -67,7 +70,9 @@ $cinemaList = $repo->GetAll();
                 <label for=""> Nuevo Valor de ticket</label>
                 <input type="number" name="ticketValue" class="form-control form-control-lg" placeholder="Valor Ticket">
             </div>
-
+            <?php if(isset($_SESSION['idCinema']))
+            {
+                ?>
             <br>
             <button class="btn btn-dark btn-block btn-lg" type="submit"> Modificar Cine </button>
             <br><br>
@@ -75,6 +80,12 @@ $cinemaList = $repo->GetAll();
                 <button type="submit" name="room" class="btn  btn-danger" onclick="this.form.action = '<?php echo FRONT_ROOT; ?>Cinema/ShowAddRoom'" value=""> Agregar Nueva sala </button>
                 <button type="submit" name="room" class="btn  btn-danger" onclick="this.form.action = '<?php echo FRONT_ROOT; ?>Cinema/ShowAddFunction'" value=""> Agregar Una Funcion </button>
             </div>
+            <?php }else{  ?>
+            <h2>Selecciona el cinema!</h2>
+           <?php } ?>
+<?php }else { ?>
+<h2> No hay Cinemas que modificar! </h2>
+<?php } ?>
         </form>
     </div>
 </main>

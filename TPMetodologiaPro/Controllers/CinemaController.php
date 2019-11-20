@@ -239,8 +239,13 @@ class CinemaController
         $room = new Room();
         $room->setRoom_name($roomName);
         $room->setSeating($seatings);
-    
+        $check = $repo->GetRoomByName($roomName);
+        if(!isset($check) && empty($check))
+        {
         $repo->ModifyRoom($_SESSION['idRoom'],$room);
+        }else{
+            echo "<script>alert('El nombre de la sala ya fue registrado previamente');</script>";
+        }
         unset($_SESSION['idRoom']);
         $this->ShowRoomList();
     }

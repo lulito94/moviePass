@@ -39,7 +39,9 @@ foreach($list as $movieList)
 <body>
 
 <div class="container">
-
+<?php if(isset($list) && !empty($list))
+{
+?>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -83,6 +85,7 @@ foreach($list as $movieList)
     </div>
 </div>
 </div>>
+<?php } ?>
 
 
 

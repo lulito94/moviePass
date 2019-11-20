@@ -502,13 +502,10 @@ class CinemaDAODB extends HelperDAO implements ICinemaDAODB
     {
 
         try {
-            $oldFunction = $this->GetMovieFunctionById($id_function);
-            if ($oldFunction != null) {
-                $oldId_function = $oldFunction->getId_function();
                 $query = "UPDATE MovieFunctions SET function_time = '$newFunction_time' WHERE MovieFunctions.id_function = '$id_function'";
                 $this->connection = Connection::GetInstance();
                 $this->connection->ExecuteNonQuery($query);
-            }
+            
         } catch (Exception $ex) {
             throw $ex;
         }

@@ -1,5 +1,5 @@
+#drop database TPFinal;
 create database if not exists TPFinal;
-#drop database tpfinal;
 use TPFinal;
 
 create table if not exists Cinemas
@@ -13,7 +13,6 @@ create table if not exists Cinemas
  constraint pk_cinemas primary key(idCinema),
  constraint unq_cinemaName unique (cinemaName)
 );
-
 
 create table if not exists Users(
     idUser int not null auto_increment,
@@ -37,7 +36,6 @@ create table if not exists Genres(
     constraint pk_genre primary key (id_genre)
 );
 
-
 create table if not exists Movies(
 	id_movie int not null,
     popularity int, 
@@ -56,8 +54,6 @@ create table if not exists Movies(
     constraint fk_movies_genre foreign key (id_genre) references Genres (id_genre)
 );
 
-#drop table MoviesxGenres;
-
 create table if not exists MoviesxGenres(
 	id_movie int,
     id_genre int,
@@ -66,9 +62,6 @@ create table if not exists MoviesxGenres(
     constraint fk_MoviesxGenre_movie foreign key (id_movie) references Movies(id_movie),
 	constraint fk_MoviesxGenre_genre foreign key (id_genre) references Genres(id_genre)
 );
-
-
-#drop table Rooms;
 
 create table if not exists Rooms(
 	id_room int not null auto_increment,
@@ -82,6 +75,7 @@ create table if not exists Rooms(
     constraint fk_room_cinema foreign key (idCinema) references Cinemas(idCinema) on delete cascade,
     constraint fk_room_function foreign key (id_function) references MovieFunctions(id_function)
 );
+
 create table if not exists MovieFunctions(
 	
 	id_function int not null auto_increment,
@@ -89,7 +83,7 @@ create table if not exists MovieFunctions(
     id_room int,
     id_movie int,
     function_time Datetime ,
-    available_seatings int,
+    available_seatings int ,
     
     constraint pk_movieFunction primary key (id_function),
     constraint fk_movieFunction_cinema foreign key (idCinema)references Cinemas(idCinema) on delete cascade, #se borra la func si se borra el cine
@@ -106,21 +100,13 @@ create table if not exists Tickets (
     constraint fk_ticket_function foreign key (id_function) references MovieFunctions(id_function)
 );
 
-
 create table if not exists Purchases (
 	id_purchase int not null auto_increment,
-    id_ticket int,
     idUser int,
+    id_ticket int,
     amount float,
-    purchase_time Datetime,
     
     constraint pk_purchase primary key (id_purchase),
     constraint fk_purchase_user foreign key (idUser) references Users(idUser),
     constraint fk_purchase_ticket foreign key (id_ticket) references Tickets(id_ticket)
 );
-
-use TPFinal;
-select *
-from Purchases p
-join Tickets t 
-on p.id_ticket = t.id_ticket;

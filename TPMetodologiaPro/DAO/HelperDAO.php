@@ -162,6 +162,7 @@ class HelperDAO{
                 $function->setRoom($room);
                 $function->setMovie($movie);
                 $function->setFunction_time($row["function_time"]);
+                $function->setAvailableSeatings($row['available_seatings']);
             }
             return $function;
         } catch (Exception $ex) {

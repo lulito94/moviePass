@@ -51,8 +51,10 @@
                 <?php } ?>
 
               </select>
+              <?php if(isset($genre))
+              { ?>
               <button type="submit" name="show_dowpdown_value" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Ticket/userViewGenreWithButton'" value="<?php echo $genre->getId_genre(); ?>" >Elegir Cine</button>
-
+              <?php } ?>
               <br>
               <br>
               <?php if(isset($_SESSION['id_genre']) && !empty($_SESSION['id_genre']))

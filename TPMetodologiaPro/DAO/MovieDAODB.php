@@ -107,9 +107,10 @@ class MovieDAODB extends HelperDAO implements IMovieDAODB
             foreach ($array as $fatherArray) {
                 foreach ($fatherArray as $sunArray) {
                     $genreCheck = $this->getGenrexId($sunArray['id']);
-                    if(!isset($genreCheck) && empty($genreCheck))
+
+                    if(empty($genreCheck))
                     {
-                    $query = "INSERT INTO " . "Genres" . " (id_genre,name)
+                    $query = "INSERT INTO Genres (id_genre,name)
             VALUES (:id_genre, :name)";
 
                     $parameters["id_genre"] = $sunArray['id'];
