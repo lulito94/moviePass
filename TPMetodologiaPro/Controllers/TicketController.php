@@ -120,6 +120,9 @@ class TicketController{
         echo "<script>alert ('Gracias por elegir Movie Style;</script>";
         require_once(VIEWS_PATH."User-menu.php");
     }
+    public function Goback(){
+        $this->userToPurchase();
+    }
     
 
 }

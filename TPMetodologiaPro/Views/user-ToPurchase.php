@@ -97,7 +97,7 @@ $MovieList = $repoMovies->getMoviesxCinema($cinemaElect);
 
               </select>
               <!--<input type="submit" name="show_dowpdown_value" value="show" />-->
-              <?php if(isset($movie) && isset($cinema))
+              <?php if(isset($movie) && isset($cinema) )
               { ?>
             <button type="submit" name="show_dowpdown_value2" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Ticket/ShowSelectFunction'" value="<?php echo $movie->getId_movie(); ?>" >Elegir Pelicula</button>
 <?php } ?>

@@ -80,7 +80,8 @@ $function = $repo->GetMovieFunctionsByCinema($_SESSION['cinemaElect']);
                                              <td><?php echo $hora; ?></td>
                                              <td> 
                                               <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Ticket/ShowSelectVoucher'" value="<?php echo $funct->getId_function();?>"> Continuar </button>
-                                              </td>   
+                                              <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Ticket/Goback'" value=""> Volver </button>
+                                            </td>   
                                               </div>
                                         </tr>
                                         <?php
