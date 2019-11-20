@@ -87,7 +87,13 @@ class CinemaController
     //--------------------------------------------------------------------------------------
     public function ShowAddRoom()
     {
-        require_once(VIEWS_PATH."RoomAdd.php");
+        if(isset($_SESSION['idCinema'])) {
+            
+            require_once(VIEWS_PATH . "RoomAdd.php");
+        } else {
+            echo "<script>alert('Debes elegir un cinema primero');</script>";
+            require_once(VIEWS_PATH . "Cinema-Modify.php");
+        }
     }
     //--------------------------------------------------------------------------------------
     public function ShowAddFunction()
@@ -249,8 +255,8 @@ class CinemaController
 
     public function checkAvailability($fullDate, $idCinema, $idRoom){
         $resultSet = null;
-        $timeMinus2 = $fullDate("H") -2;
-        $timePlus2 = $fullDate("H") +2;
+        $timeMinus2 = date("H") -2;
+        $timePlus2 = date("H") +2;
         try {
             $query = "SELECT ifnull(function_time,0) FROM MovieFunctions WHERE idCinema = ". $idCinema ." AND id_room = ".$idRoom ." and  (hour(function_time) between ". $timeMinus2 ." and ".$timePlus2.")";
 
@@ -261,20 +267,16 @@ class CinemaController
         } catch (Exception $ex) {
             throw $ex;
         }
-        var_dump($resultSet);
 
-        foreach ($resultSet as $result) {
-            if ($result['0']) {
-                echo $query;
-                return false;
-            }
+        if($resultSet != 0){
+            return false;
         }
         return true;
     }
 
     public function AddMovieFunction($function_date)
     {
-        if($this->checkAvailability($function_date, $_SESSION['idCinema'], $_SESSION['idRoom']) == true){
+        if($this->checkAvailability($function_date, $_SESSION['idCinema'], $_SESSION['idRoom'])){
             $this->CinemaDAODB->AddMovieFunction($function_date);
             // Unset's
             unset($_SESSION['idRoom']);
