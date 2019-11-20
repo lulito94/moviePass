@@ -116,7 +116,9 @@ class TicketController{
     //---------------------------------------------------
     public function SendEmail()
     {
-        
+        echo "<script>alert ('Se le ha enviado al mail su comprobante con el código QR');</script>";
+        echo "<script>alert ('Gracias por elegir Movie Style;</script>";
+        require_once(VIEWS_PATH."User-menu.php");
     }
     
 

@@ -16,7 +16,7 @@
 ?>
 
 <!-- ################################################################################################ -->
-<div class="wrapper row2 bgded" style="background-image:url('../images/demo/backgrounds/1.png');">
+<div class="wrapper row2 bgded" style="background-color:transparent);">
   <div class="overlay">
     <div id="breadcrumb" class="clear">
       <ul class="pagination">
@@ -29,11 +29,11 @@
     </div>
 <!-- ################################################################################################ -->
 <div class="wrapper row4" >
-  <main class="container clear">
+  <main class="container clear ">
     <div class="content">
       <div id="comments">
         <h2>Consulta Peliculas por genero</h2>
-        <form action="" method="post" style="background-color: #EAEDED;padding: 2rem !important;">
+        <form action="" method="post" style="background-color:transparent ;padding: 2rem !important;">
          
           <head>
             <title>Generos</title>

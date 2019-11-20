@@ -21,8 +21,8 @@
      
  <section id="listado" class="mb-5">
       <div class="container">
-           <h1 class="mb-4"style="color:#FF0000"> Welcome Admin!!</h1>
-           <p class="mb-4"style="color:#FF0000"> Your Status: </p>
+           <h1 class="mb-4"style="color:white"> Welcome Admin!!</h1>
+           <p class="mb-4"style="color:#white"> Your Status: </p>
 
            <table class="table bg-light-alpha">
                 <thead>

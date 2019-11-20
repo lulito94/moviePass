@@ -20,7 +20,7 @@
      
  <section id="listado" class="mb-5">
       <div class="container">
-           <h2 class="mb-4"style="color:#FF0000"> User Info</h2>
+           <h2 class="mb-4"style="color:white"> User Info</h2>
            <table class="table bg-light-alpha">
                 <thead>
                      <th>Nombre</th>
