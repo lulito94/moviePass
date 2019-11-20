@@ -109,8 +109,8 @@ create table if not exists Purchases (
     constraint fk_purchase_user foreign key (idUser) references Users(idUser),
     constraint fk_purchase_ticket foreign key (id_ticket) references Tickets(id_ticket)
 );
-
-Select *
-from Genres
-join MoviesxGenres
-on Genres.id_genre = MoviesxGenres.id_genre;
+use TPFinal;
+select *
+from Purchases p
+join Tickets t 
+on p.id_ticket = t.id_ticket;

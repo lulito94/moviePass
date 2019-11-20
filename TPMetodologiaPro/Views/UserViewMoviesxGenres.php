@@ -51,7 +51,7 @@
                 <?php } ?>
 
               </select>
-              <button type="submit" name="show_dowpdown_value" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Ticket/userViewGenre'" value="<?php echo $genre->getId_genre(); ?>" >Elegir Cine</button>
+              <button type="submit" name="show_dowpdown_value" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Ticket/userViewGenreWithButton'" value="<?php echo $genre->getId_genre(); ?>" >Elegir Cine</button>
 
               <br>
               <br>

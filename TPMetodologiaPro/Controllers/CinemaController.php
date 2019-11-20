@@ -248,7 +248,7 @@ class CinemaController
     //--------------------------------------------------------------------------------------
 
     //Function's Function
-
+    
     public function checkAvailability($fullDate, $idCinema, $idRoom)
     {
         $repo = new HelperDAO();
@@ -279,7 +279,7 @@ class CinemaController
         return true; // cambiar por true tratar de volverlo false..
        
     }
-
+    //--------------------------------------------------------------------------------------
     public function AddMovieFunction($function_date)
     {
         if($this->checkAvailability($function_date, $_SESSION['idCinema'], $_SESSION['idRoom']) == true){
@@ -327,6 +327,10 @@ class CinemaController
         echo "<script>alert ('Funciones Actualizadas');</script>";
         $this->ShowFunctions();
     }
-    //--------------------------------------------------------------------------------------   
+    //-------------------------------------------------------------------------------------- 
+    public function TotalBuys()
+    {
+        require_once(VIEWS_PATH."TotalBuys.php");
+    }  
 }
 ?>

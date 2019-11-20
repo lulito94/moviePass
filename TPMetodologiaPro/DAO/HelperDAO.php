@@ -342,6 +342,24 @@ class HelperDAO{
             throw $ex;
     }
     }
+    //--------------------------------------------------------------------------------------
+    public function GetTotalPurchases()
+    {
+        try{
+            $query ="SELECT * FROM Purchases JOIN Tickets ON Purchases.id_ticket = Tickets.id_ticket";
+            
+            $this->connection = Connection::GetInstance();
+            $resultSet = $this->connection->Execute($query);
+
+            return $resultSet;
+        } catch (Exception $ex) {
+            throw $ex;
+    }
+    }
+    //--------------------------------------------------------------------------------------
+
+
+    
 }   
 
 
