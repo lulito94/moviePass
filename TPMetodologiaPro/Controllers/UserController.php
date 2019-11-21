@@ -115,7 +115,12 @@
                    if($usercheck->getPassword() == $password)
                     {
                      $_SESSION['loggeduser'] = $usercheck;
+                     if(isset($_SESSION['MovieElect']) && isset($_SESSION['cinemaElect']))
+                     {
+                         require_once(VIEWS_PATH."FunctionSelect.php");
+                     }else{
                       $this->ShowUserHome(); 
+                     }
                      
                     } else{
                         echo '<script>alert("Contraseña incorrecta!");</script>';

@@ -2,12 +2,48 @@
  include('header.php');
 
  include('nav-bar.php');
+ use DAO\CinemaDAODB as CinemaDAODB;
+ use DAO\MovieDAODB as MovieDAODB;
+ use Models\MovieFunction as MovieFunction;
+ use Models\Cinema as Cinema;
+ use Models\Movie as Movie;
+ if (isset($_POST['show_dowpdown_value'])) {
+  
+    $cinemaElect = $_POST['dowpdown']; // this will print the value if downbox out
+  }
+  if (isset($_POST['show_dowpdown_value2'])) {
+    
+    $MovieElect = $_POST['dowpdown2']; // this will print the value if downbox out
+  }
+  $repo = new CinemaDAODB();
+  $functions = $repo->GetAllMovieFunctions();
+  $cinemas = $repo->GetAll();
+  $repoMovies = new MovieDAODB();
+  if(!isset($cinemaElect))
+  {
+    $MovieList = array();
+    $movie = new Movie();
+    $movie->setId_movie(0);
+    $movie->setTitle("Seleccionar cinema antes");
+    array_push($MovieList,$movie);
+  }else
+  {
+  $MovieList = $repoMovies->getMoviesxCinema($cinemaElect);
+  }
+ 
 ?>
 <!-- ################################################################################################ -->
 
 
 <div style="float: right; display: flex; justify-content: center;">
+<?php 
+if(isset($_SESSION['loggeduser']))
+{ ?>
+ <a href="<?php echo FRONT_ROOT?>User/ShowUserHome" rel="nofollow" class="button" ><img src="https://www.cinemarkhoyts.com.ar/images/res/user-outline.png"> </img></a>';    
+<?php }else {
+?>
 <a href="<?php echo FRONT_ROOT?>User/ShowLogin" rel="nofollow" class="button" ><img src="https://www.cinemarkhoyts.com.ar/images/res/user-outline.png"> </img></a>';
+<?php } ?>
 
 <a href="#" rel="nofollow" class="fblogin-button" onClick="javascript:CallAfterLogin();return false;"><img src="https://www.cinemacenter.com.ar/images/icon-facebook-likebox.png"> </img></a>';
 
@@ -16,7 +52,6 @@
 
 
 <?php
-use DAO\MovieDAODB as MovieDAODB;
 $repo = new MovieDAODB();
 $list = $repo->GetAll();
 $peli1 = array();
@@ -61,6 +96,7 @@ foreach($list as $movieList)
                 <?php
                 foreach($list as $movieList)
                 {
+                   
                     ?>
                     <div class="item">
 
@@ -82,6 +118,50 @@ foreach($list as $movieList)
                 <span class="sr-only">Next</span>
             </a>
         </div>
+        <form action="" method="post">
+              <!-- here start the dropdown list -->
+              <select name="dowpdown">
+                <?php
+
+                foreach ($cinemas as $cinema) {
+                  if(isset($cinema) && !empty($cinema))
+                  { 
+                  ?>
+                  <option value="<?php echo $cinema->getIdCinema(); ?>"><?php echo $cinema->getCinemaName() ?></option>
+                <?php }else{?>
+                  <option value="">No hay cinemas</option>
+                <?php } } ?>
+                
+              </select>
+              <?php if(isset($cinema))
+              { ?>
+              <button type="submit" name="show_dowpdown_value" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Ticket/ShowUserMenuNotLogged'" value="<?php echo $cinema->getIdCinema(); ?>" >Elegir Cine</button>
+              <?php } ?>
+              <br>
+              <br>
+              <select name="dowpdown2">
+              
+<?php
+                if(isset($MovieList) && !empty($MovieList))
+                {  
+                foreach ($MovieList as $movie){
+                  ?>
+                  <option value="<?php echo $movie->getId_movie(); ?>"> <?php echo $movie->getTitle(); ?></option>
+                <?php }}else{
+                  ?>
+                  <option value=""> No hay funciones disponibles</option>
+                <?php } ?>
+
+              </select>
+              <!--<input type="submit" name="show_dowpdown_value" value="show" />-->
+              <?php if(isset($movie) && isset($cinema) )
+              { ?>
+            <button type="submit" name="show_dowpdown_value2" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Ticket/ShowSelectFunctionNotLogged'" value="<?php echo $movie->getId_movie(); ?>" >Elegir Pelicula</button>
+<?php } ?>
+            </form>
+          </body>
+
+        </form>
     </div>
 </div>
 </div>>

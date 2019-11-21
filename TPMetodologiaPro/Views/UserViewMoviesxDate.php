@@ -4,15 +4,13 @@
     require_once ('validate-session.php');
     use DAO\CinemaDAODB as CinemaDAODB;
     use DAO\HelperDAO as HelperDAO;
+    use Models\Movie as Movie;
     use DAO\MovieDAODB as MovieDAODB;
     $repoMovies = new MovieDAODB();
     $repoGenres = new CinemaDAODB();
     $listGenres = $repoGenres->GetAllGenres();
 
-    if (isset($_POST['show_dowpdown_value'])) {
   
-        $genreElect = $_POST['dowpdown']; // this will print the value if downbox out
-      }
 ?>
 
 <!-- ################################################################################################ -->
@@ -36,42 +34,46 @@
         <form action="" method="post" style="background-color:transparent ;padding: 2rem !important;">
          
           <head>
-            <title>Generos</title>
+            <title>Date</title>
           </head>
 
           <body>
             <form action="" method="post">
               <!-- here start the dropdown list -->
-              <select name="dowpdown">
-                <?php
-
-                foreach ($listGenres as $genre) {
-                  ?>
-                  <option value="<?php echo $genre->getId_genre(); ?>"><?php echo $genre->getName(); ?></option>
-                <?php } ?>
-
-              </select>
-              <?php if(isset($genre))
-              { ?>
-              <button type="submit" name="show_dowpdown_value" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Ticket/userViewGenreWithButton'" value="<?php echo $genre->getId_genre(); ?>" >Elegir Cine</button>
-              <?php } ?>
+              <input type="date" name="search" class="form-control form-control-lg"  required>
+              <button type="submit" name="show_dowpdown_value" class="btn btn-danger" onclick = "this.form.action ='<?php echo FRONT_ROOT;?>Ticket/userViewDateWithButton'" >Buscar</button>
+              
               <br>
               <br>
-              <?php if(isset($_SESSION['id_genre']) && !empty($_SESSION['id_genre']))
+              <?php if(isset($_SESSION['date']) && !empty($_SESSION['date']))
               { 
                 $row = $repoGenres->GetGenreById($_SESSION['id_genre']);
                 foreach($row as $genre)
                 {
-                    ?><h2>Genero: <?php echo $genre['name'];?></h2><?php
+                    ?><h2>La Fecha de busqueda es: <?php echo $_SESSION['date'];?></h2><?php
                     echo "<br>";
                 }
               
                   $repoHelper = new HelperDAO();
-                  $listMoviesxGenres = $repoHelper->GetMoviesxGenreByid($_SESSION['id_genre']);
-                  foreach($listMoviesxGenres as $row)
+                  $listMovies = $repoHelper->GetAllMovieFunctions();
+                  
+                  foreach($listMovies as $moviesF)
                   {
-                      
-                    $movie = $repoMovies->GetMovieById($row['id_movie']);
+                     $year = date('Y',strtotime($moviesF->getFunction_time()));
+                     $month = date ('m',strtotime($moviesF->getFunction_time()));
+                     $day = date('d',strtotime($moviesF->getFunction_time()));
+
+
+                    if($year == date('Y',strtotime($_SESSION['date'])))
+                    {
+                        if($month == date('m',strtotime($_SESSION['date'])))
+                        {
+                            
+
+                            if($day = date('d',strtotime($_SESSION['date'])))
+                            {
+
+                                $movie = $moviesF->getMovie();
                 ?>
               <table class="table bg-light-alpha">
                
@@ -100,7 +102,7 @@
                 </tbody>
            </table>
            <?php
-                               }else{
+                               }}}}else{
                                    echo "<br>"."Empty"."<br>";
                                }
                                     ?>
