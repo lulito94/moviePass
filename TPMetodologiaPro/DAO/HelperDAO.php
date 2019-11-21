@@ -46,7 +46,29 @@ class HelperDAO{
                 $function->setMovie($movie);
                 $function->setFunction_time($row["function_time"]);
 
+//check 15 days
+$dato = $function->getFunction_time();
+$month = date('m',strtotime($dato));
+$day = date('d',strtotime($dato));
 
+if($month == date('m'))
+{
+    $check = (date('d') - $day);
+    if($check >= 15)
+    {
+      $this->DeleteMovieFunction($function->getId_function());  
+    }
+}else if($month < date('m'))
+{
+    $new_check = (30 - $day);
+    $new_check = $new_check + date('d');
+
+    if($new_check >= 15)
+    {
+        $this->DeleteMovieFunction($function->getId_function());  
+
+    }     
+}
 
                     array_push($functionList, $function);
 
@@ -117,11 +139,29 @@ class HelperDAO{
                 $function->setFunction_time($row["function_time"]);
                 $function->setAvailableSeatings($row['available_seatings']);
 
-                //Delete old Functions
+                //check 15 days
                 $dato = $function->getFunction_time();
-                $fecha = date('m',strtotime($dato));
-                $dia = date('d',strtotime($dato));
-                $now = date('m');
+                $month = date('m',strtotime($dato));
+                $day = date('d',strtotime($dato));
+
+                if($month == date('m'))
+                {
+                    $check = (date('d') - $day);
+                    if($check >= 15)
+                    {
+                      $this->DeleteMovieFunction($function->getId_function());  
+                    }
+                }else if($month < date('m'))
+                {
+                    $new_check = (30 - $day);
+                    $new_check = $new_check + date('d');
+
+                    if($new_check >= 15)
+                    {
+                        $this->DeleteMovieFunction($function->getId_function());  
+
+                    }     
+                }
 
                     array_push($functionList, $function);
             }
