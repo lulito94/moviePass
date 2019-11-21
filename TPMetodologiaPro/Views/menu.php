@@ -30,6 +30,9 @@
   {
   $MovieList = $repoMovies->getMoviesxCinema($cinemaElect);
   }
+
+
+  
  
 ?>
 <!-- ################################################################################################ -->
@@ -165,9 +168,8 @@ foreach($list as $movieList)
     </div>
 </div>
 </div>>
-<?php } ?>
-
-
+<?php } 
+?>
 
 <?php 
   include('footer.php');

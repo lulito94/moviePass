@@ -7,7 +7,7 @@ use DAO\MovieDAODB as MovieDAODB;
 use Models\MovieFunction as MovieFunction;
 use Models\Cinema as Cinema;
 use Models\Movie as Movie;
-
+use DAO\MovieDAO as MovieDAO;
 $repo = new CinemaDAODB();
 $cinemas = $repo->GetCinemaById($_SESSION['cinemaElect']);
 $repoMovie = new MovieDAODB();
@@ -136,6 +136,14 @@ $function = $repo->GetMovieFunctionsByCinema($_SESSION['cinemaElect']);
                                                          <li><?php echo $genre ?></li>
                                                     <?php } ?>
                                                </ul>
+                                          <li><em> Trailer : </em>
+                                          </li>
+                                          <?php $repo = new MovieDAO();
+                                          $list = $repo->getTrailer($movie->getId_movie()); 
+                                          foreach($list as $link)
+                                          {  } ?>
+                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $link[1]['key'];?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                          
                                      </ul>
                                 </td>
 
