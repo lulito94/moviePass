@@ -413,7 +413,7 @@ class CinemaDAODB extends HelperDAO implements ICinemaDAODB
             $parameters["available_seatings"] = $_SESSION['availableSeatings']; // Tendriamos que traerlo tambien
 
             $this->connection = Connection::GetInstance();
-
+         
             $this->connection->ExecuteNonQuery($query, $parameters);
         } catch (Exception $ex) {
             throw $ex;
@@ -463,13 +463,7 @@ class CinemaDAODB extends HelperDAO implements ICinemaDAODB
                 $now = date('m');
 
 
-                if($fecha < $now){
-                    $this->DeleteMovieFunction($function->getId_function());
-
-                }else {
                     array_push($functionList, $function);
-
-                }
 
 
 
