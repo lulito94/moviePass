@@ -60,7 +60,7 @@ $cinemaList = $repo->GetAll();
             </div>
             <div class="form-group">
                 <label for=""> Nuevos Asientos </label>
-                <input type="text" name="seatings" class="form-control form-control-lg" placeholder="Assientos" >
+                <input type="text" name="seatings" class="form-control form-control-lg" placeholder="Asientos" >
             </div>
             <div class="form-group">
 

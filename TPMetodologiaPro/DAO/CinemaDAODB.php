@@ -75,6 +75,17 @@ class CinemaDAODB extends HelperDAO implements ICinemaDAODB
             throw $ex;
         }
     }
+    public function UpdateCapacity($id_cinema, $seating)
+    {
+        try{
+            $query = "UPDATE ". $this->tableName . " SET capacity = capacity + '$seating' WHERE " . $this->tableName . ".idCinema = '$id_cinema'"; 
+            $this->connection = Connection::GetInstance();
+            $this->connection->ExecuteNonQuery($query);
+
+        }catch(Exception $ex){
+            throw $ex;
+        }
+    }
     //---------------------------------------------------------------------------------------------------------
     public function GetCinemaIdByRoomId($id_room)
     {
@@ -341,6 +352,18 @@ class CinemaDAODB extends HelperDAO implements ICinemaDAODB
         }
     }
     //---------------------------------------------------------------------------------------------------------
+    public function ResetCapacity($id_cinema, $seating)
+    {
+        try{
+            $query = "UPDATE ". $this->tableName . " SET capacity = capacity - '$seating' WHERE " . $this->tableName . ".idCinema = '$id_cinema'"; 
+            $this->connection = Connection::GetInstance();
+            $this->connection->ExecuteNonQuery($query);
+
+        }catch(Exception $ex){
+            throw $ex;
+        }
+    }
+     //---------------------------------------------------------------------------------------------------------
     public function ModifyRoom($idRoom, Room $room)
     {
         try {
@@ -352,7 +375,7 @@ class CinemaDAODB extends HelperDAO implements ICinemaDAODB
                     $roomRepo = $list;
                 }
             }
-
+            
             $room_name = $room->getRoom_name();
             $seating = $room->getSeating();
 
@@ -365,7 +388,9 @@ class CinemaDAODB extends HelperDAO implements ICinemaDAODB
                 $seating = $roomRepo->getSeating();
             }
 
-
+            $idCinema = $this->GetCinemaIdByRoomId($idRoom);
+            $cinema = $this->GetCinemaById($idCinema);
+            $this->ResetCapacity($cinema->getIdCinema(),$roomRepo->getSeating());
 
             foreach ($roomList as $cmod) {
 
@@ -375,6 +400,7 @@ class CinemaDAODB extends HelperDAO implements ICinemaDAODB
                     $this->connection->ExecuteNonQuery($query);
                 }
             }
+            $this->UpdateCapacity($cinema->getIdCinema(),$seating);
         } catch (Exception $ex) {
             throw $ex;
         }

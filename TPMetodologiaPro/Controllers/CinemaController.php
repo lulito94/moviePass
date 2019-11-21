@@ -153,12 +153,12 @@ class CinemaController
     //--------------------------------------------------------------------------------------
 
     //Cinema Functions
-    public function Add($cinemaName, $address, $capacity, $ticketValue)
+    public function Add($cinemaName, $address, $ticketValue)
     {
         $cinema = new Cinema();
         $cinema->setCinemaName($cinemaName);
         $cinema->setAddress($address);
-        $cinema->setCapacity($capacity);
+        $cinema->setCapacity(0);
         $cinema->setTicketValue($ticketValue);
         $cinema->setRooms(null);
 
@@ -219,6 +219,11 @@ class CinemaController
             $room->setRoom_name($roomName);
             $room->setSeating($seatings);
             $this->CinemaDAODB->AddRoom($_SESSION['idCinema'], $room);
+            
+            $cinema = $this->CinemaDAODB->GetCinemaById($_SESSION['idCinema']);
+            $cinema->setCapacity($seatings);
+            $this->CinemaDAODB->UpdateCapacity($_SESSION['idCinema'],$seatings);
+
             unset($_SESSION['idCinema']);
             $this->ShowCinemaListView();
         } else {
@@ -226,6 +231,7 @@ class CinemaController
             $this->ShowCinemaListView();
         }
     }
+   
     //--------------------------------------------------------------------------------------
     public function ModifyRoom($roomName, $seatings)
     {
@@ -264,8 +270,7 @@ class CinemaController
         $hour = date('H', strtotime($fullDate));
 
         foreach ($MovieList as $list) {
-            if ($list->getCinema()->getIdCinema()  == $idCinema) {
-                if($list->getRoom()->getId_room() == $idRoom ){
+           
                 if ($year == date('Y', strtotime($list->getFunction_time()))) {
                     if ($month == date('m', strtotime($list->getFunction_time()))) {
                         if ($day == date('d', strtotime($list->getFunction_time()))) {
@@ -276,8 +281,7 @@ class CinemaController
                         }
                     }
                 }
-            }
-          }
+            
         }
 
         return true; // cambiar por true tratar de volverlo false..
