@@ -65,7 +65,7 @@ class Cinema{
      */ 
     public function setCapacity($capacity)
     {
-        $this->capacity = $capacity;
+        $this->capacity += $capacity;
 
         return $this;
     }

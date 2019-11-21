@@ -75,6 +75,17 @@ class CinemaDAODB extends HelperDAO implements ICinemaDAODB
             throw $ex;
         }
     }
+    public function UpdateCapacity($id_cinema, $seating)
+    {
+        try{
+            $query = "UPDATE ". $this->tableName . " SET capacity = capacity + '$seating' WHERE " . $this->tableName . ".idCinema = '$id_cinema'"; 
+            $this->connection = Connection::GetInstance();
+            $this->connection->ExecuteNonQuery($query);
+
+        }catch(Exception $ex){
+            throw $ex;
+        }
+    }
     //---------------------------------------------------------------------------------------------------------
     public function GetCinemaIdByRoomId($id_room)
     {

@@ -60,12 +60,7 @@ $cinemaList = $repo->GetAll();
                 <label for=""> Nueva Direccion </label>
                 <input type="text" name="address" class="form-control form-control-lg" placeholder="Direccion">
             </div>
-            <div class="form-group">
-                <?php // Si sobra tiempo mejorar tipo de dato de los horarios 
-                ?>
-                <label for=""> Nueva Capacidad </label>
-                <input type="number" name="capacity" class="form-control form-control-lg" placeholder="Capacidad">
-            </div>
+          
             <div class="form-group">
                 <label for=""> Nuevo Valor de ticket</label>
                 <input type="number" name="ticketValue" class="form-control form-control-lg" placeholder="Valor Ticket">
