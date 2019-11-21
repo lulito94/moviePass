@@ -428,8 +428,9 @@ class CinemaDAODB extends HelperDAO implements ICinemaDAODB
     //Function Functions
     public function AddMovieFunction($function_date)
     {
-        
+    
         try {
+            
             $query = "INSERT INTO MovieFunctions (idCinema,id_room, id_movie, function_time, available_seatings) VALUES (:idCinema, :id_room, :id_movie, :function_time, :available_seatings);";
 
             $parameters["idCinema"] = $_SESSION['idCinema'];
@@ -441,6 +442,7 @@ class CinemaDAODB extends HelperDAO implements ICinemaDAODB
             $this->connection = Connection::GetInstance();
 
             $this->connection->ExecuteNonQuery($query, $parameters);
+            
         } catch (Exception $ex) {
             throw $ex;
         }

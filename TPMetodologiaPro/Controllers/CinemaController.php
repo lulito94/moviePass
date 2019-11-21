@@ -295,17 +295,38 @@ class CinemaController
             $room = $this->CinemaDAODB->GetRoomByIdRoom($_SESSION['idRoom']);
 
             $_SESSION['availableSeatings'] = $room->getSeating();
+            $year = date('Y',strtotime($function_date));
+            $month = date('m',strtotime($function_date));
+            $day = date('d',strtotime($function_date));
+            if($year <= (date('Y') + 1) && date('Y') <= $year)
+            {
+                if($month <= (date('m') + 6) && date('m') <= $month)
+                {
+                    if(date('m') == $month && date('d') <= $day)
+                    {
+                        $this->CinemaDAODB->AddMovieFunction($function_date);
+                        echo "<script>alert ('Cines Actualizados');</script>";
+                        $this->ShowFunctions();
+                        unset($_SESSION['idRoom']);
+                        unset($_SESSION['idCinema']);
+                        unset($_SESSION['idMovie']);
+                        unset($_SESSION['functId']);
+                        unset($_SESSION['availableSeatings']);
+                    }else{
+                        $this->ShowFunction();
+                    }
+                }else{
+                    $this->ShowFunction();
 
-            $this->CinemaDAODB->AddMovieFunction($function_date);
+                }
+            }else
+            {        
+                    $this->ShowFunction();
+            }
             // Unset's
-            unset($_SESSION['idRoom']);
-            unset($_SESSION['idCinema']);
-            unset($_SESSION['idMovie']);
-            unset($_SESSION['functId']);
-            unset($_SESSION['availableSeatings']);
+            
             //------------------
-            echo "<script>alert ('Cines Actualizados');</script>";
-            $this->ShowFunctions();
+         
         } else {
             unset($_SESSION['idRoom']);
             unset($_SESSION['idCinema']);
