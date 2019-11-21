@@ -43,10 +43,10 @@
                          <?php
                          $CinemaList = $repo->getAll();
                          $Helper = new HelperDAO();
+                         $list = $repo->GetAllMovieFunctions();
                          foreach($CinemaList as $cinema)
                          {
                              $FunctionList = $Helper->GetMovieFunctionsByCinema($cinema->getIdCinema());
-                         
                                    if(isset($FunctionList) && !empty($FunctionList)){
                                    foreach($FunctionList as $function){
                          ?>

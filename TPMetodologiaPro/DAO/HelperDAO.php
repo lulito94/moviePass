@@ -96,7 +96,7 @@ class HelperDAO{
         try {
             
             $functionList = array();
-            $query = "SELECT MovieFunctions.id_function,MovieFunctions.idCinema,MovieFunctions.id_room,MovieFunctions.id_movie,MovieFunctions.function_time  FROM Cinemas JOIN Rooms ON Cinemas.idCinema = Rooms.idCinema JOIN MovieFunctions ON " .
+            $query = "SELECT MovieFunctions.id_function,MovieFunctions.idCinema,MovieFunctions.id_room,MovieFunctions.id_movie,MovieFunctions.function_time,MovieFunctions.available_seatings  FROM Cinemas JOIN Rooms ON Cinemas.idCinema = Rooms.idCinema JOIN MovieFunctions ON " .
                 "MovieFunctions.id_room = Rooms.id_room Join Movies ON MovieFunctions.id_movie = Movies.id_movie WHERE MovieFunctions.idCinema ='$id_cinema'";
 
 
@@ -115,6 +115,7 @@ class HelperDAO{
                 $function->setRoom($room);
                 $function->setMovie($movie);
                 $function->setFunction_time($row["function_time"]);
+                $function->setAvailableSeatings($row['available_seatings']);
 
                 //Delete old Functions
                 $dato = $function->getFunction_time();
@@ -122,16 +123,7 @@ class HelperDAO{
                 $dia = date('d',strtotime($dato));
                 $now = date('m');
 
-
-                if($fecha < $now && $dia < 15){
-
-                    $this->DeleteMovieFunction($function->getId_function());
-
-
-                }else {
                     array_push($functionList, $function);
-
-                }
             }
             
             return $functionList;

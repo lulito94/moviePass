@@ -84,8 +84,9 @@ foreach($roomList as $roomSearch)
            <div>
            <form action="">
            <button type="submit" name="email" class="btn btn-danger" onclick="this.form.action = '<?php echo FRONT_ROOT; ?>Ticket/SendEmail'" value=""> Enviar por email el comprobante e imprimir </button></td>
-           <button class="btn btn-danger" onclick="location.href='https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?php echo $imprimir->getId_Ticket();?>' ">Generar Código QR</button>
            </form>
+
+           <button class="btn btn-danger" onclick="location.href='https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?php echo $imprimir->getId_Ticket();?>' ">Generar Código QR</button>
            </div>
       </div>
  </section>

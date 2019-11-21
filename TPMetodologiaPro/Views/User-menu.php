@@ -39,7 +39,7 @@
                                     <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Ticket/userToPurchase">Comprar entradas</a></li>
                                     <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Ticket/userPurchases">Consultar entradas compradas</a></li>
                                     <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Ticket/userViewGenre">Consultar peliculas por genero</a></li>
-
+                                    <li><a class="smooth-link"  href="<?php echo FRONT_ROOT ?>Ticket/userViewDate">Consultar peliculas por Fecha</a></li>
                                  </ul>  
                              </td>                                                       
                              <td>

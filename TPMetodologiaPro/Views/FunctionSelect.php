@@ -1,14 +1,13 @@
 <?php
 include('header.php');
 include('nav-bar.php');
-require_once('validate-session.php');
 
 use DAO\CinemaDAODB as CinemaDAODB;
 use DAO\MovieDAODB as MovieDAODB;
 use Models\MovieFunction as MovieFunction;
 use Models\Cinema as Cinema;
 use Models\Movie as Movie;
-
+use DAO\MovieDAO as MovieDAO;
 $repo = new CinemaDAODB();
 $cinemas = $repo->GetCinemaById($_SESSION['cinemaElect']);
 $repoMovie = new MovieDAODB();
@@ -26,7 +25,6 @@ $function = $repo->GetMovieFunctionsByCinema($_SESSION['cinemaElect']);
     <div id="breadcrumb" class="clear">
       <ul class="pagination">
         <li><a href="<?php echo FRONT_ROOT ?>Home/ShowHome">Pagina inicial</a></li>
-        <li><a href="<?php echo FRONT_ROOT ?>Home/ShowUserLobby">Menu del Usuario</a></li>
       </ul>
     </div>
   </div>
@@ -48,9 +46,7 @@ $function = $repo->GetMovieFunctionsByCinema($_SESSION['cinemaElect']);
 
           <body>
             <form action="" method="post" >
-            <p>Cine Seleccionado "<?php echo $cinemas->getCinemaName(); ?>"</p>
-            <br>
-            <p>Pelicula Seleccionada "<?php echo $movie->getTitle();?>"</p>
+         
 
             <h2 class="mb-4"> Funciones Disponibles </h2>
         
@@ -70,7 +66,7 @@ $function = $repo->GetMovieFunctionsByCinema($_SESSION['cinemaElect']);
                                      if($movie->getId_movie() == $moviecheck->getId_movie())
                                      {
                                        $dato=$funct->getFunction_time();
-                                       $fecha = date('Y-m-l',strtotime($dato));
+                                       $fecha = date('Y-m-d-l',strtotime($dato));
                                        $hora = date('H:i:s',strtotime($dato));
                                      
                          ?>
@@ -79,11 +75,17 @@ $function = $repo->GetMovieFunctionsByCinema($_SESSION['cinemaElect']);
                                              <td><?php echo $fecha; ?></td>
                                              <td><?php echo $hora; ?></td>
                                              <td> 
-                                              <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Ticket/ShowSelectVoucher'" value="<?php echo $funct->getId_function();?>"> Continuar </button>
-                                              <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Ticket/Goback'" value=""> Volver </button>
-                                            </td>   
+                                             <?php if(isset($_SESSION['loggeduser'])){
+                                               ?> 
+                                               <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Ticket/ShowSelectVoucher'" value="<?php echo $funct->getId_function();?>"> Continuar </button>
+                                               <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>Ticket/Goback'" value=""> Volver </button>
+                                             <?php }else
+                                             {?>
+                                               <button type="submit" name="remove" class="btn btn-danger" onclick = "this.form.action = '<?php echo FRONT_ROOT;?>User/ShowLogin'" value=""> Continuar </button>
+                                             <?php } ?></td>   
                                               </div>
                                         </tr>
+
                                         <?php
                                    }}
                                         ?>
@@ -100,6 +102,62 @@ $function = $repo->GetMovieFunctionsByCinema($_SESSION['cinemaElect']);
       </div>
     </div>
   </main>
+  <table class="table bg-light-alpha">
+  <thead>
+  <p>Cine Seleccionado "<?php echo $cinemas->getCinemaName(); ?>"</p>
+            <br>
+  <p>Pelicula Seleccionada "<?php echo $movie->getTitle();?>"</p>
+
+
+
+  </thead>
+  <tbody>
+                      <tr>
+                           <div>
+
+                                <td style="width:20%"><img class="" src="https://image.tmdb.org/t/p/w300<?php echo $movie->getPoster_path() ?>" alt="<?php echo $movie->getTitle(); ?>" width="100" height="100"> <br>
+                                <td style="width:80%">
+                                     <ul>
+
+                                          <li><em> Titulo : </em> <?php echo $movie->getTitle(); ?></li>
+                                          <li><em> Idioma Original : </em> <?php echo $movie->getOriginal_language() ?></li>
+                                          <li><em> Calificacion : </em> <?php echo $movie->getVote_average() ?></li>
+                                          <li><em> Sinopsis : </em>
+                                               <p><?php echo $movie->getOverview() ?></p>
+                                          </li>
+                                          <?php
+                                                    $repoMovies = new MovieDAODB();
+                                                    $genreList = $repoMovies->GetMovieGenres($movie);
+                                                    ?>
+                                          <li><em> Generos : </em>
+                                               <ul>
+                                                    <?php
+                                                              foreach ($genreList as $genre) { ?>
+                                                         <li><?php echo $genre ?></li>
+                                                    <?php } ?>
+                                               </ul>
+                                          <li><em> Trailer : </em>
+                                          </li>
+                                          <?php $repo = new MovieDAO();
+                                          $list = $repo->getTrailer($movie->getId_movie()); 
+                                          foreach($list as $link)
+                                          {  } ?>
+                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $link[1]['key'];?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                          
+                                     </ul>
+                                </td>
+
+
+
+                           </div>
+                      </tr>
+            <?php
+
+            ?>
+       </form>
+  </tbody>
+</table>
+
 </div>
 <!-- ################################################################################################ -->
 
