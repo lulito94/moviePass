@@ -9,6 +9,9 @@ use DAO\TicketDAO as TicketDAO;
 //-------------------------------
 use DAO\CinemaDAODB as CinemaDAODB;
 
+use PHPMailer\PHPMailer\PHPMailer;
+
+
     
 
 class TicketController{
@@ -165,6 +168,47 @@ require_once(VIEWS_PATH."ValidateControllers.php");
     {
         //Protect Controller
 require_once(VIEWS_PATH."ValidateControllers.php");
+
+require './vendor/autoload.php';
+$ToEmail = "matiadri2005@gmail.com";
+$Body = "texto";
+$Mail = new PHPMailer();
+            $Mail->IsSMTP(); // Use SMTP
+            $Mail->Host        = "smtp.gmail.com"; // Sets SMTP server
+            $Mail->SMTPDebug   = 2; // 2 to enable SMTP debug information
+            $Mail->SMTPOptions = array(
+                'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true)
+                );
+            $Mail->SMTPAuth    = TRUE; // enable SMTP authentication
+            $Mail->SMTPSecure  = "tls"; //Secure conection
+            $Mail->Port        = 587; // set the SMTP port
+            $Mail->Username    = 'matiadri2005@hotmail.com'; // SMTP account username
+            $Mail->Password    = 'elpandadeoro10'; // SMTP account password
+            $Mail->Priority    = 1; // Highest priority - Email priority (1 = High, 3 = Normal, 5 = low)
+            $Mail->CharSet     = 'UTF-8';
+            $Mail->Encoding    = '8bit';
+            $Mail->Subject     = 'Tickets from MoviePass';
+            $Mail->ContentType = 'text/html; charset=utf-8\r\n';
+            $Mail->From        = 'matiadri2005@hotmail.com';
+            $Mail->FromName    = 'Matias';
+            $Mail->WordWrap    = 900; // RFC 2822 Compliant for Max 998 characters per line
+            $Mail->AddAddress( $ToEmail ); // To:
+            $Mail->isHTML( TRUE );
+            $Mail->Body    = $Body;
+            $Mail->AltBody = "";
+            $Mail->Send();
+            $Mail->SmtpClose();
+            if ( $Mail->IsError() ) { // ADDED - This error checking was missing
+              return FALSE;
+            }
+            else {
+              return TRUE;
+            }
+          
+
         echo "<script>alert ('Se le ha enviado al mail su comprobante con el código QR');</script>";
         echo "<script>alert ('Gracias por elegir Movie Style;</script>";
         require_once(VIEWS_PATH."User-menu.php");

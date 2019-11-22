@@ -61,8 +61,8 @@ require_once('validate-session-admin.php');
                   </td>
                   <td>
                     <ul class="home-sidelinks">
-                      <li><a class="smooth-link" href="<?php echo FRONT_ROOT ?>Movie/Add">Refresh Database Movies To Api</a></li>
-                      <li><a class="smooth-link" href="<?php echo FRONT_ROOT ?>Movie/GetToApiGenres">Refresh Database Genres To Api</a></li>
+                      <li><a class="smooth-link" href="<?php echo FRONT_ROOT ?>Movie/Add">Actualizar peliculas desde Api</a></li>
+                      <li><a class="smooth-link" href="<?php echo FRONT_ROOT ?>Movie/GetToApiGenres">Actualizar generos desde Api</a></li>
                     </ul>
                   </td>
                 </div>
