@@ -49,7 +49,7 @@
         public function ShowLogin()
         {
             //Return to Login
-            require_once(VIEWS_PATH."inic-login.php");
+            require_once(VIEWS_PATH."menu.php");
         }
         //---------------------------------------------------
         public function ShowSignIn()
@@ -124,7 +124,7 @@
                      
                     } else{
                         echo '<script>alert("Contraseña incorrecta!");</script>';
-                        $this->ShowLogin();
+                        $this->ShowLobby();
                     }
                 }
             }
@@ -152,12 +152,12 @@
             $newuser = $repo->getByUserName($user->getUserName());
             if(!empty($newuser)) {
                 echo "<script>alert('El usuario ya se encuentra registrado');</script>";
-                $this->ShowLogin();
+                $this->ShowSignIn();
             }
             else{
             $repo->Add($user);
             echo "<script>alert('El usuario fue generado con exito');</script>";
-            $this->ShowLogin();
+            $this->ShowLobby();
             }
 
         }

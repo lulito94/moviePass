@@ -49,13 +49,50 @@ if (!isset($cinemaElect)) {
 <!-- ################################################################################################ -->
 
 
+
 <div style="float: right; display: flex; justify-content: center;">
   <?php
   if (isset($_SESSION['loggeduser'])) { ?>
     <a href="<?php echo FRONT_ROOT ?>User/ShowUserHome" rel="nofollow" class="button"><img src="https://www.cinemarkhoyts.com.ar/images/res/user-outline.png"> </img></a>';
   <?php } else {
     ?>
-    <a href="<?php echo FRONT_ROOT ?>User/ShowLogin" rel="nofollow" class="button"><img src="https://www.cinemarkhoyts.com.ar/images/res/user-outline.png"> </img></a>';
+    <html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<div class="w3-container">
+  <button onclick="document.getElementById('id01').style.display='block'" class="button"><img src="https://www.cinemarkhoyts.com.ar/images/res/user-outline.png"> </button>
+
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+
+      <div class="w3-center"><br>
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+        <img src="https://svgsilh.com/svg/1299805.svg"  alt="Avatar" style="width:30%" class="w3-circle w3-margin-top">
+      </div>
+
+      <form class="w3-container" action="<?php echo FRONT_ROOT; ?>User/Check">
+        <div class="w3-section">
+          <label><b>Username</b></label>
+          <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username" name="userName" required>
+          <label><b>Password</b></label>
+          <input class="w3-input w3-border" type="password" placeholder="Enter Password" name="password" required>
+          <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Login</button>
+          <input class="w3-check w3-margin-top" type="checkbox" checked="checked"> Remember me
+        </div>
+      </form>
+
+      <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+      <form action="">
+        <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
+      <button  type="submit" class="w3-button w3-red"  onclick="this.form.action ='<?php echo FRONT_ROOT ?>User/SignIn'">Registrarse</button>
+     </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
   <?php } ?>
 
   <a href="#" rel="nofollow" class="fblogin-button" onClick="javascript:CallAfterLogin();return false;"><img src="https://www.cinemacenter.com.ar/images/icon-facebook-likebox.png"> </img></a>';
