@@ -83,7 +83,7 @@ foreach($roomList as $roomSearch)
            </table>
            <div>
            <form action="">
-           <button type="submit" name="id_ticket" class="btn btn-danger" onclick="this.form.action = '<?php echo FRONT_ROOT; ?>Ticket/SendEmail'" value="<?php echo $ticket->getId_Ticket();?>"> Enviar por email el comprobante</button></td>
+           <button type="submit" name="id_ticket" class="btn btn-danger"onclick="this.form.action = '<?php echo FRONT_ROOT; ?>Ticket/SendEmail'" onclick="this.form.action = '<?php echo FRONT_ROOT; ?>Ticket/SendEmail'" value="<?php echo $ticket->getId_Ticket();?>"> Enviar por email el comprobante</button></td>
            </form>
            </div>
       </div>

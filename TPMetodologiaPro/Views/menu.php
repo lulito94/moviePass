@@ -53,7 +53,7 @@ if (!isset($cinemaElect)) {
 <div style="float: right; display: flex; justify-content: center;">
   <?php
   if (isset($_SESSION['loggeduser'])) { ?>
-    <a href="<?php echo FRONT_ROOT ?>User/ShowUserHome" rel="nofollow" class="button"><img src="https://www.cinemarkhoyts.com.ar/images/res/user-outline.png"> </img></a>';
+    <button onclick="this.form.action = '<?php echo FRONT_ROOT; ?>User/ShowUserHome'" class="button"><img src="https://www.cinemarkhoyts.com.ar/images/res/user-outline.png"> </button>
   <?php } else {
     ?>
     <html>
