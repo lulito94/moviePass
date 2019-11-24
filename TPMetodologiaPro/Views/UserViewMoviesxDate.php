@@ -30,7 +30,7 @@
   <main class="container clear ">
     <div class="content">
       <div id="comments">
-        <h2>Consulta Peliculas por genero</h2>
+        <h2>Consulta Peliculas por fecha</h2>
         <form action="" method="post" style="background-color:transparent ;padding: 2rem !important;">
          
           <head>
